@@ -1,0 +1,11 @@
+name = "Seraphim Fabricators - Hyala T1 T2 T3"
+uid = "dcd23eba-ff24-441c-b481-501e0d6f1106"
+version = 3
+copyright = "Original model and textures, 2026"
+description = "Upgrade chain Hyala-I -> Hyala-II -> Hyala-III. One, two and three team-colored plasma cores. Experimental economy; local FAF playtest required."
+author = "Custom asset for your FAF mod"
+url = ""
+selectable = true
+enabled = true
+exclusive = false
+ui_only = false

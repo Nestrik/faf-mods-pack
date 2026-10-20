@@ -1,0 +1,5 @@
+newmtl prism_atlas
+Kd 1 1 1
+Ks 0.6 0.6 0.6
+Ns 50
+map_Kd GGA2301_albedo_source.png

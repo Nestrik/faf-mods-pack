@@ -1,0 +1,13 @@
+-- Short target-bound bolt; script destroys it after BeamTicks.
+BeamBlueprint {
+    StartColor = { w=0, x=1, y=1, z=1 },
+    EndColor = { w=0, x=1, y=1, z=1 },
+    LODCutoff = 400,
+    Length = 1.3,
+    Lifetime = 0.2,
+    RepeatRate = 0.04,
+    TextureName = '/mods/seraphim-rework/textures/particles/ball_forked_beam.dds',
+    Thickness = 0.70,
+    UShift = 0,
+    VShift = -1.3,
+}

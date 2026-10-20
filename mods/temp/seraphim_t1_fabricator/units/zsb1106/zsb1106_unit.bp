@@ -1,0 +1,96 @@
+UnitBlueprint {
+    Description = "T1 Mass Fabricator",
+    BuildIconSortPriority = 51,
+    Categories = {
+        "BUILTBYCOMMANDER", "BUILTBYTIER1ENGINEER",
+        "BUILTBYTIER2COMMANDER", "BUILTBYTIER2ENGINEER",
+        "BUILTBYTIER3COMMANDER", "BUILTBYTIER3ENGINEER",
+        "DRAGBUILD", "ECONOMIC", "MASSFABRICATION", "MASSPRODUCTION",
+        "PRODUCTFA", "RECLAIMABLE", "SELECTABLE", "SERAPHIM", "SIZE4",
+        "SORTECONOMY", "STRUCTURE", "TECH1", "VISIBLETORECON", "VOLATILE",
+    },
+    Audio = {
+        ActiveLoop = Sound { Bank = 'XSB', Cue = 'XSB1104_Active', LodCutoff = 'UnitMove_LodCutoff' },
+        Destroyed = Sound { Bank = 'XSL_Destroy', Cue = 'XSB_Destroy_Huge', LodCutoff = 'UnitMove_LodCutoff' },
+        DoneBeingBuilt = Sound { Bank = 'XSB', Cue = 'XSB1104_Activate', LodCutoff = 'UnitMove_LodCutoff' },
+        UISelection = Sound { Bank = 'SeraphimSelect', Cue = 'Seraphim_Select_Resource', LodCutoff = 'UnitMove_LodCutoff' },
+    },
+    AverageDensity = 300,
+    Defense = {
+        ArmorType = "Structure", EconomyThreatLevel = 10,
+        Health = 250, MaxHealth = 250,
+    },
+    Display = {
+        AnimationUpgrade = "/mods/seraphim_t1_fabricator/units/zsb1106/zsb1106_upgrade.sca",
+        UpgradeMeshBlueprint = "/mods/seraphim_t1_fabricator/units/zsb1106/zsb1106_upgrade_mesh",
+        Abilities = { "Energy to mass conversion" },
+        AnimationActivate = "/mods/seraphim_t1_fabricator/units/zsb1106/zsb1106_work.sca",
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    MeshName = "/mods/seraphim_t1_fabricator/units/zsb1106/zsb1106_lod0.scm",
+                    AlbedoName = "/mods/seraphim_t1_fabricator/units/zsb1106/zsb1106_albedo.dds",
+                    SpecularName = "/mods/seraphim_t1_fabricator/units/zsb1106/zsb1106_specteam.dds",
+                    NormalsName = "/mods/seraphim_t1_fabricator/units/zsb1106/zsb1106_normalsTS.dds",
+                    LookupName = "/textures/environment/Falloff_seraphim_lookup.dds",
+                    -- Unit preserves the authored violet RGB and applies SpecTeam.a before emission.
+                    ShaderName = "Unit", LODCutoff = 120,
+                },
+                {
+                    MeshName = "/mods/seraphim_t1_fabricator/units/zsb1106/zsb1106_lod1.scm",
+                    AlbedoName = "/mods/seraphim_t1_fabricator/units/zsb1106/zsb1106_albedo.dds",
+                    SpecularName = "/mods/seraphim_t1_fabricator/units/zsb1106/zsb1106_specteam.dds",
+                    NormalsName = "/mods/seraphim_t1_fabricator/units/zsb1106/zsb1106_normalsTS.dds",
+                    LookupName = "/textures/environment/Falloff_seraphim_lookup.dds",
+                    ShaderName = "Unit", LODCutoff = 215,
+                },
+            },
+        },
+        UniformScale = 0.05,
+    },
+    Economy = {
+        BuildRate = 10,
+        BuildableCategory = { "zsb1206" },
+        -- Starter values for playtesting. This is intentionally less efficient than T2.
+        BuildCostEnergy = 800, BuildCostMass = 80, BuildTime = 200,
+        MaintenanceConsumptionPerSecondEnergy = 40,
+        ProductionPerSecondMass = 0.25,
+    },
+    Footprint = { SizeX = 1, SizeZ = 1 },
+    General = {
+        UpgradesTo = "zsb1206",
+        FactionName = "Seraphim", Icon = "land", SelectionPriority = 5,
+        CommandCaps = { RULEUCC_Pause = true, RULEUCC_Stop = true },
+        ToggleCaps = { RULEUTC_ProductionToggle = true },
+        UnitName = "Hyala-I",
+    },
+    Intel = { VisionRadius = 10 },
+    LifeBarHeight = 0.075, LifeBarOffset = 0.72, LifeBarSize = 0.9,
+    Physics = {
+        BuildOnLayerCaps = {
+            LAYER_Air = false, LAYER_Land = true, LAYER_Orbit = false,
+            LAYER_Seabed = false, LAYER_Sub = false, LAYER_Water = false,
+        },
+        DragCoefficient = 0.2, FlattenSkirt = true, MaxGroundVariation = 0.2,
+        MeshExtentsX = 0.9, MeshExtentsY = 0.65, MeshExtentsZ = 0.9,
+        MotionType = "RULEUMT_None",
+        SkirtOffsetX = -0.5, SkirtOffsetZ = -0.5,
+        SkirtSizeX = 2, SkirtSizeZ = 2,
+    },
+    SelectionSizeX = 0.65, SelectionSizeZ = 0.65, SelectionThickness = 0.6,
+    SizeX = 0.8, SizeY = 0.58, SizeZ = 0.8,
+    StrategicIconName = "icon_structure1_mass", StrategicIconSortPriority = 65,
+    Weapon = {
+        {
+            Damage = 80, DamageFriendly = true, DamageRadius = 2.5,
+            DamageType = "DeathExplosion", DisplayName = "Death Weapon",
+            DummyWeapon = true, Label = "DeathWeapon", WeaponCategory = "Death",
+        },
+    },
+    Wreckage = {
+        Blueprint = "/props/DefaultWreckage/DefaultWreckage_prop.bp",
+        EnergyMult = 0, HealthMult = 0.9, MassMult = 0.9,
+        ReclaimTimeMultiplier = 1, WreckageLayers = { Land = true },
+    },
+}

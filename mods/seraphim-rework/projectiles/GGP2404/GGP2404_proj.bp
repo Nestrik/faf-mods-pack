@@ -1,0 +1,37 @@
+ProjectileBlueprint {
+    Categories = { 'SERAPHIM', 'PROJECTILE', 'INDIRECTFIRE' },
+    General = { Category = 'Artillery', Faction = 'Seraphim', Weapon = 'Ball lightning artillery' },
+    Display = { Mesh = { LODs = { {
+    LODCutoff = 300,
+    MeshName = '/mods/seraphim-rework/meshes/ball_lightning/ball_lightning_lod0.scm',
+    AlbedoName = '/mods/seraphim-rework/meshes/ball_lightning/ball_albedo.dds',
+    SpecularName = '/mods/seraphim-rework/meshes/ball_lightning/ball_specteam.dds',
+    NormalsName = '/mods/seraphim-rework/units/GGA2404/GGA2404_normalsTS.dds',
+    ShaderName = 'Unit',
+} } }, UniformScale = 0.05, ImpactEffects = { Type = 'Medium02' }, StrategicIconSize = 3 },
+    Physics = {
+        DestroyOnWater = true, InitialSpeed = 30, InitialSpeedRange = 0,
+        UseGravity = true, TrackTarget = false, TurnRate = 0,
+        VelocityAlign = false,
+    },
+    -- Custom fields read by GGP2404_script.lua. 10 simulation ticks per second.
+    Lightning = {
+        Radius = 5,
+        SinkTicks = 3,
+        ActiveTicks = 30,
+        FadeTicks = 4,
+        StrikeIntervalTicks = 5,
+        BeamTicks = 2,
+        DamagePerStrike = 400,
+        DamageType = 'Normal',
+        AffectFriendly = true,
+        OrbRadius = 0.34,
+        SpinDegreesPerSecond = 65,
+        PulseAmplitude = 0.055,
+        PulsePeriodTicks = 7,
+    },
+    Audio = {
+        Impact = Sound { Bank = 'Impacts', Cue = 'X_Impact_Land_Gen_Seraphim', LodCutoff = 'Weapon_LodCutoff' },
+        ImpactWater = Sound { Bank = 'Impacts', Cue = 'Impact_Water_Splash_AEON', LodCutoff = 'Weapon_LodCutoff' },
+    },
+}

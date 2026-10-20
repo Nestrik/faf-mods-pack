@@ -1,0 +1,9 @@
+name = "Seraphim ACU Test Generator"
+uid = "975d554a-57e2-446b-b981-319e2c3a8247"
+version = 1
+description = "Adds a low-cost Seraphim ACU back enhancement for testing economy and build power."
+author = "Local project"
+selectable = true
+enabled = true
+exclusive = false
+ui_only = false
