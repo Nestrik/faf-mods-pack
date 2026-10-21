@@ -38,32 +38,90 @@ def translated(mesh, offset, operation):
         mesh.vertices[i] = tuple(np.array(vertex[:3]) + offset) + vertex[3:]
 
 
+def curved_outline(outline, iterations):
+    points = np.asarray(outline, dtype=float)
+    for _ in range(iterations):
+        nxt = np.roll(points, -1, axis=0)
+        points = np.stack((.75*points+.25*nxt, .25*points+.75*nxt), axis=1).reshape(-1,3)
+    return points
+
+
+def cap(mesh, points, uvs, bone, material, up):
+    """Ear-clip a curved, potentially concave leaf without filling its open fork."""
+    p = np.asarray(points)[:,[0,2]]
+    cross = lambda a,b: a[0]*b[1]-a[1]*b[0]
+    signed = sum(cross(p[i],p[(i+1)%len(p)]) for i in range(len(p)))
+    sign = 1 if signed > 0 else -1
+    remaining = list(range(len(p)))
+    while len(remaining) > 3:
+        found = False
+        for j,b in enumerate(remaining):
+            a,c = remaining[j-1],remaining[(j+1)%len(remaining)]
+            if sign*cross(p[b]-p[a],p[c]-p[b]) <= 1e-10:
+                continue
+            inside = False
+            for k in remaining:
+                if k in (a,b,c):
+                    continue
+                if min(sign*cross(p[b]-p[a],p[k]-p[a]),
+                       sign*cross(p[c]-p[b],p[k]-p[b]),
+                       sign*cross(p[a]-p[c],p[k]-p[c])) >= -1e-10:
+                    inside = True
+                    break
+            if inside:
+                continue
+            mesh.face([points[k] for k in (a,b,c)],bone,material,(0,up,0),[uvs[k] for k in (a,b,c)])
+            remaining.pop(j)
+            found = True
+            break
+        if not found:
+            raise ValueError('Cannot triangulate rounded armor outline')
+    mesh.face([points[k] for k in remaining],bone,material,(0,up,0),[uvs[k] for k in remaining])
+
+
 def plate(mesh, outline, depth=.3, bone=0, material='armor'):
-    """A thick convex armor petal with coherent planar UVs on its broad face."""
-    top = [np.array(p, dtype=float) for p in outline]
-    bottom = [p - (0, depth, 0) for p in top]
-    points = np.array(top)
-    lo, span = points[:, [0, 2]].min(0), np.maximum(np.ptp(points[:, [0, 2]], axis=0), .001)
-    uvs = [tuple((p[[0, 2]] - lo) / span) for p in top]
-    mesh.face(top, bone, material, (0, 1, 0), uvs)
-    mesh.face(bottom, bone, 'dark', (0, -1, 0), uvs)
-    center = np.mean(top, axis=0)
-    for i in range(len(top)):
-        j = (i + 1) % len(top)
-        out = (top[i] + top[j]) / 2 - center
-        out[1] = 0
-        mesh.face([top[i], bottom[i], bottom[j], top[j]], bone, 'edge', out)
+    """Curved armor leaf with a rolled rim, rounded corners and continuous UVs."""
+    outline = curved_outline(outline, 2 if mesh.detail >= 16 else 1)
+    center = np.mean(outline,axis=0)
+    depth = max(depth*1.6,.36)
+    lo,span = outline[:,[0,2]].min(0),np.maximum(np.ptp(outline[:,[0,2]],axis=0),.001)
+    rings = []
+    profile = [(.88,.36),(.975,.15),(1,-.14),(.975,-.52),(.88,-.75)]
+    for scale,y in profile:
+        ring = center+(outline-center)*np.array((scale,1,scale))
+        ring[:,1] += depth*y
+        rings.append(ring)
+    for i in range(len(rings)-1):
+        for j in range(len(outline)):
+            k=(j+1)%len(outline)
+            points=[rings[i][j],rings[i+1][j],rings[i+1][k],rings[i][k]]
+            out=np.mean(points,axis=0)-center
+            out[1]=0
+            # Use one material across a fillet so its vertex normals join smoothly.
+            mesh.face(points,bone,material,out,
+                      [tuple((p[[0,2]]-lo)/span) for p in points])
+    for ring,up in ((rings[0],1),(rings[-1],-1)):
+        cap(mesh,ring,[tuple((p[[0,2]]-lo)/span) for p in ring],bone,material,up)
 
 
 def splinter(mesh, center, width, height, depth, bone, material='dark', lean=(0, 0)):
-    """Asymmetric five-sided rocky-metal shard, ending in sharp displaced tips."""
+    """An organic tapered floating island with rounded profiles and a soft tip."""
     cx, cy, cz = center
     rings, centers = [], []
-    outline = [(-.9, -.6), (.3, -.95), (1, -.22), (.6, .85), (-.75, .7)]
-    profile = [(-height, .018, 1), (-height * .45, .52, .45),
-               (-height * .08, 1, .08), (.65, .7, -.08), (height * .3, .025, -.3)]
-    if mesh.detail < 16:
-        profile = [profile[j] for j in (0, 2, 4)]
+    n = 12 if mesh.detail >= 16 else 8
+    outline = [(math.cos(a)*(1+.045*math.sin(3*a)),math.sin(a))
+               for a in (2*math.pi*j/n for j in range(n))]
+    controls=np.array([(-height,.065,1),(-height*.75,.23,.75),(-height*.38,.65,.38),
+                       (-height*.06,1,.06),(.65,.75,-.08),(max(.9,height*.3),.065,-.3)])
+    profile=[]
+    for i in range(len(controls)-1):
+        a,b=controls[max(0,i-1)],controls[i]
+        c,d=controls[i+1],controls[min(len(controls)-1,i+2)]
+        for t in np.linspace(0,1,3 if mesh.detail>=16 else 2,endpoint=False):
+            q=.5*((2*b)+(-a+c)*t+(2*a-5*b+4*c-d)*t*t+(-a+3*b-3*c+d)*t*t*t)
+            q[1]=max(.055,q[1])
+            profile.append(q)
+    profile.append(controls[-1])
     for y, scale, shift in profile:
         c = np.array((cx + lean[0] * shift, cy + y, cz + lean[1] * shift))
         centers.append(c)
@@ -73,18 +131,27 @@ def splinter(mesh, center, width, height, depth, bone, material='dark', lean=(0,
 
 def rail(mesh, points, width=.07, bone=0, material='team'):
     """Raised narrow engraving/power line following an armored ridge."""
-    rings = [[(x-width, y-.025, z), (x+width, y-.025, z),
-              (x+width, y+.065, z), (x-width, y+.065, z)] for x,y,z in points]
+    rings = [[(x+width*math.cos(a),y+.04*math.sin(a),z)
+              for a in (2*math.pi*j/8 for j in range(8))] for x,y,z in points]
     mesh.loft(rings, points, bone, material)
 
 
 def launcher(detail):
-    """Reference-inspired broad breech, split blades and open triangular throat."""
+    """Curved broad breech, rounded split leaves and an open firing throat."""
     m = Mesh(detail)
     rings, centers = [], []
-    for z, w, h in [(-5.3,.25,.25),(-3.4,2.3,.8),(-.5,2.65,1.0),(2.7,1.7,.8),(4.8,.35,.3)]:
-        centers.append((0,-.25,z))
-        rings.append([(w*u,-.25+h*v,z) for u,v in [(-1,0),(-.5,1),(.5,1),(1,0),(.5,-1),(-.5,-1)]])
+    controls=np.array([(-5.3,.25,.25),(-3.4,2.3,.8),(-.5,2.65,1.0),(2.7,1.7,.8),(4.8,.35,.3)])
+    for i in range(len(controls)-1):
+        a,b=controls[max(0,i-1)],controls[i]
+        c,d=controls[i+1],controls[min(len(controls)-1,i+2)]
+        for t in np.linspace(0,1,3 if detail>=16 else 2,endpoint=False):
+            z,w,h=.5*((2*b)+(-a+c)*t+(2*a-5*b+4*c-d)*t*t+(-a+3*b-3*c+d)*t*t*t)
+            centers.append((0,-.25,z))
+            n=16 if detail>=16 else 10
+            rings.append([(w*math.cos(j*2*math.pi/n),-.25+h*math.sin(j*2*math.pi/n),z) for j in range(n)])
+    z,w,h=controls[-1]
+    centers.append((0,-.25,z))
+    rings.append([(w*math.cos(j*2*math.pi/n),-.25+h*math.sin(j*2*math.pi/n),z) for j in range(n)])
     m.loft(rings, centers, 0, 'dark')
     # Broad dark central recess is enclosed by two pointed armor leaves.
     plate(m, [(-1.7,-.15,-4.5),(0,.1,-5.4),(1.7,-.15,-4.5),
@@ -115,7 +182,7 @@ def append_mesh(destination, source, offset, bone):
 
 def build_mesh(detail):
     m = Mesh(detail)
-    # Five separate pointed petals, with air between tips; no circular plinth.
+    # Five curved petals with rolled borders and gaps between their rounded ends.
     for i in range(5):
         a = math.radians(18 + i*72)
         radial = np.array((math.cos(a),0,math.sin(a)))
@@ -127,7 +194,7 @@ def build_mesh(detail):
             plate(m, [radial*r+tangent*w+(0,y,0) for w,y,r in
                       [(-1.1,2.8,4),(-2.1,2.6,8.3),(0,.8,17.4),(1.9,2.65,8.1)]], .15, material='steel')
         rail(m, [tuple(radial*r+(0,y,0)) for r,y in [(4.4,3.0),(8.6,2.8),(15.5,1.5)]], .09)
-    # Angular central lift source and three upward splinters.
+    # Rounded central lift source and three organic upward lobes.
     splinter(m, (0,2.7,0), 5.8, 2.2, 5.1, 0, 'dark', (.4,-.6))
     for i in range(3):
         a=i*math.pi*2/3
@@ -135,29 +202,38 @@ def build_mesh(detail):
     gun = launcher(detail)
     for (x, y, z), island, barrel in zip(ISLANDS, ISLAND_BONES, BARREL_BONES):
         def island_geometry():
-            # Fractured levitating rock, with a deep sharp keel and satellite shards.
-            splinter(m, (0,-.3,0), 4.2, 6.8, 4.9, island, 'dark', (.9,-1.1))
-            # Broad incised frontal facet on the rock, following its tapered keel.
-            front = [(-1.9,-.65,3.7),(1.6,-.6,3.6),(1.15,-3.25,2.15),
-                     (.9,-5.8,.6),(-.75,-3.1,2.2)]
-            m.face(front, island, 'armor', (0,0,1), [(0,0),(1,0),(.82,.55),(.5,1),(.18,.55)])
+            # Curved levitating island, with a tapered keel and rounded satellites.
+            # One continuous engraved shell avoids an intersection seam between
+            # the former body and its separate frontal facing.
+            splinter(m, (0,-.3,0), 4.2, 6.8, 4.9, island, 'armor', (.9,-1.1))
             for side in (-1,1):
                 splinter(m, (side*3.2,-.6,1.0), 1.5, 4.7, 2.5, island, 'steel', (side*.9,.4))
                 # Tall outer rock blades echo the suspended structures in reference 1.
                 splinter(m, (side*4.8,1.3,-2.6), .8, 2.8, 2, island, 'armor', (side*.8,-.5))
                 plate(m, [(side*.8,.65,-4.6),(side*3.7,.9,-3.8),
                           (side*4.0,.8,1.1),(side*2.0,.75,4.4),(side*.8,.65,.4)], .3, island)
-                # Sharp, narrow trunnion cheeks; no round bearings or saucer rims.
+                # Rounded narrow trunnion cheeks, attached to the island.
                 plate(m, [(side*1.2,1,-4.8),(side*2.2,1,-4.8),
                           (side*2.0,3.9,-3.5),(side*1.2,3.9,-3.5)], .25, island, 'steel')
                 rail(m, [(side*3.0,.99,-3),(side*3.35,.9,.1),(side*2.1,.9,3.5)], .055, island)
         translated(m, (x, y, z), island_geometry)
         append_mesh(m, gun, (x, y + 3.8, z), barrel)
     m.smooth()
+    # Retain the curved surfaces while sharing identical exported vertices.
+    # SCM supports indexed meshes; its 16-bit limit applies to unique records.
+    vertices,indices,lookup = [],[],{}
+    for old in m.indices:
+        vertex=m.vertices[old]
+        key=tuple(round(float(x),8) for x in vertex[:16])+(int(vertex[16]),)
+        if key not in lookup:
+            lookup[key]=len(vertices)
+            vertices.append(vertex)
+        indices.append(lookup[key])
+    m.vertices,m.indices=vertices,indices
     return m
 
 
-def main():
+def main(rebuild_textures=True):
     UNIT.mkdir(parents=True, exist_ok=True)
     for lod, detail in ((0, 24), (1, 12)):
         mesh = build_mesh(detail)
@@ -165,13 +241,14 @@ def main():
         if lod == 0:
             export_obj(mesh, ASSETS, NAMES)
         print(f'LOD{lod}: {len(mesh.indices)//3} triangles / {len(mesh.vertices)} vertices', flush=True)
-    make_textures(ASSETS, UNIT, save_dds_dxt5)
+    if rebuild_textures:
+        make_textures(ASSETS, UNIT, save_dds_dxt5)
     views = []
     for name, azimuth, elevation, color in [('Front', 0, 17, (.12, .9, .22)),
                                            ('Side', 90, 15, (.12, .32, 1)),
                                            ('Game view', 35, 32, (.12, .9, .22))]:
         im = render_scm(UNIT / 'GGA2401_lod0.scm', ASSETS, ASSETS / f'GGA2401_{name.lower().replace(" ", "_")}.png',
-                        azimuth, elevation, color, 720)
+                        azimuth, elevation, color, 720, texture_mip=2 if name == 'Game view' else 0)
         ImageDraw.Draw(im).text((24, 24), name, fill=(220, 230, 240), font=ImageFont.load_default(size=20))
         views.append(im)
     sheet = Image.new('RGB', (2160, 720))

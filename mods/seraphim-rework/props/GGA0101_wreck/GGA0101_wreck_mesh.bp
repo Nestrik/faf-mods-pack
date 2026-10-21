@@ -1,0 +1,23 @@
+MeshBlueprint {
+    IconFadeInZoom = 130,
+    LODs = {
+        {
+            MeshName = '/mods/seraphim-rework/props/GGA0101_wreck/GGA0101_wreck_lod0.scm',
+            AlbedoName = '/mods/seraphim-rework/props/GGA0101_wreck/GGA0101_wreck_albedo.dds',
+            SpecularName = '/env/common/props/wreckage_noise.dds',
+            NormalsName = '/mods/seraphim-rework/units/GGA0101/GGA0101_normalsTS.dds',
+            ShaderName = 'Wreckage',
+            LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
+            LODCutoff = 90,
+        },
+        {
+            MeshName = '/mods/seraphim-rework/props/GGA0101_wreck/GGA0101_wreck_lod1.scm',
+            AlbedoName = '/mods/seraphim-rework/props/GGA0101_wreck/GGA0101_wreck_albedo.dds',
+            SpecularName = '/env/common/props/wreckage_noise.dds',
+            NormalsName = '/mods/seraphim-rework/units/GGA0101/GGA0101_normalsTS.dds',
+            ShaderName = 'Wreckage',
+            LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
+            LODCutoff = 220,
+        },
+    },
+}

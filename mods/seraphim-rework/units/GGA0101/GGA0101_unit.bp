@@ -56,12 +56,12 @@ UnitBlueprint {
     },
     Description = '<LOC gga0101_desc>Mobile Long-Range Missile Launcher',
     Display = {
-        MeshBlueprint = '/units/xsl0111/xsl0111_mesh',
+        MeshBlueprint = '/mods/seraphim-rework/units/GGA0101/GGA0101_mesh',
         MovementEffects = {
             Land = {
                 Effects = {
                     {
-                        Bones = { 'XSL0111' },
+                        Bones = { 'GGA0101' },
                         Scale = 0.5,
                         Type = 'GroundKickup01',
                     },
@@ -80,7 +80,7 @@ UnitBlueprint {
                 },
             },
         },
-        UniformScale = 0.057,
+        UniformScale = 0.1,
     },
     Economy = {
         BuildCostEnergy = 800,
@@ -112,7 +112,7 @@ UnitBlueprint {
         HelpText = '<LOC gga0101_help>Mobile long-range missile launcher',
     },
     LifeBarHeight = 0.075,
-    LifeBarOffset = 0.55,
+    LifeBarOffset = 0.85,
     LifeBarSize = 0.8,
     Physics = {
         BackUpDistance = 4,
@@ -131,9 +131,9 @@ UnitBlueprint {
         MaxSpeed = 2.3,
         MaxSpeedReverse = 2.3,
         MaxSteerForce = 5,
-        MeshExtentsX = 0.85,
-        MeshExtentsY = 0.6,
-        MeshExtentsZ = 1.25,
+        MeshExtentsX = 1,
+        MeshExtentsY = 0.85,
+        MeshExtentsZ = 1.6,
         MinSpeedPercent = 0,
         MotionType = 'RULEUMT_Land',
         RotateOnSpot = true,
@@ -163,7 +163,7 @@ UnitBlueprint {
     Weapon = {
         {
             AboveWaterTargetsOnly = true,
-            AnimationReload = '/units/xsl0111/xsl0111_areload.sca',
+            AnimationReload = '/mods/seraphim-rework/units/GGA0101/GGA0101_areload.sca',
             Audio = {
                 Fire = Sound {
                     Bank = 'XSL_Weapon',
@@ -229,7 +229,8 @@ UnitBlueprint {
         },
     },
     Wreckage = {
-        Blueprint = '/props/DefaultWreckage/DefaultWreckage_prop.bp',
+        Blueprint = '/mods/seraphim-rework/props/GGA0101_wreck/GGA0101_wreck_prop.bp',
+        UseCustomMesh = true,
         EnergyMult = 0,
         HealthMult = 0.9,
         MassMult = 0.9,

@@ -26,3 +26,12 @@ do
         end
     end
 end
+
+-- Recognize the real experimental energy producer for economy accounting.
+-- Its construction choice is gated separately in the M28Factory hook; keep
+-- refCategoryT3Power restricted to actual T3 units.
+do
+    if categories.gga1401 and refCategoryPower then
+        refCategoryPower = refCategoryPower + categories.gga1401
+    end
+end

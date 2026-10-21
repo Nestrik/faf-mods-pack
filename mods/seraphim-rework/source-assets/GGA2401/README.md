@@ -1,11 +1,13 @@
 # GGA2401 — Vothuun Floating Salvo Tower
 
-Original procedural model for Seraphim Rework, rebuilt 2026-10-20. No stock or
+Original procedural model for Seraphim Rework, rebuilt 2026-10-21. No stock or
 third-party model/texture resources were copied. The geometry and material tools
 were adapted from this same mod's GGA2301 sources and are stored here independently.
 The game uses the files under `units/GGA2401` and the two standard unit-icon
 locations. The latest appearance follows the user's `reference-floating-shards.png`
-and `reference-artillery-shape.png`. These are visual references, not game textures.
+and `reference-artillery-shape.png`, refined by the user's 2026-10-21 request for
+smooth rounded Seraphim shapes and brighter metallic surfaces. These are visual
+references, not game textures. See [the stock-model investigation](stock-seraphim-study.md).
 
 ## Regenerate
 
@@ -29,9 +31,10 @@ units from the centre, inside the retained 4×4 skirt. Five detached pointed
 metal islands float above it, one gun per level. Their centres in source units are
 `(-8,13,-2)`, `(7.8,25,1.5)`, `(-6.5,37,5)`, `(8,49,-4.5)`, `(-4.5,61,-5)`.
 The guns are about 1.2 game units apart vertically, and every island is offset
-from the central axis. Islands are irregular faceted rocks with deep pointed keels
-and smaller metal splinters. Five separate pointed petals form the ground base;
-no circular saucer rims, induction rings or cylindrical gun tubes remain.
+from the central axis. Islands retain tapered keels and satellites but now use
+curved profiles and rounded tips. Ground petals and split weapon leaves have
+smoothed outlines, volumetric rolled edges and consistent interpolated normals.
+The long silhouettes remain recognizable without the old faceted cuts.
 
 ```text
 GGA2401
@@ -52,16 +55,38 @@ above its own island deck over the full upward 0–90° pitch range. `CreateSlav
 in the unit script copies the third gun's pitch to the other four guns while
 retaining their own hinge positions. No decorative animation controls these bones.
 
-LOD0 has 3,254 triangles / 9,762 vertex records;
-LOD1 has 2,614 / 7,842. Both retain the same 17-bone skeleton and firing positions.
-Textures are 1024×1024 BC3/DXT5 with eleven mip levels. Dark steel palettes,
-subtle mottled patina, restrained SpecTeam R/G and brighter worn edges replace
-the old pale polished silver. Alpha marks fine player-color crop-circle inlays;
-broad armor panels keep coherent planar UVs so concentric circles stay legible.
-The guns have thick faceted breeches, swept armor leaves, a long split tip and
+LOD0 has 27,085 triangles / 54,129 vertex records;
+LOD1 has 12,993 / 25,353. Both retain the same 17-bone skeleton and firing positions.
+Textures are 1024×1024 BC3/DXT5 with eleven mip levels. Slightly brighter steel
+and stronger metallic reflection/gloss follow the stock Seraphim shader contract.
+`ShaderName = 'Seraphim'` uses the approved crop-circle mask in **Albedo.A**;
+the former SpecTeam-alpha mask was transferred with all 1,048,576 pixels intact.
+`seraphim_inlays` itself is unchanged. Normal maps are now packed in G/A as read
+by native `ComputeNormal`; the previous opaque RGB packing was incorrect.
+Broad armor panels retain planar UVs so concentric circles stay legible.
+The guns have smoothly curved breeches, rolled armor leaves, a long split tip and
 an open central channel. `GGA2401_island_closeup.png` renders the exported SCM's
 third island and gun for detailed inspection. Preview lighting approximates the
 game's shader; it is not a screenshot from the game.
+
+### Black-metal mipmap fix — 2026-10-21
+
+The user's game screenshot showed a black body with visible team-color lines.
+The exporter's RGBA downsampling treated data alpha as transparency: SpecTeam.A
+is zero, so RGB was wiped out in every mip below level 0. Reflection/gloss maps
+became entirely black at normal viewing distances; Albedo metal RGB under its
+zero team mask was damaged too. Stock XSL0001 textures retain their RGB values
+through the mip chain, as recorded in `stock_commander_mip_findings.json`.
+
+`save_dds_dxt5(..., independent_channels=True)` now downsamples material R/G/B/A
+as separate scalar channels. `make_textures` always uses that mode; transparent
+icon packaging retains normal alpha-aware filtering. Mip0, source PNGs, line masks,
+geometry and balance are preserved. The former broken DDSs are archived in
+`archive/before-data-mip-fix-2026-10-21/`. Export validation decodes the complete
+11-level DDS chains, including RGB under zero alpha. The renderer now samples
+actual exported DDSs via `load_dds_mip`, not source PNGs; its game view uses mip2.
+This fixes the proven export defect; the new game appearance still needs the
+user's match check. The native `.nx2` shader packing was also reconfirmed.
 
 ## Unique unit icon
 
@@ -106,6 +131,9 @@ The old, nonworking unit blueprint/script are retained in
 all runtime files, generators, source OBJ/textures and previews, is saved in
 `archive/before-floating-tower-2026-10-20/`. The user praised its firing mechanics;
 the former saucer-island tower and its icons are saved under
-`archive/before-shard-reference-rebuild-2026-10-20/`. This visual revision preserves
-the entire unit blueprint and aiming script byte for byte. Structural checks and
+`archive/before-shard-reference-rebuild-2026-10-20/`. The last angular model and
+all its source files are preserved in `archive/before-rounded-seraphim-2026-10-21/`.
+This revision preserves the unit blueprint and aiming script byte for byte;
+mesh shader/materials and geometry have changed. The existing unique icon is retained.
+Structural checks and
 previews are separate from gameplay: no match was run for this revision, as requested.

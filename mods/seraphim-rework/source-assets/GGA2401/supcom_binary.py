@@ -91,13 +91,24 @@ def encode_dxt5_block(pixels):
     return bytes((a0,a1))+alpha_bits.to_bytes(6,"little")+struct.pack("<HHI",c0,c1,color_bits)
 
 
-def save_dds_dxt5(image,path):
+def save_dds_dxt5(image,path,*,independent_channels=False):
+    """Encode BC3 and its mip chain.
+
+    Unit material channels are independent data: alpha can be a team mask,
+    unused zero, or a normal component. RGBA.resize() premultiplies by alpha,
+    destroying RGB in those maps. Real transparent icon art keeps that behavior.
+    """
     levels=[]
     current=image.convert("RGBA")
     while True:
         levels.append(current)
         if current.size==(1,1): break
-        current=current.resize((max(1,current.width//2),max(1,current.height//2)),Image.Resampling.LANCZOS)
+        size=(max(1,current.width//2),max(1,current.height//2))
+        if independent_channels:
+            current=Image.merge("RGBA",tuple(channel.resize(size,Image.Resampling.LANCZOS)
+                                             for channel in current.split()))
+        else:
+            current=current.resize(size,Image.Resampling.LANCZOS)
     data=bytearray()
     for mip in levels:
         rgba=mip.load()

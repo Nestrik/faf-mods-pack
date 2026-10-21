@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import math
 import struct
+from io import BytesIO
 from collections import defaultdict
 from pathlib import Path
 
@@ -146,9 +147,10 @@ class Mesh:
         for indices in groups.values():
             for i in indices:
                 v = original[i]
-                normal = np.array(v[3:6])
-                compatible = [original[j][3:6] for j in indices if np.dot(normal,original[j][3:6])>.82]
-                normal = normalized(np.sum(compatible,axis=0))
+                # The rebuilt surfaces have geometric rolled edges already.
+                # One normal at every shared position prevents a highlight seam
+                # where the old angle cutoff gave neighboring triangles different normals.
+                normal = normalized(np.sum([original[j][3:6] for j in indices],axis=0))
                 tangent = normalized(np.array(v[6:9])-normal*np.dot(v[6:9],normal))
                 handedness = 1 if np.dot(np.cross(normal,tangent),v[9:12])>=0 else -1
                 bitangent = np.cross(normal,tangent)*handedness
@@ -187,12 +189,14 @@ def make_textures(asset_dir, unit_dir, save_dds):
     albedo=np.zeros((size,size,4),dtype=np.uint8)
     specteam=np.zeros_like(albedo)
     normals=np.zeros_like(albedo)
-    normals[:]=(128,128,255,255)
-    # Weathered dark metal, with restrained reflections and brighter worn edges.
-    palettes=((76,87,96),(39,47,53),(121,133,141),(65,77,86),
+    # Native ComputeNormal reads .ga, transformed by (binormal,tangent,normal).
+    # A flat DXT5nm map has G=A=128, not an opaque RGB normal with alpha=255.
+    normals[:]=(128,128,128,128)
+    # Stock Seraphim uses restrained albedo plus strong reflected metal and gloss.
+    palettes=((91,102,111),(49,58,65),(135,147,155),(80,92,101),
               (125,155,145),(76,113,106),(58,104,91),(21,29,32))
-    finishes={"armor":(139,174),"dark":(91,120),"edge":(199,210),
-              "steel":(125,157),"joint":(70,97)}
+    finishes={"armor":(245,212),"dark":(205,180),"edge":(255,235),
+              "steel":(235,208),"joint":(155,155)}
     w,h=size//4,size//2
     u,v=np.meshgrid(np.linspace(0,1,w),np.linspace(0,1,h))
     brush=.8*np.sin(v*h*.83)+.4*np.sin(u*w*.53+v*h*.16)
@@ -207,7 +211,7 @@ def make_textures(asset_dir, unit_dir, save_dds):
         value-=patina[:,:,None]*np.array((5,3,1))
         packed=np.zeros((h,w,4),dtype=float)
         reflect,specular=finishes.get(name,(148,168))
-        packed[:,:,0]=reflect-patina*23; packed[:,:,1]=specular-patina*28
+        packed[:,:,0]=reflect-patina*10; packed[:,:,1]=specular-patina*12
         if name in ("armor","steel"):
             # Bright narrow crop-circle channels cut into aged, uncolored armor.
             packed[:,:,3]=255*lines
@@ -217,8 +221,8 @@ def make_textures(asset_dir, unit_dir, save_dds):
             packed[:,:,1]-=engraving*8
             gy,gx=np.gradient(-engraving+weather*.03)
             nx,ny=-gx*.48,-gy*.48
-            nz=np.sqrt(np.maximum(0,1-nx*nx-ny*ny))
-            normals[region][:,:,:3]=np.clip((np.stack((nx,ny,nz),axis=-1)*.5+.5)*255,0,255).astype(np.uint8)
+            normals[region][:,:,1]=np.clip((ny*.5+.5)*255,0,255).astype(np.uint8)
+            normals[region][:,:,3]=np.clip((nx*.5+.5)*255,0,255).astype(np.uint8)
         elif name in ("team","crystal","lens"):
             packed[:,:,3]=255
             packed[:,:,2]={"team":72,"crystal":78,"lens":160}[name]
@@ -229,13 +233,16 @@ def make_textures(asset_dir, unit_dir, save_dds):
             elif name=="lens":
                 value+=(25*np.sin(u*math.pi)*np.sin(v*math.pi))[:,:,None]
         albedo[region][:,:,:3]=np.clip(value,0,255).astype(np.uint8)
-        albedo[region][:,:,3]=255
+        # Preserve the former SpecTeam-alpha line mask exactly, but put it in
+        # Albedo.A as required by the stock Seraphim shader.
+        albedo[region][:,:,3]=np.clip(packed[:,:,3],0,255).astype(np.uint8)
+        packed[:,:,3]=0
         specteam[region]=np.clip(packed,0,255).astype(np.uint8)
     for suffix,data in (("albedo",albedo),("specteam",specteam),("normalsTS",normals)):
         im=Image.fromarray(data)
-        save_dds(im,unit_dir/f"GGA2401_{suffix}.dds")
+        save_dds(im,unit_dir/f"GGA2401_{suffix}.dds",independent_channels=True)
         im.save(asset_dir/f"GGA2401_{suffix}_source.png")
-    Image.fromarray(specteam[:,:,3]).save(asset_dir/"GGA2401_team_mask_preview.png")
+    Image.fromarray(albedo[:,:,3]).save(asset_dir/"GGA2401_team_mask_preview.png")
     Image.fromarray(albedo).save(asset_dir/"GGA2401_albedo_preview.png")
 
 
@@ -245,6 +252,29 @@ def load_scm(path):
     vertices=np.array([struct.unpack_from("<16f4B",data,h[4]+i*68)[:17] for i in range(h[6])])
     faces=np.frombuffer(data,dtype="<u2",count=h[8],offset=h[7]).reshape(-1,3).copy()
     return vertices,faces
+
+
+def load_dds_mip(path,level=0):
+    """Decode a real exported BC3 mip, including RGB under zero material alpha."""
+    raw=Path(path).read_bytes()
+    if raw[:4]!=b'DDS ' or raw[84:88]!=b'DXT5':
+        raise ValueError('Expected a BC3/DXT5 DDS')
+    h,w=struct.unpack_from('<II',raw,12)
+    levels=max(1,struct.unpack_from('<I',raw,28)[0])
+    if not 0<=level<levels:
+        raise ValueError('DDS mip level outside its chain')
+    offset=128
+    for _ in range(level):
+        offset+=((w+3)//4)*((h+3)//4)*16
+        w,h=max(1,w//2),max(1,h//2)
+    count=((w+3)//4)*((h+3)//4)*16
+    if offset+count>len(raw):
+        raise ValueError('Truncated DDS mip')
+    header=bytearray(raw[:128])
+    struct.pack_into('<II',header,12,h,w)
+    struct.pack_into('<I',header,20,count)
+    struct.pack_into('<I',header,28,1)
+    return Image.open(BytesIO(bytes(header)+raw[offset:offset+count])).convert('RGBA')
 
 
 def export_obj(mesh, asset_dir, bones):
@@ -278,7 +308,7 @@ def sample_map(texture,uv):
             +(texture[y1,x0]*(1-fx)+texture[y1,x1]*fx)*fy)
 
 
-def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24,1.0), size=960, bones=None):
+def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24,1.0), size=960, bones=None, texture_mip=0):
     target_size=size
     size=math.ceil(size*1.5)
     vertices,faces=load_scm(scm)
@@ -304,9 +334,11 @@ def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24
     shadow=np.exp(-((xx-size*.5)/(size*.31))**2-((yy-ground_y)/(size*.07))**2)*.42
     canvas*=1-shadow[:,:,None]
     zbuffer=np.full((size,size),-np.inf)
-    albedo=np.asarray(Image.open(asset_dir/"GGA2401_albedo_source.png"))[:,:,:3]/255
-    spec=np.asarray(Image.open(asset_dir/"GGA2401_specteam_source.png"))/255
-    normal_map=np.asarray(Image.open(asset_dir/"GGA2401_normalsTS_source.png"))[:,:,:3]/127.5-1
+    # Inspect the shipped data, rather than PNGs that cannot expose mip/export bugs.
+    unit_dir=Path(scm).parent
+    albedo=np.asarray(load_dds_mip(unit_dir/'GGA2401_albedo.dds',texture_mip))/255
+    spec=np.asarray(load_dds_mip(unit_dir/'GGA2401_specteam.dds',texture_mip))/255
+    normal_map=np.asarray(load_dds_mip(unit_dir/'GGA2401_normalsTS.dds',texture_mip))/127.5-1
     sun=normalized((-.45,.75,.65)); half=normalized(sun+view)
     for face in faces:
         geometric=np.cross(positions[face[1]]-positions[face[0]],positions[face[2]]-positions[face[0]])
@@ -332,11 +364,16 @@ def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24
         tangent=weights@vertices[face,6:9]
         bitangent=weights@vertices[face,9:12]
         perturb=sample_map(normal_map,uv)
-        normal=tangent*perturb[:,0:1]+bitangent*perturb[:,1:2]+normal*perturb[:,2:3]
+        nz=np.sqrt(np.maximum(0,1-perturb[:,1:2]**2-perturb[:,3:4]**2))
+        normal=tangent*perturb[:,3:4]+bitangent*perturb[:,1:2]+normal*nz
         normal/=np.maximum(np.linalg.norm(normal,axis=1,keepdims=True),1e-9)
         base=sample_map(albedo,uv); packed=sample_map(spec,uv)
-        team=packed[:,3:4]
-        tint=np.clip(np.array(player)*base*1.35,0,1)
+        team=base[:,3:4]
+        # Match the stock Seraphim color remap/team-mask convention. Lighting
+        # remains an analytic preview, not the game's PBR environment cubemap.
+        base=(base[:,[2,2,1]]+np.array((.4,.43,.47)))*.8
+        ndotv=np.clip(normal@view,0,1)[:,None]
+        tint=(2*ndotv**6-2*ndotv+1.5)*np.array(player)
         base=base*(1-team)+tint*team
         diffuse=np.clip(normal@sun,0,1)[:,None]
         sky=np.clip(normal[:,1:2]*.1+.10,.02,.20)
@@ -347,11 +384,12 @@ def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24
         band=np.exp(-((reflection[:,1:2]-.19)/.115)**2)*.46
         softbox=np.clip(reflection@normalized((-.55,.45,.7)),0,1)[:,None]**28*.85
         environment+=band+softbox
-        metal=packed[:,0:1]
+        metal=np.ones_like(packed[:,0:1])
         reflected_tint=(1-team)*(.35+.60*base)+team*(.05+.9*base)
         color=base*(.32+.46*diffuse+sky*.5)*(1-.55*metal)
         color+=environment*metal*reflected_tint
-        shine=(np.clip(normal@half,0,1)**65)[:,None]*packed[:,1:2]*.56
+        gloss=packed[:,1:2]
+        shine=np.clip(normal@half,0,1)[:,None]**(18+62*gloss)*gloss*.7
         color+=shine*(.85+.15*base)
         color+=base*packed[:,2:3]*.32
         patch=canvas[lo[1]:hi[1]+1,lo[0]:hi[0]+1]

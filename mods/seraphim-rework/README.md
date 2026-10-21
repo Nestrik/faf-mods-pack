@@ -1,6 +1,16 @@
 # Seraphim Rework
 
-This mod is a home for gameplay and balance changes to the Seraphim faction. It currently adds a compact, upgradeable T1 → T2 → T3 mass fabricator line, two Seraphim T3 artillery installations, a T3 point-defense turret, a T1 mobile missile launcher, and an experimental T1 mobile directional shield.
+This mod is a home for gameplay and balance changes to the Seraphim faction. It currently adds a compact, upgradeable T1 → T2 → T3 mass fabricator line, a T4 shielded power generator, two Seraphim T3 artillery installations, a T3 point-defense turret, a T1 mobile missile launcher, and a prototype T2 mobile directional shield.
+
+## T4 experimental power generator
+
+`GGA1401` **Uya-Iava** produces **15,000 energy/s** and carries a compact **6,000 HP shield dome, diameter 18**, with no energy upkeep. It uses exactly the stock Seraphim T3 generator's **8×8 construction skirt**, **5×5 footprint** and skirt offsets. Build it with Seraphim T3 engineers or commanders with T3 engineering. Its original rounded metallic model has a central open volcanic caldera, three smaller floating calderas of different sizes, player-color inlays, two SCM LODs and a gentle levitation/core-rotation animation. A custom construction icon is included.
+
+The 2026-10-21 visual revision replaces the wide platter with a compact foundation and five tall, rounded swept petals like the stock T3 generator; three smaller crowned calderas still float around the central energy throat. It adds the stock XSB1301 ground-circle tarmac and `ST3PowerAmbient` rising light/ring/distortion effects, referenced directly from the game. The prior model is archived in the unit's source directory. Particle effects still require in-game verification.
+
+Initial balance: **24,000 hull HP**, **20,000 mass / 360,000 energy / 30,000 build points**; shield regeneration **100 HP/s after 3 seconds**, collapse recharge **25 seconds**. Power remains active when the shield is toggled off. The reactor retains standard T3 power adjacency and a volatile death explosion (**12,000 damage, radius 14**, including friendlies). It is a separate experimental build, not a T3 upgrade. [Model, balance, source checks and limitations](source-assets/GGA1401/README.md).
+
+Optional M28AI v327 hooks recognize the reactor as power and allow replacing a normal Seraphim T3 generator choice when income reaches **80 mass/s and 10,000 energy/s**, stored mass is at least **5,000**, energy storage is at least **50%**, and no reactor exists. The original builder/restriction checks remain active; choices have a 60-second cooldown. Cheapest-only requests retain the ordinary generator. No false TECH3 or mass-production categories were added. File checks and exported-SCM previews do not confirm game behavior or actual AI selection. This unit has not yet been tested in a local match.
 
 ## Mass fabricator line
 
@@ -20,7 +30,7 @@ The stock Seraphim T2 fabricator blueprint `XSB1104` is removed from the active 
 
 ## T3 rapid artillery
 
-`GGA2401` is the T3 Vothuun Salvo Platform, buildable by Seraphim T3 engineers and upgraded commanders. Its model is a tall five-level tower of separate jagged levitating rocks above a five-petal pointed foundation. Each rock is offset to a different side of the centre and carries one broad-breeched, split-blade artillery cannon, following the user's two Seraphim references. Cylindrical barrels, saucer islands and circular plinths have been replaced by angular armor leaves, fractured keels and pointed satellite shards. Materials are aged dark gunmetal with restrained reflective wear on edges and player-colored crop-circle engravings: linked concentric circles, orbital nodes and thin geometric lines. Islands share yaw; each cannon elevates about its own rear hinge via the existing rotation slavers. The footprint remains 4×4. The unit has two SCM LODs, a 1024×1024 material atlas, and an original generated 64×64 construction icon showing its five staggered levels.
+`GGA2401` is the T3 Vothuun Salvo Platform, buildable by Seraphim T3 engineers and upgraded commanders. It is a tall five-level tower of separate levitating islands above a five-petal foundation; each offset island carries one broad-breeched, split-leaf artillery cannon. The 2026-10-21 rebuild follows the user's corrected Seraphim style and inspection of stock XSB2301/XSB2303/XSB2401: continuous rounded surfaces, rolled armor edges and slightly brighter reflective steel replace the angular cut-metal look. Approved crop-circle engravings are preserved pixel for pixel. Materials now use the stock `Seraphim` shader with player color in Albedo.A and packed G/A normals, following `effects/mesh.fx`. Islands share yaw; each cannon elevates about its own rear hinge via the existing rotation slavers. The footprint remains 4×4. The unit has two SCM LODs, a 1024×1024 material atlas, and its unique 64×64 construction icon. [Stock-model findings](source-assets/GGA2401/stock-seraphim-study.md).
 
 The weapon uses the stock Seraphim T2 `XSB2303` artillery class and shell. The baseline was checked against the local FAF 3839 archives and upstream `develop`: T2 range is 115 and shell damage is 2,400. GGA2401 adds exactly 10 to each, for **125 range** and **2,410 damage per shell**. Minimum range 50, splash radius 3, low ballistic arc, normal artillery dispersion and friendly splash damage follow the T2 role; launch speed is 30 to accommodate the extra range.
 
@@ -31,6 +41,12 @@ Starting balance: **14,250 HP**, **10,000 mass / 71,500 energy / 8,000 build poi
 The previous weapon failed FAF's initialization rule: nonzero `RackRecoilDistance` cannot be combined with nonzero `MuzzleSalvoDelay`. Recoil is now zero; the stock weapon state machine handles the sequence, energy charge and cooldown. The user confirmed the firing mechanics work well before requesting this floating-island visual rebuild. The weapon blueprint, costs and combat statistics are retained. **The new tower and separate pitch hinges have not been tested in a match**; game verification is left to the user as requested. The existing optional M28AI role hook continues to classify this short-range T3 artillery with tactical/T2 artillery without falsifying its tech or size categories.
 
 Source and regeneration notes: [`source-assets/GGA2401/README.md`](source-assets/GGA2401/README.md).
+
+The 2026-10-21 black-body rendering defect was traced to DDS mip export: ordinary
+RGBA downsampling treated material masks as transparency and erased reflection
+data below mip0. Material channels now downsample independently; all eleven mip
+levels retain their data. Geometry, firing behavior and line-mask pixels are
+unchanged. The game-view preview now samples an exported DDS mip rather than PNGs.
 
 Adds `GGA2301`, a T3 direct-fire point-defense turret based on the stock Seraphim T2 `XSB2301` Uttaushala. Its Prism Spire model was rebuilt from the 2026-10-20 reference: six plated feet, three curved open frames, a floating double-point player-color crystal, an equatorial ring and a short beam lens. It has two mesh LODs and a 512×512 material atlas with polished silver armor, reflective gunmetal mechanisms, chrome borders and player-color lights/inlays. Paired flowing contours and nested oval markings follow the stock Seraphim material references; high SpecTeam reflection/specular values provide the metallic finish. A one-second activation gently opens the frames; idle slowly rotates and bobs the crystal. Decorative animations do not key the weapon's aiming or muzzle bones. The weapon keeps the stock ultrachromatic beam firing timing and sound cues. It is buildable by T3 Seraphim engineers and commanders, and has upgraded T3 durability and damage: 6,500 HP, 2,000 mass / 17,600 energy / 2,000 build-time cost, 24 vision, 60 range, and 175 beam damage. The rebuilt model still needs local-match visual and tracking confirmation.
 
@@ -44,11 +60,19 @@ The optional M28AI hook also classifies `GGA2404` as tactical artillery, preserv
 
 ## T1 mobile missile launcher
 
-Adds the `GGA0101` Seraphim T1 mobile long-range missile launcher, buildable from Seraphim T1–T3 land factories. It reuses the stock Seraphim missile-launcher model, reload animation, projectile, and weapon behavior. The launcher has 45 range, 85 missile damage, 90 mass cost, and 450 build time.
+Adds the `GGA0101` **Thuunar** Seraphim T1 mobile long-range missile launcher, buildable from Seraphim T1–T3 land factories. The 2026-10-21 visual rebuild replaces the borrowed T2 `XSL0111` mesh and reload clip with an original compact two-track carrier and a newly modeled open, inclined twin-leaf launch cradle inspired by the same launcher. Its lower, simpler chassis omits the T2 unit's broad three-prong hull and tall rear fins. Rounded silver-steel armor carries thin player-color lines and crop-circle engravings, using the native `Seraphim` material channels. Two SCM LODs, three 512×512 material maps, a skeleton-compatible reload animation and a new transparent build icon are included.
 
-## T1 mobile directional shield
+Destroyed Thuunars use an explicit reclaimable prop with their own damaged SCM LODs, collapsed chassis, broken launch rail and scorched texture. `Wreckage.UseCustomMesh = true` tells FAF to retain this prop's mesh instead of substituting an automatically generated unit wreck mesh. Reclaim multipliers remain unchanged. The script uses the standard `SLandUnit` and `SLaanseMissileWeapon`; the stock projectile, firing cycle, 350 hull HP, 45 range, 85 missile damage, 90 mass / 800 energy and 450 build points are preserved.
 
-Adds the experimental `GGA0102` Thuum Bulwark, buildable from the Seraphim T1 land factory. It reuses the stock mobile shield generator model and standard shield behavior, with a custom curved forward panel and box collision volume. The panel protects units and objects behind it; its shield has 6,000 health, regenerates at 50 per second after a 3-second delay, and uses 75 energy per second while enabled. Facing, projectile interception, and appearance still need local-match verification.
+The model, DDS mipmaps, bone bindings, reload clip and custom wreck path were checked from files, with previews rendered from the exported SCM and DDS. Loading, firing, track appearance, destruction and reclaim have **not** been tested in a match. [Model sources, regeneration and verification notes](source-assets/GGA0101/README.md).
+
+## T2 mobile directional shield
+
+Adds the prototype `GGA0102` Thuum Bulwark, now a **T2** unit buildable from Seraphim T2–T3 land factories, with the T2 strategic shield icon. Its existing blueprint ID is retained. It reuses the stock mobile shield generator model and standard shield behavior, with a custom curved forward panel and box collision volume intended to protect units behind it.
+
+Starting balance: **250 hull HP**, **5,000 shield HP**, **300 mass / 2,400 energy / 1,200 build points**, **90 energy/s** while enabled, **60 shield HP/s** regeneration after a **3-second** damage-free delay, **30-second** recharge after shield depletion, and **5-second** recharge after energy depletion. Forward/reverse speed is **3.5**, vision is **20**, and transport class remains **2**. Panel geometry and collision dimensions are unchanged.
+
+The baseline was checked against the local FAF `units.nx5` and upstream [UEF Parashield](https://github.com/FAForever/fa/blob/develop/units/UEL0307/UEL0307_unit.bp), [Aeon Asylum](https://github.com/FAForever/fa/blob/develop/units/UAL0307/UAL0307_unit.bp), and [Seraphim Athanah](https://github.com/FAForever/fa/blob/develop/units/XSL0307/XSL0307_unit.bp). The stock T2 shields have 3,000–3,500 shield HP and cost 220 mass; Athanah is T3 with 10,000 shield HP at 720 mass. Thuum trades all-around coverage for a stronger forward panel, at a higher cost and energy upkeep than either stock T2 shield. Its weak hull remains vulnerable from the flanks and rear. Balance is provisional; facing, projectile interception, appearance and actual M28AI use still need local-match verification. No match was run for this conversion.
 
 ## Files
 
@@ -58,9 +82,11 @@ Adds the experimental `GGA0102` Thuum Bulwark, buildable from the Seraphim T1 la
 - `units/GGA2401` — five-launcher T3 artillery blueprint, script, original meshes and textures.
 - `units/GGA2404`, `projectiles/GGP2404`, `projectiles/GGP2404Charge` — Vael-Itha turret, damaging orb and visual charging orb.
 - `meshes/ball_lightning`, `effects/emitters/ball_*`, `textures/particles/ball_*` — self-contained ball-lightning visuals.
-- `units/GGA0101` — T1 mobile missile launcher blueprint and script.
-- `units/GGA0102` — T1 mobile shield blueprint, script, and custom shield mesh.
+- `units/GGA0101` — T1 mobile missile launcher blueprint, script, original meshes, textures and reload animation.
+- `props/GGA0101_wreck` — explicit reclaimable Thuunar wreck prop, damaged meshes and scorched texture.
+- `units/GGA0102` — T2 mobile shield blueprint, script, and custom shield mesh.
 - `icons/units/GGA*_icon.dds` and `textures/ui/common/icons/units/GGA*_icon.dds` — custom unit icons; `GGA2301` reuses the T2 point-defense icon, while `GGA2401` has an original five-level shard-tower icon with transparent background.
+- `source-assets/GGA0101` — independent Thuunar model generator, editable OBJ, material sources, SCM previews and previous configuration archive.
 - `source-assets/GGA0102` — source geometry and generator for the custom shield panel.
 - `source-assets/GGA2301` — procedural model and animation generator for the Prism Spire turret.
 - `source-assets/GGA2401` — independent artillery model generator, editable OBJ, texture sources, exported-SCM previews and archived previous blueprint.
@@ -72,8 +98,8 @@ Copy the entire `seraphim-rework` folder into the FAF data `mods` directory and 
 ## M28AI compatibility
 
 The original seven active unit blueprints were audited against the locally installed M28AI
-v327; the eighth, `GGA2404`, has also had its builder categories and artillery filters checked against those sources. The T1 missile launcher now has the standard `SILO` role, and the T1 mobile
-shield is available from T1–T3 land factories. The existing fabricator and T3 point
+v327; the eighth, `GGA2404`, has also had its builder categories and artillery filters checked against those sources. The T1 missile launcher now has the standard `SILO` role, and the T2 mobile
+shield is available from T2–T3 land factories. The existing fabricator and T3 point
 defense categories already match M28AI's economic and defensive filters.
 
 An optional hook in this mod classifies `GGA2401` and `GGA2404` as tactical artillery for M28AI,
