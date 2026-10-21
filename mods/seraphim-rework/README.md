@@ -52,9 +52,37 @@ Adds `GGA2301`, a T3 direct-fire point-defense turret based on the stock Seraphi
 
 ## T3 ball-lightning artillery
 
-`GGA2404` is **Vael-Itha**, integrated from the local `seraphim_heavy_turret` revision 9. It is a separate artillery installation alongside `GGA2401` and `GGA2301`, buildable by Seraphim T3 engineers and commanders with T3 engineering. Its levitating ring model, two SCM LODs, textures, animations, icon, projectile mesh and particle effects are included within this mod. The unit and both projectiles have independent IDs and all asset paths point to `seraphim-rework`; the standalone mod is not required.
+`GGA2404` is **Vael-Itha**, originally integrated from the local `seraphim_heavy_turret` revision 9 and subsequently corrected after user match feedback. It is a separate artillery installation alongside `GGA2401` and `GGA2301`, buildable by Seraphim T3 engineers and commanders with T3 engineering. Its levitating ring model, two SCM LODs, textures, procedural animations, icon and particle effects are included within this mod. The unit and both projectiles have independent IDs and all mod asset paths point to `seraphim-rework`; the standalone mod is not required.
 
-Original prototype statistics are preserved: **18,000 HP**, **5,000 mass / 50,000 energy / 6,000 build points**, 4×4 skirt, 35 vision, range **25–120**, 2.5-second muzzle charge and `RateOfFire = 0.125`. On land the projectile sinks to the surface and strikes nearby targets every 0.5 seconds for 3 seconds: **400 damage per strike**, radius **5**, up to **2,400 damage per target**. This includes friendly units. Standard phason impacts, including shield interception and water impacts, retain 2,500 damage with radius 5 instead of the ground-lightning sequence. Combat behavior and balance remain provisional; no match was run for this integration.
+The 2026-10-20 correction darkens the reflective metal moderately and replaces
+angular markings with linked crop-circle inlays. Every colored model surface uses
+the player's army mask. Charge and projectile release now share the center of the
+two rings, with no late forward movement. The smooth visible sphere is replaced by
+six Othuy-style electrical particle layers, based on the XSL0402 residual energy
+entity spawned after Ythotha dies. Both charge and flight use the same player-color
+effect, with standard FAF textures referenced in place. Runtime animation remains
+procedural; the inactive full-rig SCA clips and retired sphere/violet assets are
+archived. The new generator, editable Blender file and exported-SCM views are in
+[`source-assets/GGA2404`](source-assets/GGA2404/README.md). Structural and mocked Lua
+checks passed; this correction still needs a match check for rendering and FX.
+
+The October 21 refinement restores inward-facing gondola/ring illumination,
+moves both gondolas inward so ring-center separation is 15% smaller, and widens
+markings by 50%. Flat surface inlays with a concave normal map replace raised
+pattern wires. This gives an engraved appearance without Boolean grooves and
+reduces the mesh cost. Centered charge and shot, army colors and damage remain
+as described above. This refinement has not been checked in a match.
+
+The subsequent straight-gondola revision removes the inward-curving tips while
+preserving all three DDS maps byte for byte. A successful shot triggers a 0.1 s
+delay, 0.3 s closing, and 7.6 s of automatic charge growth/reopening. The full orb
+is held ready without a target. The old target-dependent muzzle charge is removed;
+the native firing state is gated on the independent ready flag. The closed gap is
+about 0.0985 game units and the common central release point is unchanged.
+
+The high-arc mortar revision uses **18,000 HP**, **6,500 mass / 65,000 energy / 7,800 build points**, a 4×4 skirt, 35 vision and range **35–150**. Native high-arc ballistics and speed 32 give an estimated 67–85 degree elevation and 12–13 second flight on flat ground. The floating assembly is raised 0.20 game units; conservative foundation clearance exceeds 0.28 in both LODs at any pitch, including hover/recoil. `FiringRandomness = 0.24` targets approximately radius-3 spread at range 150, tightening at shorter distances. These estimates need a match check.
+
+`RateOfFire = 0.125` gives an eight-second nominal post-shot cycle. Each autonomous charge costs **2,000 energy**; native economy-event progress drives both growth and gondola opening. Energy shortages delay readiness, and holding a ready orb drains nothing. On land the projectile sinks to the surface and strikes nearby targets every 0.5 seconds for 3 seconds: **400 damage per strike**, radius **5**, up to **2,400 damage per target**, including friendly units. There is no additional dry-land impact damage. Shield/water impacts instead use a 2,400-damage phason impact with radius 5. Combat behavior and balance remain provisional; this revision has not been run in a match.
 
 The optional M28AI hook also classifies `GGA2404` as tactical artillery, preserving its real `TECH3` and `SIZE4` categories. See [integration notes and known limitations](docs/VAEL_ITHA.md).
 
@@ -81,7 +109,7 @@ The baseline was checked against the local FAF `units.nx5` and upstream [UEF Par
 - `units/GGA2301` — T3 Seraphim direct-fire point-defense blueprint, script, Prism Spire meshes, textures, and animations.
 - `units/GGA2401` — five-launcher T3 artillery blueprint, script, original meshes and textures.
 - `units/GGA2404`, `projectiles/GGP2404`, `projectiles/GGP2404Charge` — Vael-Itha turret, damaging orb and visual charging orb.
-- `meshes/ball_lightning`, `effects/emitters/ball_*`, `textures/particles/ball_*` — self-contained ball-lightning visuals.
+- `effects/emitters/ball_*`, `textures/particles/ball_army_ramp.dds`, `lua/vael_itha_effects.lua` — Othuy-style ball-lightning visuals, using standard FAF texture references and a custom army-color ramp.
 - `units/GGA0101` — T1 mobile missile launcher blueprint, script, original meshes, textures and reload animation.
 - `props/GGA0101_wreck` — explicit reclaimable Thuunar wreck prop, damaged meshes and scorched texture.
 - `units/GGA0102` — T2 mobile shield blueprint, script, and custom shield mesh.
