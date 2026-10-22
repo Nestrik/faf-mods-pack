@@ -1,7 +1,7 @@
-# GGA2404 — Vael-Itha, revision 2026-10-21
+# GGA2404 — Vael-Itha, revision 2026-10-22
 
 The original twin-gondola silhouette, floating foundation and empty coaxial rings
-are retained. Neutral steel albedo is moderately darker; SpecTeam R/G retain
+are retained. The current steel albedo follows dark stock building values; SpecTeam R/G retain
 environment reflection and sunlight highlights. Old lozenges and zigzag decoration
 are replaced with linked concentric ellipses, satellite circles and paired orbital
 tracks on the petals, gondolas and ring faces. All colored atlas tiles have a full
@@ -197,3 +197,37 @@ by the user and its feedback prompted these changes.
 
 The full preceding runtime resources are preserved in
 `archive/before-2026-10-20-corrections.zip` before replacement.
+
+## October 22: initialization hardening and dark stock materials
+
+After user match feedback (no shot, no gondola animation despite energy/valid
+range), rotator setters are called separately. CRotateManipulator does not
+promise fluent returns. A strict API double returning nil reproduces the old
+OnStopBeingBuilt failure at SetTargetSpeed(...):SetAccel(...); the corrected
+version completes initial charge, creates a projectile and recharges. Recoil
+setter chains are removed too. The user's game.log is not available, so the
+specific failure in that match is not yet confirmed by a stack trace.
+
+LOG emits initialization start/completion and only the first ready charge and
+first created projectile. These four stage markers allow a game.log to distinguish
+an initialization error, stalled charge and firing failure without per-tick logs.
+
+Both LODs now use the native Seraphim shader. The team mask is Albedo.A and is
+unchanged spatially. Stock XSB0101/XSB0301/XSB1301 non-team albedo has median RGB
+about 16; main turret steel is now about 16, edging about 24, and recessed metal
+about 8 after BC3 decoding. Reflectivity remains separate; G is 150–188 for steel.
+Colored albedo stays below the Seraphim white-highlight threshold. Shader white
+highlights no longer wash out the colored inlays.
+
+The old RGB normal map with alpha=255 was incompatible with mesh.fx ComputeNormal,
+which reads .ga for both Unit and Seraphim. Normals now pack the bitangent component
+in G and tangent component in A; decoded squared XY length is below one throughout.
+The RGB normal remains as GGA2404_normalsTS_authoring.png for Blender. The editable
+Blend is repacked with updated images; SCM geometry, bones and UVs are unchanged.
+All material mip levels use independent channel reduction. The SCM preview now
+decodes packed normals and approximates the Seraphim metallic shading; it is not
+a FAF screenshot or proof of game rendering. See charge_dark_validation.json.
+
+Pre-change assets are archived in before-2026-10-22-charge-dark-metal.zip. The
+revised initialization/materials have passed file and mocked API checks only.
+A match with this revision and the friend's game.log are still needed.

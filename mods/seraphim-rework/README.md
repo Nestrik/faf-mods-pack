@@ -126,6 +126,13 @@ The high-arc mortar revision uses **18,000 HP**, **6,500 mass / 65,000 energy / 
 
 `RateOfFire = 0.125` gives an eight-second nominal post-shot cycle. Each autonomous charge costs **2,000 energy**; native economy-event progress drives both growth and gondola opening. Energy shortages delay readiness, and holding a ready orb drains nothing. On land the projectile sinks to the surface and strikes nearby targets every 0.5 seconds for 3 seconds: **400 damage per strike**, radius **5**, up to **2,400 damage per target**, including friendly units. There is no additional dry-land impact damage. Shield/water impacts instead use a 2,400-damage phason impact with radius 5. Combat behavior and balance remain provisional; this revision has not been run in a match.
 
+The October 22 follow-up uses native Seraphim shading, packed G/A normals and
+stock-dark building metal (main albedo median about 16/255, retaining reflections).
+Rotator setters no longer depend on fluent returns: strict nil-return API checks
+now complete initial charging, firing and recharging. Four one-time game-log stage
+markers were added for diagnosis. The original match's game.log is unavailable;
+this follow-up still needs a match check for the reported firing failure.
+
 The optional M28AI hook also classifies `GGA2404` as tactical artillery, preserving its real `TECH3` and `SIZE4` categories. See [integration notes and known limitations](docs/VAEL_ITHA.md).
 
 ## T1 mobile missile launcher

@@ -47,9 +47,10 @@ def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24
     shadow=np.exp(-((xx-size*.5)/(size*.31))**2-((yy-ground_y)/(size*.07))**2)*.42
     canvas*=1-shadow[:,:,None]
     zbuffer=np.full((size,size),-np.inf)
-    albedo=np.asarray(Image.open(asset_dir/"GGA2404_albedo_source.png"))[:,:,:3]/255
+    albedo_rgba=np.asarray(Image.open(asset_dir/"GGA2404_albedo_source.png"))/255
+    albedo=albedo_rgba[:,:,:3]
     spec=np.asarray(Image.open(asset_dir/"GGA2404_specteam_source.png"))/255
-    normal_map=np.asarray(Image.open(asset_dir/"GGA2404_normalsTS_source.png"))[:,:,:3]/127.5-1
+    normal_map=np.asarray(Image.open(asset_dir/"GGA2404_normalsTS_source.png"))/127.5-1
     sun=normalized((-.45,.75,.65)); half=normalized(sun+view)
     for face in faces:
         geometric=np.cross(positions[face[1]]-positions[face[0]],positions[face[2]]-positions[face[0]])
@@ -74,12 +75,17 @@ def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24
         uv=weights@vertices[face,12:14]
         tangent=weights@vertices[face,6:9]
         bitangent=weights@vertices[face,9:12]
-        perturb=sample_map(normal_map,uv)
+        packed_normal=sample_map(normal_map,uv)
+        nx,ny=packed_normal[:,3],packed_normal[:,1]
+        perturb=np.column_stack((nx,ny,np.sqrt(np.maximum(0,1-nx*nx-ny*ny))))
         normal=tangent*perturb[:,0:1]+bitangent*perturb[:,1:2]+normal*perturb[:,2:3]
         normal/=np.maximum(np.linalg.norm(normal,axis=1,keepdims=True),1e-9)
         base=sample_map(albedo,uv); packed=sample_map(spec,uv)
-        team=packed[:,3:4]
-        tint=np.clip(np.array(player)*base*1.35,0,1)
+        # Approximate the native Seraphim remap. This software lighting remains
+        # a preview, not the engine PBR/falloff/cubemap implementation.
+        team=sample_map(albedo_rgba,uv)[:,3:4]
+        base=(base[:,[2,2,1]]+np.array((.4,.43,.47)))*.8
+        tint=np.broadcast_to(np.array(player),base.shape)
         base=base*(1-team)+tint*team
         diffuse=np.clip(normal@sun,0,1)[:,None]
         sky=np.clip(normal[:,1:2]*.1+.10,.02,.20)
@@ -91,9 +97,9 @@ def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24
         softbox=np.clip(reflection@normalized((-.55,.45,.7)),0,1)[:,None]**28*.85
         environment+=band+softbox
         metal=packed[:,0:1]
-        reflected_tint=(1-team)*(.35+.60*base)+team*(.05+.9*base)
-        color=base*(.32+.46*diffuse+sky*.5)*(1-.55*metal)
-        color+=environment*metal*reflected_tint
+        # Native Seraphim is fully metallic: no broad Lambert diffuse term.
+        # The previous generic-Unit approximation made dark steel look silver.
+        color=base*.035+environment*base*.78
         shine=(np.clip(normal@half,0,1)**65)[:,None]*packed[:,1:2]*.56
         color+=shine*(.85+.15*base)
         color+=base*packed[:,2:3]*.32

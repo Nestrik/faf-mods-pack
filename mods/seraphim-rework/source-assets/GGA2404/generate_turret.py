@@ -17,7 +17,7 @@ for i,name in enumerate(['Graphite metal','Polished silver','Bright bevel','Team
     p.inputs['Roughness'].default_value=[.28,.16,.12,.36,.72,.3,.25,.24][i]
     if i==4:p.inputs['Metallic'].default_value=.85
     if i==3:
-        image_node=n.new('ShaderNodeTexImage');image_node.image=bpy.data.images.load(str(SRC/'GGA2404_normalsTS_source.png'),check_existing=True)
+        image_node=n.new('ShaderNodeTexImage');image_node.image=bpy.data.images.load(str(SRC/'GGA2404_normalsTS_authoring.png'),check_existing=True)
         image_node.image.colorspace_settings.name='Non-Color'
         normal_node=n.new('ShaderNodeNormalMap');l.new(image_node.outputs['Color'],normal_node.inputs['Color']);l.new(normal_node.outputs['Normal'],p.inputs['Normal'])
     if i in (3,5,6):
