@@ -1,0 +1,52 @@
+{
+  "in_game_test": false,
+  "clearance": {
+    "lod0": {
+      "minimum_height_for_any_pitch": 1.4699968328457036,
+      "highest_base_vertex": 1.173959732055664,
+      "conservative_vertical_gap": 0.29603710079003953,
+      "all_yaw_angles": true,
+      "closed_and_open_gondolas": true,
+      "includes_hover_and_recoil": true
+    },
+    "lod1": {
+      "minimum_height_for_any_pitch": 1.4699968328457036,
+      "highest_base_vertex": 1.1814407348632814,
+      "conservative_vertical_gap": 0.2885560979824222,
+      "all_yaw_angles": true,
+      "closed_and_open_gondolas": true,
+      "includes_hover_and_recoil": true
+    }
+  },
+  "ballistics": [
+    {
+      "distance": 35,
+      "elevation_degrees": 85.2128537701624,
+      "flight_seconds": 13.105977343031523,
+      "apex_height": 106.66206439576156,
+      "empirical_spread_radius": 0.7000000000000001
+    },
+    {
+      "distance": 75,
+      "elevation_degrees": 79.561947108377,
+      "flight_seconds": 12.936577214794035,
+      "apex_height": 103.9600836968763,
+      "empirical_spread_radius": 1.5
+    },
+    {
+      "distance": 100,
+      "elevation_degrees": 75.81919628347681,
+      "flight_seconds": 12.75600950095382,
+      "apex_height": 101.11868826444667,
+      "empirical_spread_radius": 2.0
+    },
+    {
+      "distance": 150,
+      "elevation_degrees": 67.300439479509,
+      "flight_seconds": 12.146961800017934,
+      "apex_height": 91.82938323127112,
+      "empirical_spread_radius": 3.0
+    }
+  ],
+  "ballistics_note": "Analytical estimate with stock gravity 4.9 and flat ground. Engine aim, scatter, moving targets and terrain require a match check."
+}

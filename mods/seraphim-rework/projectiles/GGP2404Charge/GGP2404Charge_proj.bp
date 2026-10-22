@@ -1,12 +1,5 @@
 ProjectileBlueprint {
     Categories = { 'PROJECTILE', 'SERAPHIM' },
-    Display = { Mesh = { LODs = { {
-    LODCutoff = 300,
-    MeshName = '/mods/seraphim-rework/meshes/ball_lightning/ball_lightning_lod0.scm',
-    AlbedoName = '/mods/seraphim-rework/meshes/ball_lightning/ball_albedo.dds',
-    SpecularName = '/mods/seraphim-rework/meshes/ball_lightning/ball_specteam.dds',
-    NormalsName = '/mods/seraphim-rework/units/GGA2404/GGA2404_normalsTS.dds',
-    ShaderName = 'Unit',
-} } }, UniformScale = 0.05, },
+    Display = { MeshBlueprint = '/meshes/game/nil_mesh', UniformScale = 0.05 },
     Physics = { InitialSpeed = 0, UseGravity = false, TrackTarget = false, TurnRate = 0, Lifetime = 0 },
 }

@@ -1,16 +1,9 @@
 ProjectileBlueprint {
     Categories = { 'SERAPHIM', 'PROJECTILE', 'INDIRECTFIRE' },
     General = { Category = 'Artillery', Faction = 'Seraphim', Weapon = 'Ball lightning artillery' },
-    Display = { Mesh = { LODs = { {
-    LODCutoff = 300,
-    MeshName = '/mods/seraphim-rework/meshes/ball_lightning/ball_lightning_lod0.scm',
-    AlbedoName = '/mods/seraphim-rework/meshes/ball_lightning/ball_albedo.dds',
-    SpecularName = '/mods/seraphim-rework/meshes/ball_lightning/ball_specteam.dds',
-    NormalsName = '/mods/seraphim-rework/units/GGA2404/GGA2404_normalsTS.dds',
-    ShaderName = 'Unit',
-} } }, UniformScale = 0.05, ImpactEffects = { Type = 'Medium02' }, StrategicIconSize = 3 },
+    Display = { MeshBlueprint = '/meshes/game/nil_mesh', UniformScale = 0.05, StrategicIconSize = 3 },
     Physics = {
-        DestroyOnWater = true, InitialSpeed = 30, InitialSpeedRange = 0,
+        DestroyOnWater = true, InitialSpeed = 32, InitialSpeedRange = 0,
         UseGravity = true, TrackTarget = false, TurnRate = 0,
         VelocityAlign = false,
     },

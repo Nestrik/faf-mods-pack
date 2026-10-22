@@ -1,0 +1,112 @@
+{
+  "in_game_test": false,
+  "checks": {
+    "GGA2404_lod0.scm": {
+      "vertices": 28959,
+      "triangles": 35454,
+      "center": [
+        0.0,
+        58.0,
+        3.1999998092651367
+      ],
+      "skeleton": [
+        "GGA2404",
+        "TurretYaw",
+        "Hover",
+        "TurretPitch",
+        "Recoil",
+        "GondolaL",
+        "GondolaR",
+        "Charge",
+        "Muzzle",
+        "Field",
+        "FieldBoost",
+        "FieldPeak"
+      ]
+    },
+    "GGA2404_lod1.scm": {
+      "vertices": 13265,
+      "triangles": 14207,
+      "center": [
+        0.0,
+        58.0,
+        3.1999998092651367
+      ],
+      "skeleton": [
+        "GGA2404",
+        "TurretYaw",
+        "Hover",
+        "TurretPitch",
+        "Recoil",
+        "GondolaL",
+        "GondolaR",
+        "Charge",
+        "Muzzle",
+        "Field",
+        "FieldBoost",
+        "FieldPeak"
+      ]
+    },
+    "materials": "full team masks on all 3 colored atlas tiles; neutral reflective metal elsewhere; DDS/mips decode",
+    "paths_and_syntax": {
+      "files": 16,
+      "references": 22
+    },
+    "integration_base": "82eaab8af46d2298f965063be1aed5068e68e7a2",
+    "material_mips": "All 11 levels decode; independent data-channel reduction preserves metal RGB/reflection; all three mip0 payloads byte-identical to accepted version",
+    "autocharge": "Autonomous 2000-energy charge, energy stall/resume, ready hold, failed/successful shot, 8-second cycle, target loss/hold fire and death cleanup (mocked APIs)",
+    "projectile_regressions": "12 existing projectile checks pass (mocked APIs)",
+    "howitzer": {
+      "in_game_test": false,
+      "clearance": {
+        "lod0": {
+          "minimum_height_for_any_pitch": 1.4699968328457036,
+          "highest_base_vertex": 1.173959732055664,
+          "conservative_vertical_gap": 0.29603710079003953,
+          "all_yaw_angles": true,
+          "closed_and_open_gondolas": true,
+          "includes_hover_and_recoil": true
+        },
+        "lod1": {
+          "minimum_height_for_any_pitch": 1.4699968328457036,
+          "highest_base_vertex": 1.1814407348632814,
+          "conservative_vertical_gap": 0.2885560979824222,
+          "all_yaw_angles": true,
+          "closed_and_open_gondolas": true,
+          "includes_hover_and_recoil": true
+        }
+      },
+      "ballistics": [
+        {
+          "distance": 35,
+          "elevation_degrees": 85.2128537701624,
+          "flight_seconds": 13.105977343031523,
+          "apex_height": 106.66206439576156,
+          "empirical_spread_radius": 0.7000000000000001
+        },
+        {
+          "distance": 75,
+          "elevation_degrees": 79.561947108377,
+          "flight_seconds": 12.936577214794035,
+          "apex_height": 103.9600836968763,
+          "empirical_spread_radius": 1.5
+        },
+        {
+          "distance": 100,
+          "elevation_degrees": 75.81919628347681,
+          "flight_seconds": 12.75600950095382,
+          "apex_height": 101.11868826444667,
+          "empirical_spread_radius": 2.0
+        },
+        {
+          "distance": 150,
+          "elevation_degrees": 67.300439479509,
+          "flight_seconds": 12.146961800017934,
+          "apex_height": 91.82938323127112,
+          "empirical_spread_radius": 3.0
+        }
+      ],
+      "ballistics_note": "Analytical estimate with stock gravity 4.9 and flat ground. Engine aim, scatter, moving targets and terrain require a match check."
+    }
+  }
+}

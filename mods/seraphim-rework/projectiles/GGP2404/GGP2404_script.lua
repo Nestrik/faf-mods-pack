@@ -1,18 +1,25 @@
 local PhasonProjectile = import('/lua/seraphimprojectiles.lua').SDFExperimentalPhasonProjectile
 local Entity = import('/lua/sim/entity.lua').Entity
+local Visuals = import('/mods/seraphim-rework/lua/vael_itha_effects.lua')
 local FX = '/mods/seraphim-rework/effects/emitters/'
 local Sin, Cos, Pi = math.sin, math.cos, math.pi
 
 GGP2404 = ClassProjectile(PhasonProjectile) {
-    -- Army-coloured core surrounded by layered storm sprites and short arcs.
+    -- Othuy-style energy: no visible smooth sphere or fixed violet sprites.
     -- Only StrikeNearbyUnits applies damage.
-    FxTrails = { FX .. 'ball_surface_emit.bp', FX .. 'ball_cloud_emit.bp', FX .. 'ball_sparks_emit.bp', FX .. 'ball_motes_emit.bp', FX .. 'ball_plasma_emit.bp' },
+    FxTrails = {},
+    FxImpactUnit = {},
+    FxImpactProp = {},
+    FxImpactLand = {},
+    FxImpactWater = {},
+    FxImpactShield = {},
 
     OnCreate = function(self, inWater)
         PhasonProjectile.OnCreate(self, inWater)
         self.Config = self.Blueprint.Lightning
         self.SpinTick = 0
         self:SetVelocityAlign(false)
+        self.OrbEffects = Visuals.CreateOrb(self, 1)
         self.Trash:Add(ForkThread(self.FlightVisualThread, self))
     end,
 
@@ -23,6 +30,7 @@ GGP2404 = ClassProjectile(PhasonProjectile) {
         self:SetOrientation({ 0, Sin(angle / 2), 0, Cos(angle / 2) }, true)
         local pulse = 1 + c.PulseAmplitude * Sin(self.SpinTick * 2 * Pi / c.PulsePeriodTicks)
         self:SetDrawScale(self.Blueprint.Display.UniformScale * pulse * (fade or 1))
+        Visuals.UpdateOrb(self.OrbEffects, pulse * (fade or 1))
     end,
 
     FlightVisualThread = function(self)
@@ -40,6 +48,7 @@ GGP2404 = ClassProjectile(PhasonProjectile) {
         -- Air and underwater contacts retain the ordinary phason impact.
         local land = targetType == 'Terrain' or targetType == 'Unit' or targetType == 'Prop'
         if not land or GetSurfaceHeight(p[1], p[3]) > GetTerrainHeight(p[1], p[3]) + 0.05 then
+            Visuals.CreateBurst(self, 'ball_impact')
             PhasonProjectile.OnImpact(self, targetType, targetEntity)
             return
         end
@@ -50,7 +59,7 @@ GGP2404 = ClassProjectile(PhasonProjectile) {
         local c = self.Config
         self:SetLifetime((c.SinkTicks + c.ActiveTicks + c.FadeTicks) / 10 + 1)
         self.GroundPosition = { p[1], GetTerrainHeight(p[1], p[3]), p[3] }
-        CreateEmitterAtEntity(self, self.Army, FX .. 'ball_impact_emit.bp')
+        Visuals.CreateBurst(self, 'ball_impact')
         local sound = self.Blueprint.Audio.Impact
         if sound then self:PlaySound(sound) end
         self.Trash:Add(ForkThread(self.GroundThread, self))
@@ -98,12 +107,16 @@ GGP2404 = ClassProjectile(PhasonProjectile) {
                 if dx * dx + dy * dy + dz * dz <= r * r then
                     local beam = AttachBeamEntityToEntity(self.BoltOrigin, -1, unit, 0,
                         self.Army, FX .. 'ball_strike_beam_emit.bp')
+                    Visuals.TintBeam(beam, self.Army)
                     self.Trash:Add(beam)
                     self.Trash:Add(ForkThread(function()
                         WaitTicks(c.BeamTicks)
                         beam:Destroy()
                     end))
-                    CreateEmitterAtEntity(unit, self.Army, FX .. 'ball_hit_emit.bp')
+                    -- Color belongs to the projectile, even when striking an enemy.
+                    local hit = CreateEmitterAtEntity(unit, self.Army, FX .. 'ball_hit_emit.bp')
+                    Visuals.TintEmitter(hit, self.Army)
+                    self.Trash:Add(hit)
                     local instigator = self
                     if self.Launcher and not self.Launcher:BeenDestroyed() then instigator = self.Launcher end
                     Damage(instigator, q, unit, c.DamagePerStrike, c.DamageType)
