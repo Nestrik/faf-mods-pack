@@ -1,0 +1,47 @@
+{
+  "blueprints_parsed": 3,
+  "main_damage_per_shell": 3000,
+  "salvo_projectiles": 2,
+  "salvo_total_damage": 6000,
+  "inter_shot_seconds": 0.3,
+  "shared_charge_seconds": 3,
+  "per_muzzle_charge_seconds": 0,
+  "range": 80,
+  "original_runtime_files_unchanged": true,
+  "all_four_aa_blueprints_unchanged": true,
+  "economy_and_core_parameters_copied": true,
+  "game_launched": false,
+  "installed_copy_updated": false,
+  "bones": 24,
+  "matching_lod_skeletons": true,
+  "bone_inverse_matrices_valid": true,
+  "aa_parenting_valid": true,
+  "muzzle_positions_source": {
+    "MainForeMuzzle": [
+      0,
+      15,
+      21.5
+    ],
+    "MainAftMuzzle": [
+      0,
+      21,
+      2.5
+    ]
+  },
+  "resolved_resource_paths": 13,
+  "dds_mip_levels_checked": 10,
+  "generator_sources_compile": true,
+  "duplicate_icons_identical": true,
+  "runtime_sha256": {
+    "units\\GGA0402\\GGA0402_albedo.dds": "e26a5cff8dfd581b7a873cb542f48a305732ada7a5c02db87b982b7828770919",
+    "units\\GGA0402\\GGA0402_lod0.scm": "24635a6422e43df8ec49c1d508cbb7d4585668bf749a2b004b353f5f59e3ef8a",
+    "units\\GGA0402\\GGA0402_lod1.scm": "aea1bb26e45c3bbb14a898fae0c9272dd9cdd9a2637c2ae0251210abac72d3b0",
+    "units\\GGA0402\\GGA0402_mesh.bp": "373f01489a9a40d7be4fb5760e6a77d18e0319040f267ace48eb818685888a9f",
+    "units\\GGA0402\\GGA0402_normalsTS.dds": "5b6c955d6e6dbf0ad788d01e2fa671f72e09e31c600aadac09b249787eff5145",
+    "units\\GGA0402\\GGA0402_script.lua": "60f397394fa84e208b239d8a5b0cfcef4ec81ec5dd4a63658c44639f10d9f59e",
+    "units\\GGA0402\\GGA0402_specteam.dds": "935289ab03bed4e9f83a3c3a8b867c28569e143f89d2477dde8dbcfe4cedfa77",
+    "units\\GGA0402\\GGA0402_unit.bp": "f5542abef8e9fa700a0f5220755e58f9cf1c699c312dcff4ea4ffb84086182fe",
+    "icons\\units\\GGA0402_icon.dds": "156c72cb47aff597b20dc8286ff306bcc2342747c1e79bc8bdb1ee343e882f2f",
+    "textures\\ui\\common\\icons\\units\\GGA0402_icon.dds": "156c72cb47aff597b20dc8286ff306bcc2342747c1e79bc8bdb1ee343e882f2f"
+  }
+}

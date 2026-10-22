@@ -1,6 +1,27 @@
 # Seraphim Rework
 
-This mod is a home for gameplay and balance changes to the Seraphim faction. It currently adds a compact, upgradeable T1 → T2 → T3 mass fabricator line, a T4 shielded power generator, an experimental hover assault tank, two Seraphim T3 artillery installations, a T3 point-defense turret, a T1 mobile missile launcher, and a prototype T2 mobile directional shield.
+This mod is a home for gameplay and balance changes to the Seraphim faction. It currently adds a compact, upgradeable T1 → T2 → T3 mass fabricator line, a T4 shielded power generator, two experimental hover assault tanks, two Seraphim T3 artillery installations, a T3 point-defense turret, a T1 mobile missile launcher, and a prototype T2 mobile directional shield.
+
+## Twin-phason concept hover tank
+
+`GGA0402` **Itha-Suun** is a separate copy of GGA0401 with an original model from
+the user's pencil concept: an open double rail, asymmetric scalloped armor,
+detached side petals, four AA turrets and two central main-gun mounts. Two
+rounded spindle cannons carry spiral ribs and triple-petal muzzles; the rear
+gun is raised. Both original and clone remain available to Seraphim T3 builders.
+
+One shared main weapon charges for **3 seconds**, then fires from the front and
+rear muzzles in sequence, **0.3 seconds apart**. Each shell deals **3,000 damage**,
+for **6,000 per complete salvo**, with inherited **80 range**, radius **4**, and
+`RateOfFire = 0.1`. AA, health, personal shield, movement and cost are copied from
+GGA0401. The 4×6 footprint is retained; model/collision height accommodates the
+higher rear gun. Existing phason projectiles and bright impact effects are shared
+explicitly within this mod.
+
+Two mesh LODs, material maps, an independent icon, editable model sources and
+exported-SCM/DDS previews are included. File checks do not verify game behavior:
+the new model, aiming, charge, salvo timing and AI use still need a local match.
+[Concept, parameters, regeneration and checks](source-assets/GGA0402/README.md).
 
 ## Experimental hover assault tank
 
