@@ -1,0 +1,93 @@
+{
+  "in_game_test": false,
+  "checks": {
+    "GGA2404_lod0.scm": {
+      "vertices": 28959,
+      "triangles": 35454,
+      "center": [
+        0.0,
+        58.0,
+        3.1999998092651367
+      ],
+      "skeleton": [
+        "GGA2404",
+        "TurretYaw",
+        "Hover",
+        "TurretPitch",
+        "Recoil",
+        "GondolaL",
+        "GondolaR",
+        "Charge",
+        "Muzzle",
+        "Field",
+        "FieldBoost",
+        "FieldPeak"
+      ]
+    },
+    "GGA2404_lod1.scm": {
+      "vertices": 13265,
+      "triangles": 14207,
+      "center": [
+        0.0,
+        58.0,
+        3.1999998092651367
+      ],
+      "skeleton": [
+        "GGA2404",
+        "TurretYaw",
+        "Hover",
+        "TurretPitch",
+        "Recoil",
+        "GondolaL",
+        "GondolaR",
+        "Charge",
+        "Muzzle",
+        "Field",
+        "FieldBoost",
+        "FieldPeak"
+      ]
+    },
+    "materials": "full team masks on all 3 colored atlas tiles; neutral reflective metal elsewhere; DDS/mips decode",
+    "paths_and_syntax": {
+      "files": 16,
+      "references": 22
+    },
+    "geometry_unchanged": "Both SCMs byte-identical to the pre-fix archive",
+    "rotator_initialization": "Old fluent SetTargetSpeed/SetAccel fails under nil-return native-contract double; separate setters pass initial paid charge, energy stall/resume, shot creation, 8-second recharging, target loss/hold-fire and death cleanup",
+    "material_shader": "Native Seraphim, Albedo.A team mask, packed G/A normals valid in all 11 DDS levels; source RGB normals retained for Blender",
+    "metal_rgb_medians": {
+      "0": [
+        8.0,
+        8.0,
+        8.0
+      ],
+      "1": [
+        16.0,
+        16.0,
+        16.0
+      ],
+      "2": [
+        24.0,
+        24.0,
+        24.0
+      ],
+      "4": [
+        8.0,
+        8.0,
+        8.0
+      ],
+      "7": [
+        8.0,
+        12.0,
+        8.0
+      ]
+    },
+    "stock_reference": "Installed XSB0101/XSB0301/XSB1301 bare metal median approximately 16; metadata/statistics only, no stock textures redistributed",
+    "projectile_regressions": "12 existing mocked projectile checks pass"
+  },
+  "limitations": [
+    "Original failing game.log unavailable; actual match root cause not confirmed",
+    "This revision has not been tested in a FAF match",
+    "SCM preview approximates native shader and is not a game screenshot"
+  ]
+}

@@ -29,7 +29,9 @@ def unit_maps():
         y=(tile//4)*256;x=(tile%4)*256;s=np.s_[y:y+256,x:x+256]
         if tile in [3,5,6]:
             # Every inlay and luminous surface uses the complete army mask.
-            albedo[s]=[155 if tile==3 else 190]*3+[255]
+            # Seraphim takes army color from Albedo.A. Keep RGB below its
+            # white-highlight threshold so colored lines do not bloom white.
+            albedo[s]=[88]*3+[255]
             spec[s]=[70,115,0 if tile==3 else 210,255]
             normals[s]=[128,128,255,255]
             if tile==3:
@@ -42,16 +44,25 @@ def unit_maps():
                     slope=-.65*math.sin(2*math.pi*v)
                     n=np.array([0,slope,1]);n/=np.linalg.norm(n)
                     normals[y+row,x:x+256,:3]=np.round((n*.5+.5)*255).astype(np.uint8)
-                    value=round(160-30*math.sin(math.pi*v)**2)
+                    value=round(88-15*math.sin(math.pi*v)**2)
                     albedo[y+row,x:x+256,:3]=value
         else:
-            # Neutral, moderately darkened metal; keep reflection/specular separate.
-            grey=albedo[s][:,:,:3].mean(axis=2)*(.77 if tile in [1,7] else .85)
-            albedo[s][:,:,:3]=np.clip(grey[:,:,None],0,255)
+            # Stock XSB0101/XSB0301/XSB1301 bare-metal RGB median is about 16.
+            # Preserve authored surface variation, using dark steel throughout.
+            grey=albedo[s][:,:,:3].mean(axis=2)
+            target=[10,18,24,0,7,0,0,14][tile]
+            grey=grey*target/max(1,float(np.median(grey)))
+            albedo[s][:,:,:3]=np.clip(grey[:,:,None],0,64)
             albedo[s][:,:,3]=0
-            spec[s][:,:,0]=[175,218,235,0,155,0,0,200][tile]
-            spec[s][:,:,1]=[150,205,220,0,145,0,0,190][tile]
+            spec[s][:,:,0]=255
+            spec[s][:,:,1]=[160,180,188,0,150,0,0,175][tile]
             spec[s][:,:,2:]=0
+    Image.fromarray(normals).save(HERE/'GGA2404_normalsTS_authoring.png')
+    # mesh.fx ComputeNormal reads .ga, with G along binormal and A along
+    # tangent. Opaque alpha=255 in the old RGB map produced invalid normals.
+    normals[:,:,3]=normals[:,:,0]
+    normals[:,:,0]=128
+    normals[:,:,2]=255
     for kind,data in [('albedo',albedo),('specteam',spec),('normalsTS',normals)]:
         im=Image.fromarray(data);im.save(HERE/f'GGA2404_{kind}_source.png');save_dds(im,UNIT/f'GGA2404_{kind}.dds')
 

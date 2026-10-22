@@ -4,16 +4,19 @@ local PhasonWeapon = import('/lua/seraphimweapons.lua').SDFExperimentalPhasonPro
 GGA2404 = ClassUnit(SStructureUnit) {
     OnStopBeingBuilt = function(self, builder, layer)
         SStructureUnit.OnStopBeingBuilt(self, builder, layer)
+        if LOG then LOG('Vael-Itha GGA2404: initializing charge animation') end
         self.HoverSlider = CreateSlider(self, 'Hover')
         self.Trash:Add(self.HoverSlider)
         self.FieldRotators = {}
         for _, bone in ipairs({'Field', 'FieldBoost', 'FieldPeak'}) do
             local rotator = CreateRotator(self, bone, 'z')
-            rotator:SetTargetSpeed(150):SetAccel(300)
+            rotator:SetTargetSpeed(150)
+            rotator:SetAccel(300)
             self.Trash:Add(rotator)
         end
         self.ChargeRotator = CreateRotator(self, 'Charge', 'z')
-        self.ChargeRotator:SetTargetSpeed(120):SetAccel(240)
+        self.ChargeRotator:SetTargetSpeed(120)
+        self.ChargeRotator:SetAccel(240)
         self.Trash:Add(self.ChargeRotator)
         self.RingRecoilRotator = CreateRotator(self, 'Recoil', 'x')
         self.Trash:Add(self.RingRecoilRotator)
@@ -36,6 +39,7 @@ GGA2404 = ClassUnit(SStructureUnit) {
         self:SetChargePose(0, false)
         self:BeginRecharge(false)
         self:ForkThread(self.HoverThread)
+        if LOG then LOG('Vael-Itha GGA2404: charge animation initialized') end
     end,
 
     HoverThread = function(self)
@@ -113,6 +117,10 @@ GGA2404 = ClassUnit(SStructureUnit) {
             unit.RechargeDrain = nil
             unit:SetChargePose(1, true)
             unit.ChargeReady = true
+            if not unit.FirstChargeLogged then
+                unit.FirstChargeLogged = true
+                if LOG then LOG('Vael-Itha GGA2404: first paid charge ready') end
+            end
         end)
     end,
 
@@ -144,13 +152,21 @@ GGA2404 = ClassUnit(SStructureUnit) {
                 if not self.unit.ChargeReady then return nil end
                 local projectile = PhasonWeapon.CreateProjectileAtMuzzle(self, muzzle)
                 if projectile and not projectile:BeenDestroyed() then
+                    if not self.FirstShotLogged then
+                        self.FirstShotLogged = true
+                        if LOG then LOG('Vael-Itha GGA2404: first projectile created') end
+                    end
                     -- Consume only a successfully created projectile. Recharging
                     -- runs independently of target acquisition and fire orders.
                     self.unit:BeginRecharge(true, math.floor(10 / self:GetWeaponRoF() + 0.5))
-                    self.unit.RingRecoilRotator:SetGoal(-2):SetSpeed(90)
+                    self.unit.RingRecoilRotator:SetGoal(-2)
+                    self.unit.RingRecoilRotator:SetSpeed(90)
                     self.unit:ForkThread(function(unit)
                         WaitTicks(1)
-                        if not unit.Dead and not unit:BeenDestroyed() then unit.RingRecoilRotator:SetGoal(0):SetSpeed(18) end
+                        if not unit.Dead and not unit:BeenDestroyed() then
+                            unit.RingRecoilRotator:SetGoal(0)
+                            unit.RingRecoilRotator:SetSpeed(18)
+                        end
                     end)
                 end
                 return projectile

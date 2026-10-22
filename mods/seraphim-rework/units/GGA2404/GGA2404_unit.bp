@@ -18,7 +18,7 @@ UnitBlueprint {
     SpecularName = '/mods/seraphim-rework/units/GGA2404/GGA2404_specteam.dds',
     NormalsName = '/mods/seraphim-rework/units/GGA2404/GGA2404_normalsTS.dds',
     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
-    ShaderName = 'Unit', LODCutoff = 150,
+    ShaderName = 'Seraphim', LODCutoff = 150,
 },
 {
     MeshName = '/mods/seraphim-rework/units/GGA2404/GGA2404_lod1.scm',
@@ -26,7 +26,7 @@ UnitBlueprint {
     SpecularName = '/mods/seraphim-rework/units/GGA2404/GGA2404_specteam.dds',
     NormalsName = '/mods/seraphim-rework/units/GGA2404/GGA2404_normalsTS.dds',
     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
-    ShaderName = 'Unit', LODCutoff = 300,
+    ShaderName = 'Seraphim', LODCutoff = 300,
 } } } },
     -- Prototype values: balance has not been playtested.
     Economy = { BuildCostEnergy = 65000, BuildCostMass = 6500, BuildTime = 7800 },
