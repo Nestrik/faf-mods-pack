@@ -1,0 +1,108 @@
+-- GGA0401 phason impact: finite visual particles, no damage.
+EmitterBlueprint {
+    Lifetime = 0.1,
+    Repeattime = 1,
+    Blendmode = 3,
+    LODCutoff = 400,
+    LowFidelity = true,
+    MedFidelity = true,
+    HighFidelity = true,
+    LocalVelocity = false,
+    LocalAcceleration = false,
+    Gravity = false,
+    AlignRotation = false,
+    AlignToBone = false,
+    Flat = false,
+    EmitIfVisible = true,
+    CreateIfVisible = false,
+    CatchupEmit = true,
+    InterpolateEmission = true,
+    Texture = '/textures/particles/glow_02.dds',
+    RampTexture = '/textures/particles/ramp_white_29.dds',
+    TextureFramecount = 1,
+    TextureStripcount = 1,
+    EmitRateCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 40, z = 0 } },
+    },
+    LifetimeCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 0.3, z = 0 } },
+    },
+    VelocityCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 0, z = 0 } },
+    },
+    ResistanceCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 0, z = 0 } },
+    },
+    SizeCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 0, z = 0 } },
+    },
+    StartSizeCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 5.5, z = 0 } },
+    },
+    EndSizeCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 0.5, z = 0 } },
+    },
+    InitialRotationCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 180, z = 360 } },
+    },
+    RotationRateCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 0, z = 0 } },
+    },
+    FrameRateCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 0, z = 0 } },
+    },
+    TextureSelectionCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 0, z = 0 } },
+    },
+    RampSelectionCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 0, z = 0 } },
+    },
+    XDirectionCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 0, z = 0 } },
+    },
+    XPosCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 0, z = 0 } },
+    },
+    XAccelCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 0, z = 0 } },
+    },
+    YDirectionCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 0, z = 0 } },
+    },
+    YPosCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 0.15, z = 0 } },
+    },
+    YAccelCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 0, z = 0 } },
+    },
+    ZDirectionCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 0, z = 0 } },
+    },
+    ZPosCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 0, z = 0 } },
+    },
+    ZAccelCurve = {
+        XRange = 1,
+        Keys = { { x = 0, y = 0, z = 0 } },
+    },
+}

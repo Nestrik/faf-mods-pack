@@ -45,7 +45,7 @@ UnitBlueprint {
                     SpecularName = '/mods/seraphim-rework/units/GGA1304/zsb1306_specteam.dds',
                     NormalsName = '/mods/seraphim-rework/units/GGA1304/zsb1306_normalsTS.dds',
                     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
-                    ShaderName = 'Unit',
+                    ShaderName = 'Seraphim',
                     LODCutoff = 120,
                 },
                 {
@@ -54,7 +54,7 @@ UnitBlueprint {
                     SpecularName = '/mods/seraphim-rework/units/GGA1304/zsb1306_specteam.dds',
                     NormalsName = '/mods/seraphim-rework/units/GGA1304/zsb1306_normalsTS.dds',
                     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
-                    ShaderName = 'Unit',
+                    ShaderName = 'Seraphim',
                     LODCutoff = 215,
                 },
             },

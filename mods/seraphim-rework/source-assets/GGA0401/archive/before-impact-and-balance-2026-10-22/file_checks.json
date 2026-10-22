@@ -1,0 +1,28 @@
+{
+  "blueprint_tables_parsed": 4,
+  "weapons": 5,
+  "bones": 17,
+  "resolved_asset_paths": 16,
+  "builder_category_match": true,
+  "m28_land_experimental_category_match": true,
+  "game_launched": false,
+  "installed_copy_updated": false,
+  "lod_tangent_bases_orthogonal": true,
+  "duplicate_icon_identical": true,
+  "source_interpreter_compile": true,
+  "new_runtime_sha256": {
+    "units\\GGA0401\\GGA0401_albedo.dds": "e26a5cff8dfd581b7a873cb542f48a305732ada7a5c02db87b982b7828770919",
+    "units\\GGA0401\\GGA0401_lod0.scm": "bebfce636d088bad4ed193a81590400da552580711b8dcbc6972671cc9f3c68a",
+    "units\\GGA0401\\GGA0401_lod1.scm": "c051cc8682a3c6d31b1cc74b4a35e809d33a27232af1ce515e4b6a699578103f",
+    "units\\GGA0401\\GGA0401_mesh.bp": "1011171f0647369ab0198c9f58fd14f414bb02e5e67502912968e0576994ed52",
+    "units\\GGA0401\\GGA0401_normalsTS.dds": "5b6c955d6e6dbf0ad788d01e2fa671f72e09e31c600aadac09b249787eff5145",
+    "units\\GGA0401\\GGA0401_script.lua": "bd25fc4a77d0e420afc1d157d65b3f2ec363c6b6ecca1a93a17517c1bc93d44b",
+    "units\\GGA0401\\GGA0401_specteam.dds": "935289ab03bed4e9f83a3c3a8b867c28569e143f89d2477dde8dbcfe4cedfa77",
+    "units\\GGA0401\\GGA0401_unit.bp": "985626e8e87691f0905f23e9de74b50d3856dfe2ea79f8e9596d590ece99fe0d",
+    "projectiles\\GGP0401\\GGP0401_lod0.scm": "fa3c1126fd737421542534e728b3e4fbd1ba3abaf05c5971d88810080b94f8ad",
+    "projectiles\\GGP0401\\GGP0401_proj.bp": "bb228e91cedaf68e1ea77f1f7f9e9dca04f690f7418e9192eeb3e7d4fdc31a7a",
+    "projectiles\\GGP0401\\GGP0401_script.lua": "87d18f31dba8434d0feb93ca83384e24cbc90811106cbae321d78c55c896a9f7",
+    "projectiles\\GGP0401Charge\\GGP0401Charge_proj.bp": "eceb8bce236590f2511a5036dac3f57532de7a7b5daa320194724980f10d3e96",
+    "projectiles\\GGP0401Charge\\GGP0401Charge_script.lua": "cf30dca9e17c9db7620339be6dbec9ffc3406193a2e31fcf40ee037b869fb388"
+  }
+}

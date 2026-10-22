@@ -1,0 +1,20 @@
+{
+  "animation_seconds": 32,
+  "turns": [
+    1,
+    1,
+    -1
+  ],
+  "root_radius_game_units": 2.8100370525621745,
+  "radial_clearances_game_units": [
+    0.09837828944216583,
+    0.23738264803793677,
+    0.3599057825521783
+  ],
+  "counterclockwise_vertical_clearances_game_units": [
+    0.04508802502654348,
+    0.5051045772641203
+  ],
+  "maximum_horizontal_half_extent": 3.7499428521019236,
+  "game_match_run": false
+}

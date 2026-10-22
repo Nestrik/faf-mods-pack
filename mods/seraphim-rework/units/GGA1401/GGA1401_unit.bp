@@ -3,9 +3,7 @@ UnitBlueprint {
     Adjacency = 'T3PowerGeneratorAdjacencyBuffs',
     Audio = {
         ActiveLoop = Sound { Bank = 'XSB', Cue = 'XSB1301_Active', LodCutoff = 'UnitMove_LodCutoff' },
-        Destroyed = Sound { Bank = 'XSL_Destroy', Cue = 'XSB_Destroy_Huge', LodCutoff = 'UnitMove_LodCutoff' },
         DoneBeingBuilt = Sound { Bank = 'XSB', Cue = 'XSB1301_Activate', LodCutoff = 'UnitMove_LodCutoff' },
-        Killed = Sound { Bank = 'XSL_Destroy', Cue = 'XSB_Destroy_Lrg_PreDestroy', LodCutoff = 'UnitMove_LodCutoff' },
         ShieldOff = Sound { Bank = 'XSB', Cue = 'XSB4202_On_Off', LodCutoff = 'UnitMove_LodCutoff' },
         ShieldOn = Sound { Bank = 'XSB', Cue = 'XSB4202_On_Off', LodCutoff = 'UnitMove_LodCutoff' },
         UISelection = Sound { Bank = 'SeraphimSelect', Cue = 'Seraphim_Select_Resource', LodCutoff = 'UnitMove_LodCutoff' },
@@ -16,7 +14,7 @@ UnitBlueprint {
         'BUILTBYTIER3COMMANDER', 'BUILTBYTIER3ENGINEER',
         'DRAGBUILD', 'ECONOMIC', 'ENERGYPRODUCTION', 'EXPERIMENTAL', 'LAND',
         'OVERLAYDEFENSE', 'PRODUCTFA', 'RECLAIMABLE', 'SELECTABLE', 'SERAPHIM',
-        'SHIELD', 'SIZE16', 'SORTECONOMY', 'STRUCTURE', 'VISIBLETORECON', 'VOLATILE',
+        'SHIELD', 'SIZE16', 'SORTECONOMY', 'STRUCTURE', 'VISIBLETORECON',
     },
     Defense = {
         ArmorType = 'ExperimentalStructure',
@@ -40,7 +38,7 @@ UnitBlueprint {
         },
     },
     Display = {
-        Abilities = { '<LOC ability_shielddome>Shield Dome', '<LOC ability_deathaoe>Volatile' },
+        Abilities = { '<LOC ability_shielddome>Shield Dome' },
         AnimationIdle = '/mods/seraphim-rework/units/GGA1401/GGA1401_idle.sca',
         Tarmacs = {
             {
@@ -102,7 +100,7 @@ UnitBlueprint {
     },
     Intel = { VisionRadius = 24 },
     LifeBarHeight = 0.075,
-    LifeBarOffset = 5.5,
+    LifeBarOffset = 7.1,
     LifeBarSize = 4.5,
     Physics = {
         BuildOnLayerCaps = {
@@ -112,9 +110,9 @@ UnitBlueprint {
         DragCoefficient = 0.2,
         FlattenSkirt = true,
         MaxGroundVariation = 1.1,
-        MeshExtentsX = 6,
-        MeshExtentsY = 5.3,
-        MeshExtentsZ = 6,
+        MeshExtentsX = 8,
+        MeshExtentsY = 7,
+        MeshExtentsZ = 8,
         MotionType = 'RULEUMT_None',
         SkirtOffsetX = -1.5,
         SkirtOffsetZ = -1.5,
@@ -129,18 +127,7 @@ UnitBlueprint {
     SizeZ = 5.8,
     StrategicIconName = 'icon_experimental_generic',
     StrategicIconSortPriority = 245,
-    Weapon = {
-        {
-            Damage = 12000,
-            DamageFriendly = true,
-            DamageRadius = 14,
-            DamageType = 'DeathExplosion',
-            DisplayName = 'Death Weapon',
-            DummyWeapon = true,
-            Label = 'DeathWeapon',
-            WeaponCategory = 'Death',
-        },
-    },
+    Weapon = {},
     Wreckage = {
         Blueprint = '/props/DefaultWreckage/DefaultWreckage_prop.bp',
         EnergyMult = 0,

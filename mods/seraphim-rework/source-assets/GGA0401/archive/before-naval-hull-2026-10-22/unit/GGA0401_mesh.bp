@@ -1,0 +1,21 @@
+MeshBlueprint {
+    IconFadeInZoom = 130,
+    LODs = {
+        {
+            MeshName = '/mods/seraphim-rework/units/GGA0401/GGA0401_lod0.scm',
+            AlbedoName = '/mods/seraphim-rework/units/GGA0401/GGA0401_albedo.dds',
+            SpecularName = '/mods/seraphim-rework/units/GGA0401/GGA0401_specteam.dds',
+            NormalsName = '/mods/seraphim-rework/units/GGA0401/GGA0401_normalsTS.dds',
+            LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
+            ShaderName = 'Seraphim', LODCutoff = 240,
+        },
+        {
+            MeshName = '/mods/seraphim-rework/units/GGA0401/GGA0401_lod1.scm',
+            AlbedoName = '/mods/seraphim-rework/units/GGA0401/GGA0401_albedo.dds',
+            SpecularName = '/mods/seraphim-rework/units/GGA0401/GGA0401_specteam.dds',
+            NormalsName = '/mods/seraphim-rework/units/GGA0401/GGA0401_normalsTS.dds',
+            LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
+            ShaderName = 'Seraphim', LODCutoff = 700,
+        },
+    },
+}

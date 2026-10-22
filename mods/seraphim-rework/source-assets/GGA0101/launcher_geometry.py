@@ -232,6 +232,10 @@ def make_textures(asset_dir, unit_dir, save_dds):
                 packed[:,:,0]=115; packed[:,:,1]=190
             elif name=="lens":
                 value+=(25*np.sin(u*math.pi)*np.sin(v*math.pi))[:,:,None]
+        # 2026-10-22: darker hull, retaining gloss and player-color inlays.
+        value *= .76
+        packed[:,:,0] *= .88
+        packed[:,:,2] *= .85
         albedo[region][:,:,:3]=np.clip(value,0,255).astype(np.uint8)
         # Preserve the former SpecTeam-alpha line mask exactly, but put it in
         # Albedo.A as required by the stock Seraphim shader.

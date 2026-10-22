@@ -232,6 +232,10 @@ def make_textures(asset_dir, unit_dir, save_dds):
                 packed[:,:,0]=115; packed[:,:,1]=190
             elif name=="lens":
                 value+=(25*np.sin(u*math.pi)*np.sin(v*math.pi))[:,:,None]
+        # 2026-10-22: darker hull, retaining gloss and player-color inlays.
+        value *= .76
+        packed[:,:,0] *= .88
+        packed[:,:,2] *= .85
         albedo[region][:,:,:3]=np.clip(value,0,255).astype(np.uint8)
         # Preserve the former SpecTeam-alpha line mask exactly, but put it in
         # Albedo.A as required by the stock Seraphim shader.
@@ -246,11 +250,54 @@ def make_textures(asset_dir, unit_dir, save_dds):
     Image.fromarray(albedo).save(asset_dir/"GGA1401_albedo_preview.png")
 
 
-def load_scm(path):
+def quaternion_matrix(q):
+    w,x,y,z=q
+    return np.array(((1-2*(y*y+z*z),2*(x*y-z*w),2*(x*z+y*w)),
+                     (2*(x*y+z*w),1-2*(x*x+z*z),2*(y*z-x*w)),
+                     (2*(x*z-y*w),2*(y*z+x*w),1-2*(x*x+y*y))))
+
+
+def load_sca_pose(path, seconds):
+    """Read a pose from the exported SCA, interpolating neighboring keyframes."""
+    raw=Path(path).read_bytes()
+    h=struct.unpack_from('<4siifiiiii',raw)
+    names=raw[h[5]:].split(b'\0',h[4])[:h[4]]
+    at=(seconds%h[3])/h[3]*(h[2]-1)
+    i=int(at); blend=at-i
+    pose={}
+    for bone,name in enumerate(names):
+        offset=h[7]+28+8+bone*28
+        a=np.array(struct.unpack_from('<3f4f',raw,offset+i*h[8]))
+        b=np.array(struct.unpack_from('<3f4f',raw,offset+min(i+1,h[2]-1)*h[8]))
+        if np.dot(a[3:],b[3:])<0:b[3:]*=-1
+        p=a*(1-blend)+b*blend
+        p[3:]/=np.linalg.norm(p[3:])
+        pose[name.decode('ascii')]=(p[:3],p[3:])
+    return pose
+
+
+def load_scm(path, pose=None):
     data=Path(path).read_bytes()
     h=struct.unpack_from("<4s11I",data)
     vertices=np.array([struct.unpack_from("<16f4B",data,h[4]+i*68)[:17] for i in range(h[6])])
     faces=np.frombuffer(data,dtype="<u2",count=h[8],offset=h[7]).reshape(-1,3).copy()
+    if pose:
+        bind_world=[]; world_positions=[]; world_rotations=[]
+        for i in range(h[3]):
+            bone=struct.unpack_from('<16f3f4f4i',data,h[2]+i*108)
+            name=data[bone[23]:].split(b'\0')[0].decode('ascii')
+            parent=bone[24]
+            bind=np.array(bone[16:19])
+            position,quaternion=pose.get(name,(bind,np.array(bone[19:23])))
+            rotation=quaternion_matrix(quaternion)
+            bind_world.append(bind+(bind_world[parent] if parent>=0 else 0))
+            if parent>=0:
+                position=world_positions[parent]+world_rotations[parent]@position
+                rotation=world_rotations[parent]@rotation
+            world_positions.append(position); world_rotations.append(rotation)
+            mask=vertices[:,16]==i
+            vertices[mask,:3]=(vertices[mask,:3]-bind_world[i])@rotation.T+position
+            for start in (3,6,9):vertices[mask,start:start+3]=vertices[mask,start:start+3]@rotation.T
     return vertices,faces
 
 
@@ -308,10 +355,10 @@ def sample_map(texture,uv):
             +(texture[y1,x0]*(1-fx)+texture[y1,x1]*fx)*fy)
 
 
-def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24,1.0), size=960, bones=None, texture_mip=0, transparent=False, ground_tarmac=None):
+def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24,1.0), size=960, bones=None, texture_mip=0, transparent=False, ground_tarmac=None, pose=None, fixed_bounds=None):
     target_size=size
     size=math.ceil(size*1.5)
-    vertices,faces=load_scm(scm)
+    vertices,faces=load_scm(scm,pose)
     if bones is not None:
         faces=faces[np.all(np.isin(vertices[faces,16],bones),axis=1)]
         used,inverse=np.unique(faces,return_inverse=True)
@@ -323,6 +370,8 @@ def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24
     right=normalized(np.cross((0,1,0),view)); up=np.cross(view,right)
     projected=np.stack((positions@right,-positions@up),axis=1)
     framing=projected
+    if fixed_bounds is not None:
+        framing=np.stack((fixed_bounds@right,-fixed_bounds@up),axis=1)
     if ground_tarmac is not None:
         gy,gx=np.where(np.asarray(ground_tarmac)[:,:,3]>24)
         stride=max(1,len(gx)//3000)

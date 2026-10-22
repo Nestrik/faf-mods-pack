@@ -1,14 +1,56 @@
 # Seraphim Rework
 
-This mod is a home for gameplay and balance changes to the Seraphim faction. It currently adds a compact, upgradeable T1 → T2 → T3 mass fabricator line, a T4 shielded power generator, two Seraphim T3 artillery installations, a T3 point-defense turret, a T1 mobile missile launcher, and a prototype T2 mobile directional shield.
+This mod is a home for gameplay and balance changes to the Seraphim faction. It currently adds a compact, upgradeable T1 → T2 → T3 mass fabricator line, a T4 shielded power generator, an experimental hover assault tank, two Seraphim T3 artillery installations, a T3 point-defense turret, a T1 mobile missile launcher, and a prototype T2 mobile directional shield.
+
+## Experimental hover assault tank
+
+`GGA0401` **Itha-Yen** is a separate Seraphim experimental hover tank, built by T3
+engineers and commanders with T3 engineering. Its original rounded steel model
+occupies approximately **4×6** game units and includes four independent AA
+turrets, an open focusing cannon, two mesh LODs, native Seraphim materials,
+player-color inlays and a custom construction icon.
+
+The naval-style hull rebuild follows the user's Seraphim ship reference: a swept
+central keel, one long port island, two separate starboard islands, an offset
+aft shard and three unequal open fins. Hull sections have real open gaps and
+gently drift at different phases; AA mounts are parented to their moving islands.
+The exported model measures **3.96×5.90** horizontally. The existing reflective
+metal and player-color patterns are retained. Updated meshes, sources, previews
+and construction icon are included; the new model/drift still need match testing.
+
+The main gun fires a large phason sphere along a **direct-fire trajectory** at
+**80 range**, with **6,000 damage**, **4 splash radius**, **3 seconds of visible
+charging**, and `RateOfFire = 0.1`. The four AA turrets each deal **60 damage**,
+with **3 splash radius**, **2 shots/s**, and **30 range**, targeting aircraft
+independently. The tank moves at **3.6** on both land and water, compared with
+the stock Ythotha's **2.5**; reverse speed is **2.5**.
+
+The 22 October balance revision halves main-shell damage and reduces range from
+100 to 80. Impacts add a brief bright white flash, an expanding blue energy ring
+and outward electrical arcs; these are visual particles with no extra damage.
+The same flash/ring/arcs play on shield hits. Their appearance needs match verification.
+
+Starting durability is **40,000 hull HP** plus a **20,000 HP personal shield**.
+The native `PersonalShield` mechanism routes damage only for the owner and has
+no surrounding projectile-interception dome; the hull stays metallic and native
+Seraphim shield-hit effects show impacts. The shield uses **400 energy/s**,
+regenerates **200 HP/s after 5 seconds**, and takes **30 seconds** to recharge
+after collapse, or **5 seconds** after an energy outage. Initial build cost:
+**32,000 mass / 480,000 energy / 52,000 build points**. Balance is provisional.
+
+SCM/DDS files and rendered previews were checked. Loading, building, movement,
+aiming, shield behavior and firing still need verification in a local match;
+the game was not launched for this addition. M28AI's land-experimental category
+matches this unit; actual AI selection and engine `CanBuild` are unverified.
+See [sources, previews and verification notes](source-assets/GGA0401/README.md).
 
 ## T4 experimental power generator
 
-`GGA1401` **Uya-Iava** produces **15,000 energy/s** and carries a compact **6,000 HP shield dome, diameter 18**, with no energy upkeep. It uses exactly the stock Seraphim T3 generator's **8×8 construction skirt**, **5×5 footprint** and skirt offsets. Build it with Seraphim T3 engineers or commanders with T3 engineering. Its original rounded metallic model has a central open volcanic caldera, three smaller floating calderas of different sizes, player-color inlays, two SCM LODs and a gentle levitation/core-rotation animation. A custom construction icon is included.
+`GGA1401` **Uya-Iava** produces **15,000 energy/s** and carries a compact **6,000 HP shield dome, diameter 18**, with no energy upkeep. It uses exactly the stock Seraphim T3 generator's **8×8 construction skirt**, **5×5 footprint** and skirt offsets. Build it with Seraphim T3 engineers or commanders with T3 engineering. Its original rounded metallic model has an open energy throat, five tall petals, eleven lower petals, six root pods and three orbiting Seraphim shards. Two fragments travel clockwise and one counterclockwise, viewed from above, with a 32-second orbital period. Player-color inlays, two SCM LODs, core rotation, vertical drift and a custom construction icon are included.
 
-The 2026-10-21 visual revision replaces the wide platter with a compact foundation and five tall, rounded swept petals like the stock T3 generator; three smaller crowned calderas still float around the central energy throat. It adds the stock XSB1301 ground-circle tarmac and `ST3PowerAmbient` rising light/ring/distortion effects, referenced directly from the game. The prior model is archived in the unit's source directory. Particle effects still require in-game verification.
+The 2026-10-21 visual revisions replace the wide platter with a compact foundation and five tall, rounded swept petals like the stock T3 generator, then add two tiers of lower leaves and replace the floating calderas with closed, curved metallic shards. The 2026-10-22 addition places two more irregular islands above the crown: a central island spins clockwise in place once per 16 seconds, while a smaller satellite circles it counterclockwise once per 32 seconds, viewed from above. The original three orbiting shards remain. Visuals retain the stock XSB1301 ground-circle tarmac and `ST3PowerAmbient` rising light/ring/distortion effects, referenced directly from the game. Prior models are archived in the unit's source directory. Particle effects and orbital animation still require in-game verification.
 
-Initial balance: **24,000 hull HP**, **20,000 mass / 360,000 energy / 30,000 build points**; shield regeneration **100 HP/s after 3 seconds**, collapse recharge **25 seconds**. Power remains active when the shield is toggled off. The reactor retains standard T3 power adjacency and a volatile death explosion (**12,000 damage, radius 14**, including friendlies). It is a separate experimental build, not a T3 upgrade. [Model, balance, source checks and limitations](source-assets/GGA1401/README.md).
+Initial balance: **24,000 hull HP**, **20,000 mass / 360,000 energy / 30,000 build points**; shield regeneration **100 HP/s after 3 seconds**, collapse recharge **25 seconds**. Power remains active when the shield is toggled off. The reactor retains standard T3 power adjacency. Destruction of a completed reactor releases the stock **Othuy residual-energy storm**, using Ythotha's spawn method and effects. Ordinary explosion visuals, blast damage, flying debris and explosion sounds are disabled; reclaimable wreckage remains. Unfinished construction and normal reclaim do not spawn a storm. It is a separate experimental build, not a T3 upgrade. [Model, balance, source checks and limitations](source-assets/GGA1401/README.md).
 
 Optional M28AI v327 hooks recognize the reactor as power and allow replacing a normal Seraphim T3 generator choice when income reaches **80 mass/s and 10,000 energy/s**, stored mass is at least **5,000**, energy storage is at least **50%**, and no reactor exists. The original builder/restriction checks remain active; choices have a 60-second cooldown. Cheapest-only requests retain the ordinary generator. No false TECH3 or mass-production categories were added. File checks and exported-SCM previews do not confirm game behavior or actual AI selection. This unit has not yet been tested in a local match.
 
@@ -120,6 +162,18 @@ The baseline was checked against the local FAF `units.nx5` and upstream [UEF Par
 - `source-assets/GGA2401` — independent artillery model generator, editable OBJ, texture sources, exported-SCM previews and archived previous blueprint.
 
 ## Installation
+
+### Material adjustment — 22 October 2026
+
+All eight custom unit hulls now use darker materials to sit closer to stock
+Seraphim buildings: reduced albedo brightness and reflection, with metallic
+gloss and player-color details retained. GGA1104/GGA1204/GGA1304 receive original
+steel/gunmetal Seraphim textures, fine concentric inlays and the native Seraphim
+shader, keeping their meshes and animations. GGA2301's packed normal channels
+and independent material mipmaps are also corrected. The reused stock GGA0102
+hull is unchanged. [Sources, original-material backup and DDS/SCM comparisons](source-assets/material-adjustment-2026-10-22/README.md).
+File checks and rendered previews were performed; in-game appearance still
+needs confirmation in a new local match.
 
 Copy the entire `seraphim-rework` folder into the FAF data `mods` directory and enable **Seraphim Rework**.
 

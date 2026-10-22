@@ -1,24 +1,54 @@
 {
   "lod0": {
-    "triangles": 27968,
-    "vertices": 51584
+    "triangles": 25912,
+    "vertices": 43476
   },
   "lod1": {
-    "triangles": 16168,
-    "vertices": 30416
+    "triangles": 14552,
+    "vertices": 25414
   },
   "bounds_game_units": [
     [
-      -2.677337455749512,
+      -3.1784942626953128,
       0.0,
-      -2.9383188247680665
+      -3.5403076171875
     ],
     [
-      2.891787528991699,
-      5.2,
-      2.520223426818848
+      3.384064865112305,
+      6.7504318237304695,
+      2.703836441040039
     ]
   ],
+  "orbits": {
+    "period_seconds": 32,
+    "directions_top_view": [
+      "CW",
+      "CW",
+      "CCW"
+    ],
+    "radii_game_units": [
+      3.2,
+      3.4000000000000004,
+      3.4000000000000004
+    ],
+    "heights_game_units": [
+      2.9000000000000004,
+      3.6,
+      1.0
+    ]
+  },
+  "upper_islands": {
+    "center_game_units": [
+      0.0,
+      6.300000000000001,
+      0.0
+    ],
+    "central_spin_direction_top_view": "CW",
+    "central_spin_period_seconds": 16,
+    "satellite_orbit_direction_top_view": "CCW",
+    "satellite_orbit_period_seconds": 32,
+    "satellite_orbit_radius_game_units": 1.7000000000000002
+  },
   "dds_mips": {
     "albedo": [
       {
@@ -182,6 +212,5 @@
         ]
       }
     ]
-  },
-  "visual_revision": "Five swept rounded petals, compact foundation, stock T3 tarmac and ST3PowerAmbient. Files and SCM renders verified; no local match run."
+  }
 }

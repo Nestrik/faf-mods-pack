@@ -1,0 +1,54 @@
+{
+  "game_launched": false,
+  "installed_copy_updated": false,
+  "combat_blueprint_unchanged": true,
+  "materials_unchanged": true,
+  "lods": [
+    {
+      "vertices": 43928,
+      "triangles": 26444,
+      "bounds": [
+        [
+          -1.9811111450195313,
+          0.275,
+          -2.95
+        ],
+        [
+          1.9811111450195313,
+          1.9647193908691407,
+          2.95
+        ]
+      ],
+      "bones": 21
+    },
+    {
+      "vertices": 17604,
+      "triangles": 11008,
+      "bounds": [
+        [
+          -1.9799999237060548,
+          0.275,
+          -2.95
+        ],
+        [
+          1.9799999237060548,
+          1.9379175186157227,
+          2.95
+        ]
+      ],
+      "bones": 21
+    }
+  ],
+  "matching_lod_skeletons": true,
+  "inverse_bind_matrices_valid": true,
+  "aa_parenting_valid": true,
+  "main_muzzle_unchanged": true,
+  "source_compile": true,
+  "dds_mips_checked": 10,
+  "hull_drift_game_units": [
+    0.03,
+    0.022,
+    0.027,
+    0.02
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "center_fixed": [
+    0,
+    6.3,
+    0
+  ],
+  "center_turns_clockwise_per_32_seconds": 2,
+  "satellite_turns_counterclockwise_per_32_seconds": 1,
+  "old_five_tracks_unchanged": true,
+  "upper_pair_radial_clearance_game_units": 0.5637742009606702,
+  "central_clearance_above_existing_game_units": 0.3495681762695313,
+  "satellite_clearance_above_existing_game_units": 0.7397926330566407,
+  "maximum_height_game_units": 6.7504318237304695,
+  "game_match_run": false
+}

@@ -272,7 +272,7 @@ def make_textures(asset_dir, unit_dir, save_dds):
     albedo=np.zeros((size,size,4),dtype=np.uint8)
     specteam=np.zeros_like(albedo)
     normals=np.zeros_like(albedo)
-    normals[:]=(128,128,255,255)
+    normals[:]=(128,128,128,128)
     # Every structural finish is silver metal. SpecTeam R/G carry the shine,
     # rather than gold paint or prepainted reflections in the diffuse map.
     palettes=((145,159,177),(84,100,120),(184,196,211),(108,127,149),
@@ -299,7 +299,8 @@ def make_textures(asset_dir, unit_dir, save_dds):
             gy,gx=np.gradient(-engraving)
             nx,ny=-gx*.22,-gy*.22
             nz=np.sqrt(np.maximum(0,1-nx*nx-ny*ny))
-            normals[region][:,:,:3]=np.clip((np.stack((nx,ny,nz),axis=-1)*.5+.5)*255,0,255).astype(np.uint8)
+            normals[region][:,:,1]=np.clip((ny*.5+.5)*255,0,255).astype(np.uint8)
+            normals[region][:,:,3]=np.clip((nx*.5+.5)*255,0,255).astype(np.uint8)
         elif name in ("team","crystal","lens"):
             packed[:,:,3]=255
             packed[:,:,2]={"team":130,"crystal":128,"lens":190}[name]
@@ -309,12 +310,16 @@ def make_textures(asset_dir, unit_dir, save_dds):
                 packed[:,:,0]=115; packed[:,:,1]=190
             elif name=="lens":
                 value+=(25*np.sin(u*math.pi)*np.sin(v*math.pi))[:,:,None]
+        # 2026-10-22: darker hull, retaining gloss and player-color inlays.
+        value *= .76
+        packed[:,:,0] *= .88
+        packed[:,:,2] *= .85
         albedo[region][:,:,:3]=np.clip(value,0,255).astype(np.uint8)
         albedo[region][:,:,3]=255
         specteam[region]=np.clip(packed,0,255).astype(np.uint8)
     for suffix,data in (("albedo",albedo),("specteam",specteam),("normalsTS",normals)):
         im=Image.fromarray(data)
-        save_dds(im,unit_dir/f"GGA2301_{suffix}.dds")
+        save_dds(im,unit_dir/f"GGA2301_{suffix}.dds",independent_channels=True)
         im.save(asset_dir/f"GGA2301_{suffix}_source.png")
     Image.fromarray(specteam[:,:,3]).save(asset_dir/"GGA2301_team_mask_preview.png")
     Image.fromarray(albedo).save(asset_dir/"GGA2301_albedo_preview.png")
@@ -383,7 +388,7 @@ def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24
     zbuffer=np.full((size,size),-np.inf)
     albedo=np.asarray(Image.open(asset_dir/"GGA2301_albedo_source.png"))[:,:,:3]/255
     spec=np.asarray(Image.open(asset_dir/"GGA2301_specteam_source.png"))/255
-    normal_map=np.asarray(Image.open(asset_dir/"GGA2301_normalsTS_source.png"))[:,:,:3]/127.5-1
+    normal_map=np.asarray(Image.open(asset_dir/"GGA2301_normalsTS_source.png"))/127.5-1
     sun=normalized((-.45,.75,.65)); half=normalized(sun+view)
     for face in faces:
         geometric=np.cross(positions[face[1]]-positions[face[0]],positions[face[2]]-positions[face[0]])
@@ -409,7 +414,8 @@ def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24
         tangent=weights@vertices[face,6:9]
         bitangent=weights@vertices[face,9:12]
         perturb=sample_map(normal_map,uv)
-        normal=tangent*perturb[:,0:1]+bitangent*perturb[:,1:2]+normal*perturb[:,2:3]
+        nz=np.sqrt(np.maximum(0,1-perturb[:,1:2]**2-perturb[:,3:4]**2))
+        normal=tangent*perturb[:,3:4]+bitangent*perturb[:,1:2]+normal*nz
         normal/=np.maximum(np.linalg.norm(normal,axis=1,keepdims=True),1e-9)
         base=sample_map(albedo,uv); packed=sample_map(spec,uv)
         team=packed[:,3:4]

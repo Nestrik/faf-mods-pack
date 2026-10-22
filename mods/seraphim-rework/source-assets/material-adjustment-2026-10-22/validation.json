@@ -1,0 +1,1866 @@
+{
+  "game_launched": false,
+  "protected_resources": {
+    "units\\GGA0101\\GGA0101_areload.sca": "bbfce9f6175c6f3106eca0ee1706cdf09cbf2df6ecf55427e09bceac8c09a785",
+    "units\\GGA0101\\GGA0101_lod0.scm": "35a54dfc53eca36f358e1a7e7e4d6b374c097f1672c4408b144915b17389b845",
+    "units\\GGA0101\\GGA0101_lod1.scm": "5783dbe0769114e4d6a637e79744b04f98ea3b28a1782053bf937b77cc0c44a7",
+    "units\\GGA0101\\GGA0101_script.lua": "ac268f9b4162251271c00d2652110936cb8051aad7f5e845bb42a4985e063280",
+    "units\\GGA0102\\GGA0102_frontshield_lod0.scm": "57220749cc192ccc0b88aae8ff9ea85614b219e17c544338d73aa20694de2201",
+    "units\\GGA0102\\GGA0102_script.lua": "8a176390ab56add05ae43db61bd4c6e28e9d2c542ac524a0271b87971e196d50",
+    "units\\GGA1104\\GGA1104_script.lua": "ee7c0a4e67f9a57b6e7671d039e0cae6d48cc441f9c42f5257710068d0994593",
+    "units\\GGA1104\\zsb1106_lod0.scm": "1412ce0f9d5055a9497b4199a82edd8f0942adfddf880a206939d1a85553e0b8",
+    "units\\GGA1104\\zsb1106_lod1.scm": "8ceaed0035c7542133f11572b997d8e3ad86f3bf993434397a80a5737e1b97ee",
+    "units\\GGA1104\\zsb1106_work.sca": "0552d11e9e41d1856e5ef68b1770baf1334997d66fe88ce75459cb1995827e9f",
+    "units\\GGA1204\\GGA1204_script.lua": "134e6a9af79d7c22747d3c62bfd755835ff2945e52620b776de485c0f048e208",
+    "units\\GGA1204\\zsb1206_lod0.scm": "bfff02ac418678f915286ca2ef11773ec30c1ff1706260c6b6e0f3b77427b298",
+    "units\\GGA1204\\zsb1206_lod1.scm": "ea95ee07ffab0f271d5f6b220815ebc6d4f2c3b6dbf7908b9bc531f893492270",
+    "units\\GGA1204\\zsb1206_work.sca": "4630d447142a523911fc03b7f129567c49e066491b4d6b3c6418ac980e720451",
+    "units\\GGA1304\\GGA1304_script.lua": "af33db97d4e8c1980e8c2d045a52d9ec719797862a590a36eba7c86d2cc8118e",
+    "units\\GGA1304\\zsb1306_lod0.scm": "93ad94201fde2c02e34cda4b6f8900e9ded0d932e8b6cbf8efa719030eab6321",
+    "units\\GGA1304\\zsb1306_lod1.scm": "f3540b08ff0231081dc8344612a7e0ec8566f2c5bf6c426c92fbf406c48cce5e",
+    "units\\GGA1304\\zsb1306_work.sca": "2868265ae16f102806fa185e097818c945b036404099148a181439f2f4afcd8e",
+    "units\\GGA1401\\GGA1401_idle.sca": "9ac820d0f083c9f02dde4ebbebd53400195b54c8886cc42e940c426be3f63eeb",
+    "units\\GGA1401\\GGA1401_lod0.scm": "5b94ffae23dffb4e6b28166cc6066a7eeec5416fe4b6221e7e04dd3ebe0ed05e",
+    "units\\GGA1401\\GGA1401_lod1.scm": "2149a98bf47018fb9ab84d324f7a8fd9ecb1e857ae94081723ce8df1551e218e",
+    "units\\GGA1401\\GGA1401_script.lua": "99a778588f8a9b79bcf9dd6ecd09348b80e0c9c14a9a05305a9b93981c7f4933",
+    "units\\GGA2301\\GGA2301_activate.sca": "5ad3559f1b4b3f5b759987bb0f49877d975f75d9162bb24c3a4ccb33d29d9d52",
+    "units\\GGA2301\\GGA2301_idle.sca": "c2e22d841d61d67f7ce086c8cad7f6f8ec9dfe3b3b424b4e9b7c04dffe5cfaaa",
+    "units\\GGA2301\\GGA2301_lod0.scm": "ff5ed670fc434b4ad1f03ad6eae61c54ab1b1c4112c53d246d347fc3e9513d60",
+    "units\\GGA2301\\GGA2301_lod1.scm": "926dc85138a56eec8da278e92de73c1c29f99783ae3760e302dfbaf968fc8010",
+    "units\\GGA2301\\GGA2301_script.lua": "78a9afbed743e0848b59f9178941c7c2eff96351d86a0bbc35da9da480a0b350",
+    "units\\GGA2401\\GGA2401_lod0.scm": "f57413d2e3cb61d9ffcedfca4e81a6ea22f2070d07036c17baf2dbc8949e640e",
+    "units\\GGA2401\\GGA2401_lod1.scm": "3e2f09b7466af948bb3678351bfb6ab3fde91513247f7a4af7acd0da2710b0b0",
+    "units\\GGA2401\\GGA2401_script.lua": "74a22a6437e8f4d0e272915049235816c1f08ad3a8bf0b151cc6dd71b3637f88",
+    "units\\GGA2404\\GGA2404_fire.sca": "b72d7076571019c8c2eb3707bd7ae42048a54313650c6b51429548c255490580",
+    "units\\GGA2404\\GGA2404_idle.sca": "1a71ca08428ed9e160301f1059cbc920b11310c50984f32b15bb6a4309451000",
+    "units\\GGA2404\\GGA2404_lod0.scm": "d5b211980e146001facbd6c38c59ac1e172f4d37087429cca3e25ce6b669611d",
+    "units\\GGA2404\\GGA2404_lod1.scm": "cbf1b9dc01f95536355a1a10096d19dfd4cf19584a326972634547905f886466",
+    "units\\GGA2404\\GGA2404_script.lua": "3a3ebad28c5cd05f3d2bbc6b235ffbdea5714d3fa4a0535fcdd9a76790ec1518",
+    "props\\GGA0101_wreck\\GGA0101_wreck_lod0.scm": "7338e8b5a104f3c6c6377ac0dc13ac1ecef83b041b035267a53e273fbac5e569",
+    "props\\GGA0101_wreck\\GGA0101_wreck_lod1.scm": "773ad4cafe9a5f7b6af6e71b4bf755e8573559d5b6ec06543061de21599ddea0",
+    "projectiles\\GGP2404\\GGP2404_script.lua": "76063b7c277a06185b957d841b6780fab9a7982e79d2c386a66d63a355f92e4c",
+    "projectiles\\GGP2404Charge\\GGP2404Charge_script.lua": "8f3fae33151ff5b1f0e05384df387713bb04d5248367da1be7143ce22eeb0999",
+    "meshes\\ball_lightning\\ball_lightning_lod0.scm": "2061ab10d3cffeb4bd03da96a461d520b77c6fa1320b13dd5b9c8b2822633a3c"
+  },
+  "dds": {
+    "units\\GGA0101\\GGA0101_albedo.dds": {
+      "sha256": "184b38f3a5a29c921f973c7a526054822292e529520b53472be749d1eadb1e06",
+      "mip_count": 10,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            512,
+            512
+          ],
+          "mean_rgba": [
+            59.746,
+            77.64,
+            76.993,
+            102.828
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            256,
+            256
+          ],
+          "mean_rgba": [
+            60.078,
+            77.835,
+            77.215,
+            103.854
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            128,
+            128
+          ],
+          "mean_rgba": [
+            60.54,
+            77.777,
+            77.439,
+            104.054
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            32,
+            32
+          ],
+          "mean_rgba": [
+            60.957,
+            78.352,
+            77.721,
+            104.401
+          ]
+        },
+        {
+          "level": 9,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            57.0,
+            81.0,
+            82.0,
+            107.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA0101\\GGA0101_normalsTS.dds": {
+      "sha256": "f85bba18de2f23119879b33a275c4fe4ceed569dad19ad83c14d7f96d6257215",
+      "mip_count": 10,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            512,
+            512
+          ],
+          "mean_rgba": [
+            132.0,
+            128.844,
+            132.0,
+            127.73
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            256,
+            256
+          ],
+          "mean_rgba": [
+            132.0,
+            128.996,
+            132.0,
+            127.681
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            128,
+            128
+          ],
+          "mean_rgba": [
+            132.0,
+            129.004,
+            132.0,
+            127.682
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            32,
+            32
+          ],
+          "mean_rgba": [
+            132.0,
+            129.064,
+            132.0,
+            127.649
+          ]
+        },
+        {
+          "level": 9,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            132.0,
+            130.0,
+            132.0,
+            128.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA0101\\GGA0101_specteam.dds": {
+      "sha256": "a5adb0e3fa105abf85fc701e49fd2ba081409125d5224b9e151baab3a41f897a",
+      "mip_count": 10,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            512,
+            512
+          ],
+          "mean_rgba": [
+            164.291,
+            187.668,
+            32.916,
+            0.0
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            256,
+            256
+          ],
+          "mean_rgba": [
+            164.065,
+            187.343,
+            33.074,
+            0.0
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            128,
+            128
+          ],
+          "mean_rgba": [
+            163.657,
+            186.803,
+            32.861,
+            0.0
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            32,
+            32
+          ],
+          "mean_rgba": [
+            163.369,
+            186.82,
+            32.375,
+            0.0
+          ]
+        },
+        {
+          "level": 9,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            165.0,
+            190.0,
+            33.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA1104\\zsb1106_albedo.dds": {
+      "sha256": "44232687e5b619d8f3d11f5d1b7fd9a2b665f7d53233ab5dbad622908c3ca3ec",
+      "mip_count": 11,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            1024,
+            512
+          ],
+          "mean_rgba": [
+            46.728,
+            61.678,
+            62.35,
+            68.889
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            512,
+            256
+          ],
+          "mean_rgba": [
+            47.04,
+            61.949,
+            62.553,
+            71.192
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            256,
+            128
+          ],
+          "mean_rgba": [
+            47.17,
+            62.072,
+            62.624,
+            71.935
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            64,
+            32
+          ],
+          "mean_rgba": [
+            47.313,
+            62.516,
+            62.689,
+            73.127
+          ]
+        },
+        {
+          "level": 10,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            49.0,
+            65.0,
+            66.0,
+            76.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA1104\\zsb1106_normalsTS.dds": {
+      "sha256": "60881067967462cf8fd4fd6fbb47098d4d3ffb63e65ee99af765d81958a954ef",
+      "mip_count": 11,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            1024,
+            512
+          ],
+          "mean_rgba": [
+            132.0,
+            127.137,
+            132.0,
+            127.294
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            512,
+            256
+          ],
+          "mean_rgba": [
+            132.0,
+            127.432,
+            132.0,
+            127.255
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            256,
+            128
+          ],
+          "mean_rgba": [
+            132.0,
+            127.495,
+            132.0,
+            127.243
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            64,
+            32
+          ],
+          "mean_rgba": [
+            132.0,
+            127.767,
+            132.0,
+            127.181
+          ]
+        },
+        {
+          "level": 10,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            132.0,
+            130.0,
+            132.0,
+            128.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA1104\\zsb1106_specteam.dds": {
+      "sha256": "6bb88437d6f903765c3f35d6604a72ea88f25d0e00ea33c6560f37c0de32a3cd",
+      "mip_count": 11,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            1024,
+            512
+          ],
+          "mean_rgba": [
+            173.993,
+            175.125,
+            17.375,
+            0.0
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            512,
+            256
+          ],
+          "mean_rgba": [
+            173.704,
+            175.099,
+            17.398,
+            0.0
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            256,
+            128
+          ],
+          "mean_rgba": [
+            173.624,
+            175.071,
+            17.376,
+            0.0
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            64,
+            32
+          ],
+          "mean_rgba": [
+            173.741,
+            174.964,
+            17.351,
+            0.0
+          ]
+        },
+        {
+          "level": 10,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            173.0,
+            178.0,
+            16.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA1204\\zsb1206_albedo.dds": {
+      "sha256": "44232687e5b619d8f3d11f5d1b7fd9a2b665f7d53233ab5dbad622908c3ca3ec",
+      "mip_count": 11,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            1024,
+            512
+          ],
+          "mean_rgba": [
+            46.728,
+            61.678,
+            62.35,
+            68.889
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            512,
+            256
+          ],
+          "mean_rgba": [
+            47.04,
+            61.949,
+            62.553,
+            71.192
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            256,
+            128
+          ],
+          "mean_rgba": [
+            47.17,
+            62.072,
+            62.624,
+            71.935
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            64,
+            32
+          ],
+          "mean_rgba": [
+            47.313,
+            62.516,
+            62.689,
+            73.127
+          ]
+        },
+        {
+          "level": 10,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            49.0,
+            65.0,
+            66.0,
+            76.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA1204\\zsb1206_normalsTS.dds": {
+      "sha256": "60881067967462cf8fd4fd6fbb47098d4d3ffb63e65ee99af765d81958a954ef",
+      "mip_count": 11,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            1024,
+            512
+          ],
+          "mean_rgba": [
+            132.0,
+            127.137,
+            132.0,
+            127.294
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            512,
+            256
+          ],
+          "mean_rgba": [
+            132.0,
+            127.432,
+            132.0,
+            127.255
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            256,
+            128
+          ],
+          "mean_rgba": [
+            132.0,
+            127.495,
+            132.0,
+            127.243
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            64,
+            32
+          ],
+          "mean_rgba": [
+            132.0,
+            127.767,
+            132.0,
+            127.181
+          ]
+        },
+        {
+          "level": 10,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            132.0,
+            130.0,
+            132.0,
+            128.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA1204\\zsb1206_specteam.dds": {
+      "sha256": "6bb88437d6f903765c3f35d6604a72ea88f25d0e00ea33c6560f37c0de32a3cd",
+      "mip_count": 11,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            1024,
+            512
+          ],
+          "mean_rgba": [
+            173.993,
+            175.125,
+            17.375,
+            0.0
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            512,
+            256
+          ],
+          "mean_rgba": [
+            173.704,
+            175.099,
+            17.398,
+            0.0
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            256,
+            128
+          ],
+          "mean_rgba": [
+            173.624,
+            175.071,
+            17.376,
+            0.0
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            64,
+            32
+          ],
+          "mean_rgba": [
+            173.741,
+            174.964,
+            17.351,
+            0.0
+          ]
+        },
+        {
+          "level": 10,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            173.0,
+            178.0,
+            16.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA1304\\zsb1306_albedo.dds": {
+      "sha256": "44232687e5b619d8f3d11f5d1b7fd9a2b665f7d53233ab5dbad622908c3ca3ec",
+      "mip_count": 11,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            1024,
+            512
+          ],
+          "mean_rgba": [
+            46.728,
+            61.678,
+            62.35,
+            68.889
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            512,
+            256
+          ],
+          "mean_rgba": [
+            47.04,
+            61.949,
+            62.553,
+            71.192
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            256,
+            128
+          ],
+          "mean_rgba": [
+            47.17,
+            62.072,
+            62.624,
+            71.935
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            64,
+            32
+          ],
+          "mean_rgba": [
+            47.313,
+            62.516,
+            62.689,
+            73.127
+          ]
+        },
+        {
+          "level": 10,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            49.0,
+            65.0,
+            66.0,
+            76.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA1304\\zsb1306_normalsTS.dds": {
+      "sha256": "60881067967462cf8fd4fd6fbb47098d4d3ffb63e65ee99af765d81958a954ef",
+      "mip_count": 11,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            1024,
+            512
+          ],
+          "mean_rgba": [
+            132.0,
+            127.137,
+            132.0,
+            127.294
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            512,
+            256
+          ],
+          "mean_rgba": [
+            132.0,
+            127.432,
+            132.0,
+            127.255
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            256,
+            128
+          ],
+          "mean_rgba": [
+            132.0,
+            127.495,
+            132.0,
+            127.243
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            64,
+            32
+          ],
+          "mean_rgba": [
+            132.0,
+            127.767,
+            132.0,
+            127.181
+          ]
+        },
+        {
+          "level": 10,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            132.0,
+            130.0,
+            132.0,
+            128.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA1304\\zsb1306_specteam.dds": {
+      "sha256": "6bb88437d6f903765c3f35d6604a72ea88f25d0e00ea33c6560f37c0de32a3cd",
+      "mip_count": 11,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            1024,
+            512
+          ],
+          "mean_rgba": [
+            173.993,
+            175.125,
+            17.375,
+            0.0
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            512,
+            256
+          ],
+          "mean_rgba": [
+            173.704,
+            175.099,
+            17.398,
+            0.0
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            256,
+            128
+          ],
+          "mean_rgba": [
+            173.624,
+            175.071,
+            17.376,
+            0.0
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            64,
+            32
+          ],
+          "mean_rgba": [
+            173.741,
+            174.964,
+            17.351,
+            0.0
+          ]
+        },
+        {
+          "level": 10,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            173.0,
+            178.0,
+            16.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA1401\\GGA1401_albedo.dds": {
+      "sha256": "a52b55baa540bdfb01ac10e2b07a50a9b69326f4bb0de48efcea7a17d7df4ef8",
+      "mip_count": 11,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            1024,
+            1024
+          ],
+          "mean_rgba": [
+            59.579,
+            77.506,
+            76.924,
+            102.845
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            512,
+            512
+          ],
+          "mean_rgba": [
+            59.86,
+            77.717,
+            77.068,
+            103.393
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            256,
+            256
+          ],
+          "mean_rgba": [
+            60.085,
+            77.869,
+            77.205,
+            103.549
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            64,
+            64
+          ],
+          "mean_rgba": [
+            60.688,
+            77.966,
+            77.541,
+            104.277
+          ]
+        },
+        {
+          "level": 10,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            57.0,
+            81.0,
+            82.0,
+            107.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA1401\\GGA1401_normalsTS.dds": {
+      "sha256": "ee500a69d1a9ca3ca1d01ef98e2c2514a1d914a0742c77b6dd07ae81d8dfe1c8",
+      "mip_count": 11,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            1024,
+            1024
+          ],
+          "mean_rgba": [
+            132.0,
+            128.837,
+            132.0,
+            127.719
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            512,
+            512
+          ],
+          "mean_rgba": [
+            132.0,
+            128.916,
+            132.0,
+            127.704
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            256,
+            256
+          ],
+          "mean_rgba": [
+            132.0,
+            128.957,
+            132.0,
+            127.687
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            64,
+            64
+          ],
+          "mean_rgba": [
+            132.0,
+            129.013,
+            132.0,
+            127.674
+          ]
+        },
+        {
+          "level": 10,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            132.0,
+            130.0,
+            132.0,
+            128.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA1401\\GGA1401_specteam.dds": {
+      "sha256": "d59119abd6aa96191448c1813fd64f8863574b42d3fea079ba7831ef42c125f8",
+      "mip_count": 11,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            1024,
+            1024
+          ],
+          "mean_rgba": [
+            164.374,
+            187.778,
+            33.043,
+            0.0
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            512,
+            512
+          ],
+          "mean_rgba": [
+            164.261,
+            187.624,
+            32.897,
+            0.0
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            256,
+            256
+          ],
+          "mean_rgba": [
+            164.023,
+            187.338,
+            33.057,
+            0.0
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            64,
+            64
+          ],
+          "mean_rgba": [
+            163.401,
+            186.631,
+            32.645,
+            0.0
+          ]
+        },
+        {
+          "level": 10,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            165.0,
+            190.0,
+            33.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA2301\\GGA2301_albedo.dds": {
+      "sha256": "2b452ae5b9a9a3b26956f0ced304dd3ad91b30932192eeefa4ba1f50b88eefb2",
+      "mip_count": 10,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            512,
+            512
+          ],
+          "mean_rgba": [
+            90.746,
+            107.459,
+            119.336,
+            255.0
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            256,
+            256
+          ],
+          "mean_rgba": [
+            90.919,
+            107.499,
+            119.375,
+            255.0
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            128,
+            128
+          ],
+          "mean_rgba": [
+            90.974,
+            107.424,
+            119.402,
+            255.0
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            32,
+            32
+          ],
+          "mean_rgba": [
+            91.04,
+            107.247,
+            119.509,
+            255.0
+          ]
+        },
+        {
+          "level": 9,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            90.0,
+            109.0,
+            123.0,
+            255.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA2301\\GGA2301_normalsTS.dds": {
+      "sha256": "dc1cb3e4e3092f2b90fb90580964b9f79ca88984a051b766330c3008b7b90f22",
+      "mip_count": 10,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            512,
+            512
+          ],
+          "mean_rgba": [
+            132.0,
+            128.845,
+            132.0,
+            127.717
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            256,
+            256
+          ],
+          "mean_rgba": [
+            132.0,
+            128.903,
+            132.0,
+            127.712
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            128,
+            128
+          ],
+          "mean_rgba": [
+            132.0,
+            128.909,
+            132.0,
+            127.698
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            32,
+            32
+          ],
+          "mean_rgba": [
+            132.0,
+            128.965,
+            132.0,
+            127.672
+          ]
+        },
+        {
+          "level": 9,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            132.0,
+            130.0,
+            132.0,
+            128.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA2301\\GGA2301_specteam.dds": {
+      "sha256": "e84f3a8b77ce67e4e2b9dc7262fb907b47369b7fea3d2197389222cce7a89407",
+      "mip_count": 10,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            512,
+            512
+          ],
+          "mean_rgba": [
+            173.681,
+            211.292,
+            47.375,
+            99.599
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            256,
+            256
+          ],
+          "mean_rgba": [
+            173.521,
+            211.149,
+            47.358,
+            100.171
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            128,
+            128
+          ],
+          "mean_rgba": [
+            173.393,
+            211.007,
+            47.343,
+            100.28
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            32,
+            32
+          ],
+          "mean_rgba": [
+            173.336,
+            210.721,
+            47.186,
+            100.597
+          ]
+        },
+        {
+          "level": 9,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            173.0,
+            211.0,
+            49.0,
+            105.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA2401\\GGA2401_albedo.dds": {
+      "sha256": "a52b55baa540bdfb01ac10e2b07a50a9b69326f4bb0de48efcea7a17d7df4ef8",
+      "mip_count": 11,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            1024,
+            1024
+          ],
+          "mean_rgba": [
+            59.579,
+            77.506,
+            76.924,
+            102.845
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            512,
+            512
+          ],
+          "mean_rgba": [
+            59.86,
+            77.717,
+            77.068,
+            103.393
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            256,
+            256
+          ],
+          "mean_rgba": [
+            60.085,
+            77.869,
+            77.205,
+            103.549
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            64,
+            64
+          ],
+          "mean_rgba": [
+            60.688,
+            77.966,
+            77.541,
+            104.277
+          ]
+        },
+        {
+          "level": 10,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            57.0,
+            81.0,
+            82.0,
+            107.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA2401\\GGA2401_normalsTS.dds": {
+      "sha256": "ee500a69d1a9ca3ca1d01ef98e2c2514a1d914a0742c77b6dd07ae81d8dfe1c8",
+      "mip_count": 11,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            1024,
+            1024
+          ],
+          "mean_rgba": [
+            132.0,
+            128.837,
+            132.0,
+            127.719
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            512,
+            512
+          ],
+          "mean_rgba": [
+            132.0,
+            128.916,
+            132.0,
+            127.704
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            256,
+            256
+          ],
+          "mean_rgba": [
+            132.0,
+            128.957,
+            132.0,
+            127.687
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            64,
+            64
+          ],
+          "mean_rgba": [
+            132.0,
+            129.013,
+            132.0,
+            127.674
+          ]
+        },
+        {
+          "level": 10,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            132.0,
+            130.0,
+            132.0,
+            128.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA2401\\GGA2401_specteam.dds": {
+      "sha256": "d59119abd6aa96191448c1813fd64f8863574b42d3fea079ba7831ef42c125f8",
+      "mip_count": 11,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            1024,
+            1024
+          ],
+          "mean_rgba": [
+            164.374,
+            187.778,
+            33.043,
+            0.0
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            512,
+            512
+          ],
+          "mean_rgba": [
+            164.261,
+            187.624,
+            32.897,
+            0.0
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            256,
+            256
+          ],
+          "mean_rgba": [
+            164.023,
+            187.338,
+            33.057,
+            0.0
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            64,
+            64
+          ],
+          "mean_rgba": [
+            163.401,
+            186.631,
+            32.645,
+            0.0
+          ]
+        },
+        {
+          "level": 10,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            165.0,
+            190.0,
+            33.0,
+            0.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA2404\\GGA2404_albedo.dds": {
+      "sha256": "4341ae2fc77d1dd8b7a4571cbaa8abd776ad112e4f4b7abdc09b299d1618d7b5",
+      "mip_count": 11,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            1024,
+            512
+          ],
+          "mean_rgba": [
+            62.923,
+            64.119,
+            62.923,
+            80.625
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            512,
+            256
+          ],
+          "mean_rgba": [
+            63.092,
+            64.347,
+            63.092,
+            80.615
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            256,
+            128
+          ],
+          "mean_rgba": [
+            63.411,
+            64.358,
+            63.411,
+            80.606
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            64,
+            32
+          ],
+          "mean_rgba": [
+            63.402,
+            64.076,
+            63.402,
+            80.618
+          ]
+        },
+        {
+          "level": 10,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            66.0,
+            69.0,
+            66.0,
+            91.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA2404\\GGA2404_normalsTS.dds": {
+      "sha256": "80e859db0239d9893780df4937bb6132cbe31d73f530d623e42e0422feb18a3b",
+      "mip_count": 11,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            1024,
+            512
+          ],
+          "mean_rgba": [
+            132.0,
+            130.0,
+            255.0,
+            128.0
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            512,
+            256
+          ],
+          "mean_rgba": [
+            132.0,
+            130.0,
+            255.0,
+            128.0
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            256,
+            128
+          ],
+          "mean_rgba": [
+            132.0,
+            130.0,
+            255.0,
+            128.0
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            64,
+            32
+          ],
+          "mean_rgba": [
+            132.0,
+            130.0,
+            255.0,
+            128.0
+          ]
+        },
+        {
+          "level": 10,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            132.0,
+            130.0,
+            255.0,
+            128.0
+          ]
+        }
+      ]
+    },
+    "units\\GGA2404\\GGA2404_specteam.dds": {
+      "sha256": "4716c40cf47159fa00896064cec29dc1dd66e2a4b3ded9ed11643fe1c312aaf5",
+      "mip_count": 11,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            1024,
+            512
+          ],
+          "mean_rgba": [
+            67.75,
+            168.5,
+            43.125,
+            80.625
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            512,
+            256
+          ],
+          "mean_rgba": [
+            67.787,
+            168.536,
+            43.088,
+            80.615
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            256,
+            128
+          ],
+          "mean_rgba": [
+            67.838,
+            168.597,
+            43.102,
+            80.606
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            64,
+            32
+          ],
+          "mean_rgba": [
+            68.111,
+            168.801,
+            43.264,
+            80.618
+          ]
+        },
+        {
+          "level": 10,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            74.0,
+            170.0,
+            49.0,
+            91.0
+          ]
+        }
+      ]
+    },
+    "props\\GGA0101_wreck\\GGA0101_wreck_albedo.dds": {
+      "sha256": "ec5aa171a13168ce703785fb02825a27a1f20a36011929adbcab3d387c009e38",
+      "mip_count": 10,
+      "levels": [
+        {
+          "level": 0,
+          "size": [
+            512,
+            512
+          ],
+          "mean_rgba": [
+            45.131,
+            54.133,
+            51.1,
+            0.0
+          ]
+        },
+        {
+          "level": 1,
+          "size": [
+            256,
+            256
+          ],
+          "mean_rgba": [
+            45.353,
+            54.49,
+            51.437,
+            0.0
+          ]
+        },
+        {
+          "level": 2,
+          "size": [
+            128,
+            128
+          ],
+          "mean_rgba": [
+            45.603,
+            54.853,
+            51.746,
+            0.0
+          ]
+        },
+        {
+          "level": 4,
+          "size": [
+            32,
+            32
+          ],
+          "mean_rgba": [
+            45.805,
+            55.614,
+            52.081,
+            0.0
+          ]
+        },
+        {
+          "level": 9,
+          "size": [
+            1,
+            1
+          ],
+          "mean_rgba": [
+            41.0,
+            56.0,
+            49.0,
+            0.0
+          ]
+        }
+      ]
+    }
+  },
+  "mask_checks": {
+    "GGA0101": "source team mask unchanged",
+    "GGA1401": "source team mask unchanged",
+    "GGA2401": "source team mask unchanged",
+    "GGA2301": "source team mask unchanged"
+  },
+  "blueprints": {
+    "GGA1104": "only shader changed in both LODs",
+    "GGA1204": "only shader changed in both LODs",
+    "GGA1304": "only shader changed in both LODs"
+  },
+  "installation": {
+    "path": "D:\\Games\\FAF Mods\\mods\\seraphim-rework",
+    "files": {
+      "units\\GGA0101\\GGA0101_albedo.dds": "184b38f3a5a29c921f973c7a526054822292e529520b53472be749d1eadb1e06",
+      "units\\GGA0101\\GGA0101_normalsTS.dds": "f85bba18de2f23119879b33a275c4fe4ceed569dad19ad83c14d7f96d6257215",
+      "units\\GGA0101\\GGA0101_specteam.dds": "a5adb0e3fa105abf85fc701e49fd2ba081409125d5224b9e151baab3a41f897a",
+      "units\\GGA1104\\zsb1106_albedo.dds": "44232687e5b619d8f3d11f5d1b7fd9a2b665f7d53233ab5dbad622908c3ca3ec",
+      "units\\GGA1104\\zsb1106_normalsTS.dds": "60881067967462cf8fd4fd6fbb47098d4d3ffb63e65ee99af765d81958a954ef",
+      "units\\GGA1104\\zsb1106_specteam.dds": "6bb88437d6f903765c3f35d6604a72ea88f25d0e00ea33c6560f37c0de32a3cd",
+      "units\\GGA1204\\zsb1206_albedo.dds": "44232687e5b619d8f3d11f5d1b7fd9a2b665f7d53233ab5dbad622908c3ca3ec",
+      "units\\GGA1204\\zsb1206_normalsTS.dds": "60881067967462cf8fd4fd6fbb47098d4d3ffb63e65ee99af765d81958a954ef",
+      "units\\GGA1204\\zsb1206_specteam.dds": "6bb88437d6f903765c3f35d6604a72ea88f25d0e00ea33c6560f37c0de32a3cd",
+      "units\\GGA1304\\zsb1306_albedo.dds": "44232687e5b619d8f3d11f5d1b7fd9a2b665f7d53233ab5dbad622908c3ca3ec",
+      "units\\GGA1304\\zsb1306_normalsTS.dds": "60881067967462cf8fd4fd6fbb47098d4d3ffb63e65ee99af765d81958a954ef",
+      "units\\GGA1304\\zsb1306_specteam.dds": "6bb88437d6f903765c3f35d6604a72ea88f25d0e00ea33c6560f37c0de32a3cd",
+      "units\\GGA1401\\GGA1401_albedo.dds": "a52b55baa540bdfb01ac10e2b07a50a9b69326f4bb0de48efcea7a17d7df4ef8",
+      "units\\GGA1401\\GGA1401_normalsTS.dds": "ee500a69d1a9ca3ca1d01ef98e2c2514a1d914a0742c77b6dd07ae81d8dfe1c8",
+      "units\\GGA1401\\GGA1401_specteam.dds": "d59119abd6aa96191448c1813fd64f8863574b42d3fea079ba7831ef42c125f8",
+      "units\\GGA2301\\GGA2301_albedo.dds": "2b452ae5b9a9a3b26956f0ced304dd3ad91b30932192eeefa4ba1f50b88eefb2",
+      "units\\GGA2301\\GGA2301_normalsTS.dds": "dc1cb3e4e3092f2b90fb90580964b9f79ca88984a051b766330c3008b7b90f22",
+      "units\\GGA2301\\GGA2301_specteam.dds": "e84f3a8b77ce67e4e2b9dc7262fb907b47369b7fea3d2197389222cce7a89407",
+      "units\\GGA2401\\GGA2401_albedo.dds": "a52b55baa540bdfb01ac10e2b07a50a9b69326f4bb0de48efcea7a17d7df4ef8",
+      "units\\GGA2401\\GGA2401_normalsTS.dds": "ee500a69d1a9ca3ca1d01ef98e2c2514a1d914a0742c77b6dd07ae81d8dfe1c8",
+      "units\\GGA2401\\GGA2401_specteam.dds": "d59119abd6aa96191448c1813fd64f8863574b42d3fea079ba7831ef42c125f8",
+      "units\\GGA2404\\GGA2404_albedo.dds": "4341ae2fc77d1dd8b7a4571cbaa8abd776ad112e4f4b7abdc09b299d1618d7b5",
+      "units\\GGA2404\\GGA2404_normalsTS.dds": "80e859db0239d9893780df4937bb6132cbe31d73f530d623e42e0422feb18a3b",
+      "units\\GGA2404\\GGA2404_specteam.dds": "4716c40cf47159fa00896064cec29dc1dd66e2a4b3ded9ed11643fe1c312aaf5",
+      "props\\GGA0101_wreck\\GGA0101_wreck_albedo.dds": "ec5aa171a13168ce703785fb02825a27a1f20a36011929adbcab3d387c009e38",
+      "units\\GGA1104\\GGA1104_unit.bp": "ff2963fb5f3139bc8637943fed6d55a121e3dfc6314fee9296924125922cf958",
+      "units\\GGA1204\\GGA1204_unit.bp": "3626119e581d682e98b82c33c0bf80e9ab5d5e15ab9eb8b685039d3a8e262ecf",
+      "units\\GGA1304\\GGA1304_unit.bp": "ac5e5de18455cfdb7a3c3e4feb35009a3154b3e34e4372327980946d83ed6e40"
+    }
+  }
+}
