@@ -1,0 +1,10 @@
+{
+  "reference": "reference-redline-2026-10-24.png",
+  "hatching_means_solid_growth": true,
+  "fore_left_projected_area_increase_percent": 28.9,
+  "right_infill_grid_samples": 1615,
+  "right_infill_uncovered_samples": 0,
+  "left_mid_growth_points_covered": true,
+  "right_lower_spike_connected_in_projection": true,
+  "game_launched": false
+}

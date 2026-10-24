@@ -1,0 +1,29 @@
+{
+  "gameplay_blueprint_identical_after_identity_and_description_substitution": true,
+  "script_identical_after_class_rename": true,
+  "mesh_settings_identical_after_asset_rename": true,
+  "GGA0401_runtime_hashes_unchanged": true,
+  "concurrent_GGA0402_changes_outside_this_task": [
+    "units\\GGA0402\\GGA0402_lod0.scm",
+    "units\\GGA0402\\GGA0402_lod1.scm"
+  ],
+  "local_resource_paths": [
+    "/mods/seraphim-rework/projectiles/GGP0401/GGP0401_proj.bp",
+    "/mods/seraphim-rework/projectiles/GGP0401Charge/GGP0401Charge_proj.bp",
+    "/mods/seraphim-rework/units/GGA0403/GGA0403_albedo.dds",
+    "/mods/seraphim-rework/units/GGA0403/GGA0403_lod0.scm",
+    "/mods/seraphim-rework/units/GGA0403/GGA0403_lod1.scm",
+    "/mods/seraphim-rework/units/GGA0403/GGA0403_mesh",
+    "/mods/seraphim-rework/units/GGA0403/GGA0403_normalsTS.dds",
+    "/mods/seraphim-rework/units/GGA0403/GGA0403_specteam.dds"
+  ],
+  "referenced_bones_exist": true,
+  "python_sources_compile": true,
+  "all_ten_DDS_mips_checked": true,
+  "packed_GA_normals_neutral": true,
+  "albedo_team_mask_present": true,
+  "spec_RGB_survives_zero_alpha_all_mips": true,
+  "both_64x64_icons_checked": true,
+  "game_launched": false,
+  "installed_copy_updated": false
+}

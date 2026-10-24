@@ -19,7 +19,7 @@ player-color veins and open focusing petals. The rear pod is raised for neutral
 forward firing clearance. Gaps are real empty space; four separate hull sections
 have gentle 8-second drift. Their AA guns are parented to their platforms.
 
-LOD0 occupies **3.951×5.90** horizontally, Y=0.33–2.475 game units before the
+LOD0 occupies **3.951×5.935** horizontally, Y=0.33–2.475 game units before the
 inherited 0.4 hover elevation. The collision/mesh height is 2.6 to fit the rear
 gun. Footprint, skirt and selection dimensions remain 4×6. Source scale is 0.1.
 There are **24 bones**. Main yaw/pitch/muzzle branches are separate; native
@@ -28,7 +28,7 @@ its own pivots. Neutral muzzle positions in source units: `(0,15,21.5)` and
 `(0,21,2.5)`. Both shots use the shared target's firing solution. All-angle,
 all-pitch and terrain clearance still require game verification.
 
-LOD0: **60,629 vertices / 32,424 triangles**; LOD1: **24,774 / 13,900**. Skeletons
+LOD0: **24,560 vertices / 36,556 triangles**; LOD1: **13,244 / 17,766**. Skeletons
 match and both fit SCM's 16-bit indices. Native `Seraphim` materials use Albedo.A
 player color, SpecTeam reflection/gloss and G/A packed normals. Each DDS has ten
 independently downsampled mip levels. No stock model or texture is copied.
@@ -38,6 +38,32 @@ matching the sketch. Plan views put the prow up and port left. `GGA0402_top.png`
 includes both pods; `GGA0402_views.png` combines the hull plan, full game-like
 view, front and side. These are exported SCM/DDS mip1 renders with approximate
 lighting. Alternate player color uses mip2. The construction icon is independent.
+
+### Solid hull growth from red markup — 24 October 2026
+
+`reference-redline-2026-10-24.png` preserves the user's new annotation. The
+hatched regions mean added solid material. The fore-left element is enlarged
+with a smooth contour (its top-projected footprint is 28.9% larger than the
+previous approved model). The central port rail gains a broad rounded shoulder.
+The starboard hull now extends under the right bearing rail, completely filling
+the previous channel. The lower starboard spike is integrated into the main
+armor outline and shares its closed cap and bevel, rather than floating beside it.
+
+Raised overlapping armor fields, arched structural ribs, island shoulder plates
+and low vent ribs add geometric relief. There are no sawtooth edges. Geometry
+supplies the added volume; material DDS files, team masks, skeleton, gun pivots,
+unit blueprint and script are preserved. Concave armor outlines have rounded
+corners, rolled edge geometry and ear-clipped caps. Duplicate tangent records
+are averaged within matching position/normal/UV/bone seams before welding,
+reducing vertex count while the more detailed geometry increases triangle count.
+
+`redline_shape_checks.json` records the enlarged fore-left projection and 1,615
+covered sample points through the new starboard infill. It also checks the
+left shoulder and connected projected silhouette of the lower-right spike.
+These file/projection checks are not game verification. The previously approved
+unit, sources, renders and maps are preserved under
+`archive/before-redline-detail-2026-10-24/`. Weapon parameters remain 2×3,000
+damage, 0.3-second spacing and range 80. The installed copy is not updated.
 
 ## Weapons and inherited parameters
 
@@ -81,7 +107,8 @@ $conceptPython = 'C:\Users\Nestr\.cache\codex-runtimes\codex-primary-runtime\dep
 ```
 
 Requires Python, numpy and Pillow. `--skip-textures` preserves material maps;
-`--skip-previews` skips renders/icons. `concept_geometry.py` and `supcom_binary.py`
+`--skip-previews` skips renders/icons; `--previews-only` reads the existing SCM/DDS
+and regenerates only renders and icons. `concept_geometry.py` and `supcom_binary.py`
 are local project-owned helpers adapted from GGA0401, with no import of the
 original model generator. OBJ/MTL, material PNGs and the reference stay in sources.
 

@@ -1,6 +1,27 @@
 # Seraphim Rework
 
-This mod is a home for gameplay and balance changes to the Seraphim faction. It currently adds a compact, upgradeable T1 → T2 → T3 mass fabricator line, a T4 shielded power generator, two experimental hover assault tanks, two Seraphim T3 artillery installations, a T3 point-defense turret, a T1 mobile missile launcher, and a prototype T2 mobile directional shield.
+This mod is a home for gameplay and balance changes to the Seraphim faction. It currently adds a compact, upgradeable T1 → T2 → T3 mass fabricator line, a T4 shielded power generator, three experimental hover assault tanks, two Seraphim T3 artillery installations, a T3 point-defense turret, a T1 mobile missile launcher, and a prototype T2 mobile directional shield.
+
+## Crescent assault tank
+
+`GGA0403` **Itha-Vael** is another independent GGA0401 variant, modeled from the
+user's pencil drawing on 24 October 2026. Its low metallic almond hull is surrounded
+by four detached curved plates with real open channels, rounded edges, circular
+inlays and thin player-color veins. A low central focusing gun and four circular
+AA hardpoints retain the original weapon roles. The four outer plates drift
+using the original script; AA mounts are parented to their respective plate.
+
+The blueprint and script retain GGA0401's gameplay: 6,000-damage main shell,
+80 range, 3-second charge, four AA weapons, 40,000 hull HP, 20,000 personal shield,
+3.6 movement speed, and the original cost, categories and 4×6 footprint.
+Only identity, displayed name/description and visual assets change. Build it with
+Seraphim T3 engineers or T3 engineering commanders; sandbox ID: `gga0403`.
+
+Own SCM LODs, Seraphim DDS maps, construction icon, editable OBJ/MTL, reference,
+generator and exported-file previews are included. Source/file checks are complete;
+loading, construction, aiming and other behavior still require a local match.
+The installed mod has not been updated.
+[Model, regeneration and verification](source-assets/GGA0403/README.md).
 
 ## Twin-phason concept hover tank
 
@@ -22,6 +43,14 @@ Two mesh LODs, material maps, an independent icon, editable model sources and
 exported-SCM/DDS previews are included. File checks do not verify game behavior:
 the new model, aiming, charge, salvo timing and AI use still need a local match.
 [Concept, parameters, regeneration and checks](source-assets/GGA0402/README.md).
+
+The 24 October hull revision follows the red hatching as **added solid volume**:
+the fore-left petal is larger, the central port rail has a broad smooth shoulder,
+the starboard bearing rail and main armor are joined by solid infill, and the
+lower-right spike is part of the main hull. Layered armor and curved ribs add
+relief with rounded edges. Both mesh LODs, editable sources, icon and previews
+are updated; materials, gun pivots and combat parameters are retained. This
+visual revision still needs in-game verification.
 
 ## Experimental hover assault tank
 
