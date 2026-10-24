@@ -1,0 +1,18 @@
+{
+  "in_game_test": false,
+  "native_weapon_source_sha256": "f356e311fece55245fcc51b9d448097211e67b592cae30ee1e8a798980684669",
+  "native_weapon_checks": "Actual installed DefaultProjectileWeapon executed: initial native economy charge, ground target without target entity, repeated shots, energy starvation/resume, ready hold, death and missing-visual isolation",
+  "projectile_checks": "12 existing tests passed with actual GGP0401 superclass and engine graphics/damage doubles",
+  "unit_materials_and_geometry_unchanged": true,
+  "tank_orb_scaled_radius": 0.3000000114878018,
+  "growing_orb_fits_gondola_gap": true,
+  "resource_checks": {
+    "files": 16,
+    "references": 25
+  },
+  "limitations": [
+    "No actual FAF match was run",
+    "Engine C++ APIs and state scheduling are doubled; real rendering, targeting and collision still need match validation",
+    "During energy starvation, visual orb reaches nominal full size while native economy continues to block fire"
+  ]
+}

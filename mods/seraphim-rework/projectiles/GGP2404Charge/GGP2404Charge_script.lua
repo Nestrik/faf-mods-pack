@@ -1,19 +1,3 @@
-local Projectile = import('/lua/sim/projectile.lua').Projectile
-local Visuals = import('/mods/seraphim-rework/lua/vael_itha_effects.lua')
-GGP2404CHARGE = ClassProjectile(Projectile) {
-    OnCreate = function(self, inWater)
-        Projectile.OnCreate(self, inWater)
-        self:SetCollision(false)
-        self:SetVelocity(0, 0, 0)
-    end,
-    SetChargeProgress = function(self, progress)
-        if progress <= 0 then
-            if self.OrbEffects then Visuals.DestroyOrb(self.OrbEffects); self.OrbEffects = nil end
-        elseif self.OrbEffects then
-            Visuals.UpdateOrb(self.OrbEffects, progress)
-        else
-            self.OrbEffects = Visuals.CreateOrb(self, progress)
-        end
-    end,
-}
+local TankCharge = import('/mods/seraphim-rework/projectiles/GGP0401Charge/GGP0401Charge_script.lua').GGP0401CHARGE
+GGP2404CHARGE = ClassProjectile(TankCharge) {}
 TypeClass = GGP2404CHARGE

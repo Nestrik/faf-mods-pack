@@ -1,25 +1,17 @@
-local PhasonProjectile = import('/lua/seraphimprojectiles.lua').SDFExperimentalPhasonProjectile
+local TankProjectile = import('/mods/seraphim-rework/projectiles/GGP0401/GGP0401_script.lua').GGP0401
 local Entity = import('/lua/sim/entity.lua').Entity
 local Visuals = import('/mods/seraphim-rework/lua/vael_itha_effects.lua')
 local FX = '/mods/seraphim-rework/effects/emitters/'
 local Sin, Cos, Pi = math.sin, math.cos, math.pi
 
-GGP2404 = ClassProjectile(PhasonProjectile) {
-    -- Othuy-style energy: no visible smooth sphere or fixed violet sprites.
-    -- Only StrikeNearbyUnits applies damage.
-    FxTrails = {},
-    FxImpactUnit = {},
-    FxImpactProp = {},
-    FxImpactLand = {},
-    FxImpactWater = {},
-    FxImpactShield = {},
-
+GGP2404 = ClassProjectile(TankProjectile) {
+    -- Inherit the GGA0402 tank's visible projectile, native trails and impact
+    -- effects. This artillery still owns its ballistic ground-hazard behavior.
     OnCreate = function(self, inWater)
-        PhasonProjectile.OnCreate(self, inWater)
+        TankProjectile.OnCreate(self, inWater)
         self.Config = self.Blueprint.Lightning
         self.SpinTick = 0
         self:SetVelocityAlign(false)
-        self.OrbEffects = Visuals.CreateOrb(self, 1)
         self.Trash:Add(ForkThread(self.FlightVisualThread, self))
     end,
 
@@ -30,7 +22,6 @@ GGP2404 = ClassProjectile(PhasonProjectile) {
         self:SetOrientation({ 0, Sin(angle / 2), 0, Cos(angle / 2) }, true)
         local pulse = 1 + c.PulseAmplitude * Sin(self.SpinTick * 2 * Pi / c.PulsePeriodTicks)
         self:SetDrawScale(self.Blueprint.Display.UniformScale * pulse * (fade or 1))
-        Visuals.UpdateOrb(self.OrbEffects, pulse * (fade or 1))
     end,
 
     FlightVisualThread = function(self)
@@ -48,8 +39,7 @@ GGP2404 = ClassProjectile(PhasonProjectile) {
         -- Air and underwater contacts retain the ordinary phason impact.
         local land = targetType == 'Terrain' or targetType == 'Unit' or targetType == 'Prop'
         if not land or GetSurfaceHeight(p[1], p[3]) > GetTerrainHeight(p[1], p[3]) + 0.05 then
-            Visuals.CreateBurst(self, 'ball_impact')
-            PhasonProjectile.OnImpact(self, targetType, targetEntity)
+            TankProjectile.OnImpact(self, targetType, targetEntity)
             return
         end
         self.Grounded = true
@@ -59,7 +49,7 @@ GGP2404 = ClassProjectile(PhasonProjectile) {
         local c = self.Config
         self:SetLifetime((c.SinkTicks + c.ActiveTicks + c.FadeTicks) / 10 + 1)
         self.GroundPosition = { p[1], GetTerrainHeight(p[1], p[3]), p[3] }
-        Visuals.CreateBurst(self, 'ball_impact')
+        self:CreateImpactEffects(self.Army, self.FxImpactLand, self.FxImpactLandScale)
         local sound = self.Blueprint.Audio.Impact
         if sound then self:PlaySound(sound) end
         self.Trash:Add(ForkThread(self.GroundThread, self))
