@@ -1,4 +1,4 @@
-# GGA2404 — Vael-Itha, revision 2026-10-22
+# GGA2404 — Vael-Itha, revision 2026-10-24
 
 The original twin-gondola silhouette, floating foundation and empty coaxial rings
 are retained. The current steel albedo follows dark stock building values; SpecTeam R/G retain
@@ -231,3 +231,33 @@ a FAF screenshot or proof of game rendering. See charge_dark_validation.json.
 Pre-change assets are archived in before-2026-10-22-charge-dark-metal.zip. The
 revised initialization/materials have passed file and mocked API checks only.
 A match with this revision and the friend's game.log are still needed.
+
+## Native weapon rebuild, October 24 (current behavior)
+
+This replaces the October 21/22 unit-owned charge implementation and diagnostics.
+There is no ChargeReady flag, custom firing/ready state, projectile-spawn override,
+unit-owned CreateEconomyEvent, or SetChargeProgress particle call. The inherited
+Phason/DefaultProjectileWeapon state machine pays 2000 energy at 250/s and permits
+fire after its own event. Initial charging starts explicitly after construction.
+Native muzzle/recharge hooks start separate visual threads: gondolas hold 0.1 s,
+close over 0.3 s and reopen over the remaining nominal 7.6 s. Ready visuals persist
+without a target. During shortages the visual reaches nominal full size and waits;
+native economy still prevents firing. Missing visual setup cannot deny a shot.
+
+Charge and flight now use the GGP0401 sphere shared by GGA0402, with independent
+GGP2404/GGP2404Charge IDs. The radius-6 source mesh is scaled to .05 (radius .30),
+which fits the rings and the opening gap throughout growth. Flight inherits the
+tank's native trail/impact effects. Old Othuy layers are not created during launch;
+the existing army-colored ground bolt/hit helper remains for the three-second
+hazard. Ground impact creates the inherited tank impact effects, then embeds the
+sphere. High arc, speed 32, rotation/pulse, radius-5 friendly-fire strikes and
+shield/water interception are retained. Accepted turret DDS and SCM are unchanged.
+
+Verification executes actual installed DefaultProjectileWeapon Lua (only generic
+for-table syntax adapted for standard Lua) with engine APIs/state scheduling doubled.
+It covers native initial payment, attack-ground without a target entity, repeated
+shots, starvation/resume, ready hold, death and missing-visual isolation. Twelve
+existing ground-projectile checks pass with the real GGP0401 superclass. This is
+stronger than replacing the weapon with a hand-written mock but remains separate
+from running a FAF match. See native_rebuild_validation.json. Tests stay outside
+this repository. The previous code is archived before-2026-10-24-native-rebuild.zip.

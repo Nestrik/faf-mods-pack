@@ -154,6 +154,17 @@ now complete initial charging, firing and recharging. Four one-time game-log sta
 markers were added for diagnosis. The original match's game.log is unavailable;
 this follow-up still needs a match check for the reported firing failure.
 
+The October 24 rebuild replaces custom fire gating and unit economy events with
+native Phason weapon charging/fire-ready states. Gondola/charge visuals run
+separately from fire permission; their failure cannot deny shooting. The first
+native charge starts after construction without a target. The visible sphere,
+trails and impacts now reuse GGP0401 from GGA0402, scaled to fit the rings, while
+the turret retains high arc and its three-second ground-lightning hazard. Dark
+unit DDS and SCM are unchanged. Actual native weapon Lua and twelve ground-hazard
+checks were executed with engine doubles; this rebuild still needs a FAF match.
+During energy shortages the orb can visually reach full size before payment ends,
+but native weapon economy continues to prevent firing.
+
 The optional M28AI hook also classifies `GGA2404` as tactical artillery, preserving its real `TECH3` and `SIZE4` categories. See [integration notes and known limitations](docs/VAEL_ITHA.md).
 
 ## T1 mobile missile launcher

@@ -1,7 +1,17 @@
 ProjectileBlueprint {
     Categories = { 'SERAPHIM', 'PROJECTILE', 'INDIRECTFIRE' },
     General = { Category = 'Artillery', Faction = 'Seraphim', Weapon = 'Ball lightning artillery' },
-    Display = { MeshBlueprint = '/meshes/game/nil_mesh', UniformScale = 0.05, StrategicIconSize = 3 },
+    Display = {
+        UniformScale = 0.05,
+        Mesh = { LODs = { {
+            MeshName = '/mods/seraphim-rework/projectiles/GGP0401/GGP0401_lod0.scm',
+            AlbedoName = '/mods/seraphim-rework/units/GGA0401/GGA0401_albedo.dds',
+            SpecularName = '/mods/seraphim-rework/units/GGA0401/GGA0401_specteam.dds',
+            NormalsName = '/mods/seraphim-rework/units/GGA0401/GGA0401_normalsTS.dds',
+            LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
+            ShaderName = 'Seraphim', LODCutoff = 400,
+        } } },
+    },
     Physics = {
         DestroyOnWater = true, InitialSpeed = 32, InitialSpeedRange = 0,
         UseGravity = true, TrackTarget = false, TurnRate = 0,
