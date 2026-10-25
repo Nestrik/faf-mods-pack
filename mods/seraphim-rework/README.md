@@ -1,6 +1,10 @@
 # Seraphim Rework
 
-This mod is a home for gameplay and balance changes to the Seraphim faction. It currently adds a compact, upgradeable T1 → T2 → T3 mass fabricator line, a T4 shielded power generator, three experimental hover assault tanks, two Seraphim T3 artillery installations, a T3 point-defense turret, a T1 mobile missile launcher, and a prototype T2 mobile directional shield.
+This mod is a home for gameplay and balance changes to the Seraphim faction. It currently adds a compact, upgradeable T1 → T2 → T3 mass fabricator line, a T4 shielded power generator, two experimental hover assault tanks, one Seraphim T3 artillery installation, a T3 point-defense turret, a T1 mobile missile launcher, and a prototype T2 mobile directional shield.
+
+`GGA0402` Itha-Suun and `GGA2404` Vael-Itha were moved to the independent
+[Seraphim Additional Units](../seraphim-extra-units/README.md) mod on 25 October 2026.
+They are no longer included here. Both mods can be enabled together.
 
 ## Crescent assault tank
 
@@ -23,37 +27,6 @@ generator and exported-file previews are included. Source/file checks are comple
 loading, construction, aiming and other behavior still require a local match.
 The installed mod has not been updated.
 [Model, regeneration and verification](source-assets/GGA0403/README.md).
-
-## Twin-phason concept hover tank
-
-`GGA0402` **Itha-Suun** is a separate copy of GGA0401 with an original model from
-the user's pencil concept: an open double rail, asymmetric scalloped armor,
-detached side petals, four AA turrets and two central main-gun mounts. Two
-rounded spindle cannons carry spiral ribs and triple-petal muzzles; the rear
-gun is raised. Both original and clone remain available to Seraphim T3 builders.
-
-One shared main weapon charges for **3 seconds**, then fires from the front and
-rear muzzles in sequence, **0.3 seconds apart**. Each shell deals **3,000 damage**,
-for **6,000 per complete salvo**, with inherited **80 range**, radius **4**, and
-`RateOfFire = 0.1`. AA, health, personal shield, movement and cost retain the
-original GGA0401 values from before its 24 October rebalance. GGA0402 keeps its
-own **40,000 hull HP** and **20,000 HP personal shield**. The 4×6 footprint is
-retained; model/collision height accommodates the
-higher rear gun. Existing phason projectiles and bright impact effects are shared
-explicitly within this mod.
-
-Two mesh LODs, material maps, an independent icon, editable model sources and
-exported-SCM/DDS previews are included. File checks do not verify game behavior:
-the new model, aiming, charge, salvo timing and AI use still need a local match.
-[Concept, parameters, regeneration and checks](source-assets/GGA0402/README.md).
-
-The 24 October hull revision follows the red hatching as **added solid volume**:
-the fore-left petal is larger, the central port rail has a broad smooth shoulder,
-the starboard bearing rail and main armor are joined by solid infill, and the
-lower-right spike is part of the main hull. Layered armor and curved ribs add
-relief with rounded edges. Both mesh LODs, editable sources, icon and previews
-are updated; materials, gun pivots and combat parameters are retained. This
-visual revision still needs in-game verification.
 
 ## Experimental hover assault tank
 
@@ -146,49 +119,6 @@ unchanged. The game-view preview now samples an exported DDS mip rather than PNG
 
 Adds `GGA2301`, a T3 direct-fire point-defense turret based on the stock Seraphim T2 `XSB2301` Uttaushala. Its Prism Spire model was rebuilt from the 2026-10-20 reference: six plated feet, three curved open frames, a floating double-point player-color crystal, an equatorial ring and a short beam lens. It has two mesh LODs and a 512×512 material atlas with polished silver armor, reflective gunmetal mechanisms, chrome borders and player-color lights/inlays. Paired flowing contours and nested oval markings follow the stock Seraphim material references; high SpecTeam reflection/specular values provide the metallic finish. A one-second activation gently opens the frames; idle slowly rotates and bobs the crystal. Decorative animations do not key the weapon's aiming or muzzle bones. The weapon keeps the stock ultrachromatic beam firing timing and sound cues. It is buildable by T3 Seraphim engineers and commanders, and has upgraded T3 durability and damage: 6,500 HP, 2,000 mass / 17,600 energy / 2,000 build-time cost, 24 vision, 60 range, and 175 beam damage. The rebuilt model still needs local-match visual and tracking confirmation.
 
-## T3 ball-lightning artillery
-
-`GGA2404` is **Vael-Itha**, originally integrated from the local `seraphim_heavy_turret` revision 9 and subsequently corrected after user match feedback. It is a separate artillery installation alongside `GGA2401` and `GGA2301`, buildable by Seraphim T3 engineers and commanders with T3 engineering. Its levitating ring model, two SCM LODs, textures, procedural animations, icon and particle effects are included within this mod. The unit and both projectiles have independent IDs and all mod asset paths point to `seraphim-rework`; the standalone mod is not required.
-
-The 2026-10-20 correction darkens the reflective metal moderately and replaces
-angular markings with linked crop-circle inlays. Every colored model surface uses
-the player's army mask. Charge and projectile release now share the center of the
-two rings, with no late forward movement. The smooth visible sphere is replaced by
-six Othuy-style electrical particle layers, based on the XSL0402 residual energy
-entity spawned after Ythotha dies. Both charge and flight use the same player-color
-effect, with standard FAF textures referenced in place. Runtime animation remains
-procedural; the inactive full-rig SCA clips and retired sphere/violet assets are
-archived. The new generator, editable Blender file and exported-SCM views are in
-[`source-assets/GGA2404`](source-assets/GGA2404/README.md). Structural and mocked Lua
-checks passed; this correction still needs a match check for rendering and FX.
-
-The October 21 refinement restores inward-facing gondola/ring illumination,
-moves both gondolas inward so ring-center separation is 15% smaller, and widens
-markings by 50%. Flat surface inlays with a concave normal map replace raised
-pattern wires. This gives an engraved appearance without Boolean grooves and
-reduces the mesh cost. Centered charge and shot, army colors and damage remain
-as described above. This refinement has not been checked in a match.
-
-The subsequent straight-gondola revision removes the inward-curving tips while
-preserving all three DDS maps byte for byte. A successful shot triggers a 0.1 s
-delay, 0.3 s closing, and 7.6 s of automatic charge growth/reopening. The full orb
-is held ready without a target. The old target-dependent muzzle charge is removed;
-the native firing state is gated on the independent ready flag. The closed gap is
-about 0.0985 game units and the common central release point is unchanged.
-
-The high-arc mortar revision uses **18,000 HP**, **6,500 mass / 65,000 energy / 7,800 build points**, a 4×4 skirt, 35 vision and range **35–150**. Native high-arc ballistics and speed 32 give an estimated 67–85 degree elevation and 12–13 second flight on flat ground. The floating assembly is raised 0.20 game units; conservative foundation clearance exceeds 0.28 in both LODs at any pitch, including hover/recoil. `FiringRandomness = 0.24` targets approximately radius-3 spread at range 150, tightening at shorter distances. These estimates need a match check.
-
-`RateOfFire = 0.125` gives an eight-second nominal post-shot cycle. Each autonomous charge costs **2,000 energy**; native economy-event progress drives both growth and gondola opening. Energy shortages delay readiness, and holding a ready orb drains nothing. On land the projectile sinks to the surface and strikes nearby targets every 0.5 seconds for 3 seconds: **400 damage per strike**, radius **5**, up to **2,400 damage per target**, including friendly units. There is no additional dry-land impact damage. Shield/water impacts instead use a 2,400-damage phason impact with radius 5. Combat behavior and balance remain provisional; this revision has not been run in a match.
-
-The October 22 follow-up uses native Seraphim shading, packed G/A normals and
-stock-dark building metal (main albedo median about 16/255, retaining reflections).
-Rotator setters no longer depend on fluent returns: strict nil-return API checks
-now complete initial charging, firing and recharging. Four one-time game-log stage
-markers were added for diagnosis. The original match's game.log is unavailable;
-this follow-up still needs a match check for the reported firing failure.
-
-The optional M28AI hook also classifies `GGA2404` as tactical artillery, preserving its real `TECH3` and `SIZE4` categories. See [integration notes and known limitations](docs/VAEL_ITHA.md).
-
 ## T1 mobile missile launcher
 
 Adds the `GGA0101` **Thuunar** Seraphim T1 mobile long-range missile launcher, buildable from Seraphim T1–T3 land factories. The 2026-10-21 visual rebuild replaces the borrowed T2 `XSL0111` mesh and reload clip with an original compact two-track carrier and a newly modeled open, inclined twin-leaf launch cradle inspired by the same launcher. Its lower, simpler chassis omits the T2 unit's broad three-prong hull and tall rear fins. Rounded silver-steel armor carries thin player-color lines and crop-circle engravings, using the native `Seraphim` material channels. Two SCM LODs, three 512×512 material maps, a skeleton-compatible reload animation and a new transparent build icon are included.
@@ -211,8 +141,6 @@ The baseline was checked against the local FAF `units.nx5` and upstream [UEF Par
 - `units/GGA1104`, `units/GGA1204`, `units/GGA1304` — new T1, T2, and T3 fabricator blueprints and scripts, with their model assets.
 - `units/GGA2301` — T3 Seraphim direct-fire point-defense blueprint, script, Prism Spire meshes, textures, and animations.
 - `units/GGA2401` — five-launcher T3 artillery blueprint, script, original meshes and textures.
-- `units/GGA2404`, `projectiles/GGP2404`, `projectiles/GGP2404Charge` — Vael-Itha turret, damaging orb and visual charging orb.
-- `effects/emitters/ball_*`, `textures/particles/ball_army_ramp.dds`, `lua/vael_itha_effects.lua` — Othuy-style ball-lightning visuals, using standard FAF texture references and a custom army-color ramp.
 - `units/GGA0101` — T1 mobile missile launcher blueprint, script, original meshes, textures and reload animation.
 - `props/GGA0101_wreck` — explicit reclaimable Thuunar wreck prop, damaged meshes and scorched texture.
 - `units/GGA0102` — T2 mobile shield blueprint, script, and custom shield mesh.
@@ -236,7 +164,7 @@ was updated. [Sources and previous-version backup](source-assets/GGA2301/README.
 
 ### Material adjustment — 22 October 2026
 
-All eight custom unit hulls now use darker materials to sit closer to stock
+The custom unit hulls received darker materials to sit closer to stock
 Seraphim buildings: reduced albedo brightness and reflection, with metallic
 gloss and player-color details retained. GGA1104/GGA1204/GGA1304 receive original
 steel/gunmetal Seraphim textures, fine concentric inlays and the native Seraphim
@@ -250,12 +178,11 @@ Copy the entire `seraphim-rework` folder into the FAF data `mods` directory and 
 
 ## M28AI compatibility
 
-The original seven active unit blueprints were audited against the locally installed M28AI
-v327; the eighth, `GGA2404`, has also had its builder categories and artillery filters checked against those sources. The T1 missile launcher now has the standard `SILO` role, and the T2 mobile
+The original role audit used the locally installed M28AI v327. The T1 missile launcher now has the standard `SILO` role, and the T2 mobile
 shield is available from T2–T3 land factories. The existing fabricator and T3 point
 defense categories already match M28AI's economic and defensive filters.
 
-An optional hook in this mod classifies `GGA2401` and `GGA2404` as tactical artillery for M28AI,
+An optional hook in this mod classifies `GGA2401` as tactical artillery for M28AI,
 including its firebase/threat filters, while preserving its real T3 technology and
 size. M28AI's own files are not modified and it is not a required dependency.
 The stock AI's decisions about when to build units remain relevant: in particular,

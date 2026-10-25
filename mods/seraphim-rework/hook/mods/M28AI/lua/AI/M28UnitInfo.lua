@@ -1,11 +1,8 @@
--- GGA2401 and GGA2404 are short-range tactical artillery despite being TECH3 structures.
+-- GGA2401 is tactical artillery despite being a TECH3 structure.
 -- Keep its real tech/size categories and correct only M28's AI role filters.
 -- This optional hook runs when M28AI imports its own UnitInfo module.
 do
     local tacticalArtillery = categories.gga2401
-    if categories.gga2404 then
-        tacticalArtillery = tacticalArtillery and (tacticalArtillery + categories.gga2404) or categories.gga2404
-    end
     if tacticalArtillery and refCategoryFixedT2Arti and refCategoryFixedT3Arti then
         refCategoryFixedT2Arti = refCategoryFixedT2Arti + tacticalArtillery
         refCategoryFixedT3Arti = refCategoryFixedT3Arti - tacticalArtillery

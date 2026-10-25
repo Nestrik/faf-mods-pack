@@ -134,17 +134,6 @@ def rebuild():
     save_dds(im, ROOT/'props/GGA0101_wreck/GGA0101_wreck_albedo.dds')
     for unit, prefix in [('GGA1104','zsb1106'),('GGA1204','zsb1206'),('GGA1304','zsb1306')]:
         fabricator(unit, prefix, geom.seraphim_inlays)
-    # This imported turret has no local material generator: always use its
-    # archived originals, avoiding cumulative darkening on subsequent runs.
-    for suffix in ['albedo','specteam']:
-        p = Path('units/GGA2404') / f'GGA2404_{suffix}.dds'
-        data = np.array(Image.open(ARCHIVE/p).convert('RGBA'))
-        if suffix == 'albedo':
-            data[:,:,:3] = np.rint(data[:,:,:3].astype(float)*.76).astype('uint8')
-        else:
-            data[:,:,0] = np.rint(data[:,:,0].astype(float)*.88).astype('uint8')
-            data[:,:,2] = np.rint(data[:,:,2].astype(float)*.85).astype('uint8')
-        save_dds(Image.fromarray(data), ROOT/p)
 
 
 def preview():

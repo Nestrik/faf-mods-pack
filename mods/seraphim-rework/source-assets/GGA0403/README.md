@@ -2,7 +2,7 @@
 
 Отдельная копия GGA0401 в Seraphim Rework. Новое имя — **Itha-Vael**, описание
 в меню — **Experimental Crescent Assault Tank** («Экспериментальный штурмовой
-танк „Полумесяц“»). GGA0401 и GGA0402 остаются доступны. Требуются FAF и
+танк „Полумесяц“»). GGA0401 остаётся в Seraphim Rework; GGA0402 доступен в отдельном моде Seraphim Additional Units. Требуются FAF и
 включённый Seraphim Rework; зависимости от других модов нет.
 
 Строится инженерами Seraphim T3 и командирами с T3 engineering. ID в меню

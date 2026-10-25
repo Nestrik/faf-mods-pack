@@ -1,0 +1,16 @@
+ProjectileBlueprint {
+    Categories = { 'DIRECTFIRE', 'PROJECTILE', 'SERAPHIM' },
+    Display = {
+        UniformScale = 0.1,
+        Mesh = { LODs = { {
+            MeshName = '/mods/seraphim-extra-units/projectiles/GGP0402/GGP0402_lod0.scm',
+            AlbedoName = '/mods/seraphim-extra-units/projectiles/GGP0402/GGP0402_albedo.dds',
+            SpecularName = '/mods/seraphim-extra-units/projectiles/GGP0402/GGP0402_specteam.dds',
+            NormalsName = '/mods/seraphim-extra-units/projectiles/GGP0402/GGP0402_normalsTS.dds',
+            LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
+            ShaderName = 'Seraphim', LODCutoff = 400,
+        } } },
+    },
+    General = { Category = 'Direct Fire', Faction = 'Seraphim', Weapon = 'Heavy Charged Phason Cannon' },
+    Physics = { DestroyOnWater = true, InitialSpeed = 35, UseGravity = false, TrackTarget = false, TurnRate = 0, VelocityAlign = true },
+}
