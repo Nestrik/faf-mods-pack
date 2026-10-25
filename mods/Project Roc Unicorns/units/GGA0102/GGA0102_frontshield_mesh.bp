@@ -1,0 +1,18 @@
+MeshBlueprint {
+    IconFadeInZoom = 130,
+    LODs = {
+        {
+            LODCutoff = 195,
+            MeshName = '/mods/Project Roc Unicorns/units/GGA0102/GGA0102_frontshield_lod0.scm',
+            AlbedoName = '/effects/entities/SeraphimShield01/SeraphimShield01_Albedo.dds',
+            NormalsName = '/effects/entities/SeraphimShield01/SeraphimShield01_Normals3.dds',
+            SpecularName = '/effects/entities/SeraphimShield01/SeraphimShield01_Specular2.dds',
+            LookupName = '/effects/entities/ShieldSection01/ShieldSection01b_Albedo.dds',
+            SecondaryName = '/effects/entities/PhaseShield/PhaseShieldLookup.dds',
+            Scrolling = true,
+            ShaderName = 'ShieldSeraphim',
+        },
+    },
+    SortOrder = 1000,
+    StraddleWater = true,
+}

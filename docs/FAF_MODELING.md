@@ -33,7 +33,7 @@ $modelPython = 'C:\Users\Nestr\.cache\codex-runtimes\codex-primary-runtime\depen
 устанавливать Blender для запуска существующего генератора не требуется.
 
 Основные файлы находятся в
-[`mods/seraphim-rework/source-assets/GGA2301/`](../mods/seraphim-rework/source-assets/GGA2301/):
+[`mods/Project Roc Unicorns/source-assets/GGA2301/`](../mods/Project%20Roc%20Unicorns/source-assets/GGA2301/):
 
 | Файл | Назначение |
 | --- | --- |
@@ -53,7 +53,7 @@ OBJ/MTL не сохраняют полноценный скелет и аним�
 Сборка существующей турели из корня рабочего пространства:
 
 ```powershell
-& $modelPython 'mods\seraphim-rework\source-assets\GGA2301\generate_prism_spire.py'
+& $modelPython 'mods\Project Roc Unicorns\source-assets\GGA2301\generate_prism_spire.py'
 ```
 
 Команда перезаписывает модель, анимации и текстуры GGA2301 в рабочей копии мода.
@@ -257,7 +257,7 @@ RGB `(128,128,255)` с A=255 даёт почти единичную вторую
 По уточнению пользователя от 20 октября 2026 года корпуса Seraphim должны выглядеть
 как блестящий металл; цвет игрока наносится на линии и узоры. Локальные примеры:
 `source-assets/GGA2301/reference-seraphim-materials-01.png` и `-02.png` в моде
-`seraphim-rework`. В них видны парные контуры и вложенные овалы на серебристых
+`Project Roc Unicorns`. В них видны парные контуры и вложенные овалы на серебристых
 поверхностях. Для GGA2301 заменены золотистые рамки и матовый синий каркас на
 серебро/хром и отражающий тёмный металл. Узор хранится в альфе SpecTeam, а его
 неглубокая гравировка — в normal map. Плиты между линиями не перекрашиваются;
@@ -302,7 +302,7 @@ R отражения и B bloom. Также упаковка normal map и mipma
 Сохраняй неактивные копии blueprint в ZIP или с расширением `.bp.txt`, чтобы
 они не загружались вместе с текущими ресурсами. При первоначальном выделении юнитов
 три архивных `.bp` переименованы в `.bp.txt`. Текущий состав `seraphim-extra-units` —
-GGA0402 и GGA0403; артиллерия GGA2404 возвращена в `seraphim-rework`.
+GGA0402 и GGA0403; артиллерия GGA2404 возвращена в `Project Roc Unicorns`.
 
 **GGA2301, 25 октября 2026:** актуальная версия называется Ishal-Thar и тоже
 использует штатный `Seraphim` в обоих LOD. Старые упоминания общего `Unit` выше
@@ -336,9 +336,9 @@ OBJ/MTL, генераторы, референсы и архивы остаютс
 
 Посмотри реальные файлы привязки:
 
-- [GGA2301_mesh.bp](../mods/seraphim-rework/units/GGA2301/GGA2301_mesh.bp)
-- [GGA2301_unit.bp](../mods/seraphim-rework/units/GGA2301/GGA2301_unit.bp)
-- [GGA2301_script.lua](../mods/seraphim-rework/units/GGA2301/GGA2301_script.lua)
+- [GGA2301_mesh.bp](../mods/Project%20Roc%20Unicorns/units/GGA2301/GGA2301_mesh.bp)
+- [GGA2301_unit.bp](../mods/Project%20Roc%20Unicorns/units/GGA2301/GGA2301_unit.bp)
+- [GGA2301_script.lua](../mods/Project%20Roc%20Unicorns/units/GGA2301/GGA2301_script.lua)
 
 Анимация не запускается самим наличием SCA: скрипт создаёт `CreateAnimator`,
 добавляет его в `Trash`, проигрывает активацию и затем idle. При изменении механики
@@ -373,7 +373,7 @@ OBJ/MTL, генераторы, референсы и архивы остаютс
 `bp.Wreckage.UseCustomMesh` не задан/ложен, затем подставляется автоматически
 полученный `bp.Display.MeshBlueprintWrecked`. При `UseCustomMesh = true` остаётся
 меш самого prop. Проверенный по исходникам пример подключения —
-`mods/seraphim-rework/props/GGA0101_wreck/`: собственные PropBlueprint,
+`mods/Project Roc Unicorns/props/GGA0101_wreck/`: собственные PropBlueprint,
 MeshBlueprint, повреждённые SCM LOD и обгоревшая albedo; `Wreckage` shader и
 `/env/common/props/wreckage_noise.dds` следуют штатной генерации остовов.
 Файлы и рендер проверены; уничтожение и реклейм GGA0101 в игре ещё не проверены.
@@ -388,8 +388,8 @@ MeshBlueprint, повреждённые SCM LOD и обгоревшая albedo; 
 Локальные каталоги этого проекта:
 
 ```text
-Рабочая копия:       D:\Games\FafModsCreate\mods\seraphim-rework
-Установленная копия: D:\Games\FAF Mods\mods\seraphim-rework
+Рабочая копия:       D:\Games\FafModsCreate\mods\Project Roc Unicorns
+Установленная копия: D:\Games\FAF Mods\mods\Project Roc Unicorns
 ```
 
 ## 8. Проверка результата
@@ -461,7 +461,7 @@ MeshBlueprint, повреждённые SCM LOD и обгоревшая albedo; 
 | Выпуск выстрела у земли | Позицию и родителя muzzle, её имя в blueprint, влияние анимации, масштаб |
 | Наведение сбрасывается | Не ключует ли idle кости yaw/pitch/muzzle |
 | Поверхности пропали с одного ракурса | Обход треугольников, толщину геометрии и back-face culling |
-| Шар у земли выглядит вырезанной дугой | Не направлены ли все грани/нормали внутрь: у GGP2404 это показывало дальнюю стенку сферы вместо внешнего купола; исправление и SCM-ракурсы в `mods/seraphim-rework/source-assets/GGP2404/` |
+| Шар у земли выглядит вырезанной дугой | Не направлены ли все грани/нормали внутрь: у GGP2404 это показывало дальнюю стенку сферы вместо внешнего купола; исправление и SCM-ракурсы в `mods/Project Roc Unicorns/source-assets/GGP2404/` |
 | Металл выглядит ломаным | Нормали, сглаживание, tangent basis, совпадение UV и нормалей |
 | Металл чёрный, но линии цвета игрока видны | RGB Albedo/SpecTeam на mip1 и ниже; не обнулены ли они из-за premultiplied alpha при экспорте |
 | Световая полоса исчезла | Не утоплена ли она в кожухе; корректны ли SpecTeam и UV |

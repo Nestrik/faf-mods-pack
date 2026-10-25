@@ -1,0 +1,21 @@
+PropBlueprint {
+    Categories = { 'RECLAIMABLE' },
+    Display = {
+        MeshBlueprint = '/mods/Project Roc Unicorns/props/GGA0101_wreck/GGA0101_wreck_mesh',
+    },
+    Economy = {
+        ReclaimMassMax = 1,
+        ReclaimTime = 5,
+    },
+    Interface = {
+        HelpText = 'Thuunar Wreckage',
+    },
+    Physics = {
+        BlockPath = false,
+    },
+    ScriptClass = 'Wreckage',
+    ScriptModule = '/lua/wreckage.lua',
+    SizeX = 1,
+    SizeY = 0.45,
+    SizeZ = 1.6,
+}

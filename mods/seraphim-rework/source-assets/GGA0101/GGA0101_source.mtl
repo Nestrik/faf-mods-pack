@@ -1,5 +1,0 @@
-newmtl launcher_atlas
-Kd 1 1 1
-Ks 0.6 0.6 0.6
-Ns 50
-map_Kd GGA0101_albedo_source.png
