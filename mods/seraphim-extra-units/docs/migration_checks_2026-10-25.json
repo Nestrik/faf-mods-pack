@@ -1,51 +1,37 @@
 {
   "date": "2026-10-25",
-  "new_mod": "Seraphim Additional Units",
+  "extra_units": [
+    "GGA0402",
+    "GGA0403"
+  ],
+  "returned_to_rework": "GGA2404",
   "game_launched": false,
   "installed_mods_changed": false,
-  "moved_binary_resources_unchanged": 101,
-  "runtime_text_identical_except_relocated_paths": [
-    "units/GGA0402/GGA0402_mesh.bp",
-    "units/GGA0402/GGA0402_script.lua",
-    "units/GGA0402/GGA0402_unit.bp",
-    "units/GGA2404/GGA2404_script.lua",
-    "units/GGA2404/GGA2404_unit.bp",
-    "projectiles/GGP2404/GGP2404_proj.bp",
-    "projectiles/GGP2404/GGP2404_script.lua",
-    "projectiles/GGP2404Charge/GGP2404Charge_proj.bp",
-    "projectiles/GGP2404Charge/GGP2404Charge_script.lua",
-    "lua/vael_itha_effects.lua",
-    "effects/emitters/ball_hit_emit.bp",
-    "effects/emitters/ball_impact_emit.bp",
-    "effects/emitters/ball_othuy_arcs_emit.bp",
-    "effects/emitters/ball_othuy_core_emit.bp",
-    "effects/emitters/ball_othuy_flash_emit.bp",
-    "effects/emitters/ball_othuy_haze_emit.bp",
-    "effects/emitters/ball_othuy_motes_emit.bp",
-    "effects/emitters/ball_othuy_surface_emit.bp",
-    "effects/emitters/ball_strike_beam_emit.bp"
+  "unchanged_moved_binary_resources": 77,
+  "runtime_text_identical_except_paths": [
+    "mods/seraphim-rework/units/GGA2404/GGA2404_script.lua",
+    "mods/seraphim-rework/units/GGA2404/GGA2404_unit.bp",
+    "mods/seraphim-rework/projectiles/GGP2404/GGP2404_proj.bp",
+    "mods/seraphim-rework/projectiles/GGP2404/GGP2404_script.lua",
+    "mods/seraphim-rework/projectiles/GGP2404Charge/GGP2404Charge_proj.bp",
+    "mods/seraphim-rework/projectiles/GGP2404Charge/GGP2404Charge_script.lua",
+    "mods/seraphim-rework/lua/vael_itha_effects.lua",
+    "mods/seraphim-rework/effects/emitters/ball_hit_emit.bp",
+    "mods/seraphim-rework/effects/emitters/ball_impact_emit.bp",
+    "mods/seraphim-rework/effects/emitters/ball_othuy_arcs_emit.bp",
+    "mods/seraphim-rework/effects/emitters/ball_othuy_core_emit.bp",
+    "mods/seraphim-rework/effects/emitters/ball_othuy_flash_emit.bp",
+    "mods/seraphim-rework/effects/emitters/ball_othuy_haze_emit.bp",
+    "mods/seraphim-rework/effects/emitters/ball_othuy_motes_emit.bp",
+    "mods/seraphim-rework/effects/emitters/ball_othuy_surface_emit.bp",
+    "mods/seraphim-rework/effects/emitters/ball_strike_beam_emit.bp",
+    "mods/seraphim-extra-units/units/GGA0403/GGA0403_mesh.bp",
+    "mods/seraphim-extra-units/units/GGA0403/GGA0403_script.lua",
+    "mods/seraphim-extra-units/units/GGA0403/GGA0403_unit.bp"
   ],
-  "resolved_runtime_mod_paths": 156,
-  "active_units": {
-    "seraphim-extra-units": [
-      "GGA0402",
-      "GGA2404"
-    ],
-    "seraphim-rework": [
-      "GGA0101",
-      "GGA0102",
-      "GGA0401",
-      "GGA0403",
-      "GGA1104",
-      "GGA1204",
-      "GGA1304",
-      "GGA1401",
-      "GGA2301",
-      "GGA2401"
-    ]
-  },
-  "source_archives_have_no_loadable_blueprints": true,
-  "unique_uid": "e29909c6-41c4-4cb4-9da1-8d8482111ba1",
-  "current_python_sources_parse": true,
-  "independent_tank_projectiles_preserve_originals": true
+  "resolved_mod_paths": 156,
+  "independent_mods": true,
+  "unchanged_projectile_materials": true,
+  "matching_icon_pairs": true,
+  "current_python_sources_parse": true
 }

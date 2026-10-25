@@ -5,8 +5,8 @@
 Поддержка основана на настоящих категориях юнитов, доступности строителям
 и небольшом необязательном хуке распознавания артиллерии.
 
-GGA0402 и GGA2404 перенесены в [Seraphim Additional Units](../../seraphim-extra-units/README.md).
-Их ресурсы и поддержка GGA2404 для M28AI теперь находятся в новом моде.
+GGA0402 и GGA0403 находятся в [Seraphim Additional Units](../../seraphim-extra-units/README.md).
+Артиллерия GGA2404 возвращена в Seraphim Rework вместе с её ресурсами и хуком M28AI.
 
 ## Роли и доступность
 
@@ -19,6 +19,8 @@ GGA0402 и GGA2404 перенесены в [Seraphim Additional Units](../../ser
 | `gga1304` | T3 фабрикатор массы (`refCategoryMassFab * TECH3`) | Инженеры и командиры T3 | Уже соответствует фильтру штатной задачи M28AI по строительству T3 фабрикаторов |
 | `gga2301` | T3 наземная точечная оборона (`refCategoryPD`, `refCategoryT3PD`) | Инженеры и командиры T3 | Уже корректны `STRUCTURE DEFENSE DIRECTFIRE TECH3` |
 | `gga2401` | T3 тактическая артиллерия с текущей дальностью 125, класс огневой поддержки (`refCategoryFixedT2Arti`) | Инженеры и командиры T3 | Реальные категории `STRUCTURE DEFENSE INDIRECTFIRE ARTILLERY TECH3 SIZE4` сохранены; роль уточняет хук |
+| `gga2404` | T3 шаровая артиллерия (`refCategoryFixedT2Arti`) | Инженеры и командиры T3 | Собственные ресурсы в Rework; хук уточняет тактическую роль без подмены `TECH3` и `SIZE4` |
+
 
 `M28AI.refCategoryFixedT2Arti` — имя фильтра тактической артиллерии; в нём изначально
 предусмотрены и некоторые модовые T3 орудия. Использование этого фильтра не меняет
@@ -62,7 +64,7 @@ T2/T3; `BUILTBYTIER1FACTORY` удалён. Щит недоступен заво�
 
 Хук [M28UnitInfo.lua](../hook/mods/M28AI/lua/AI/M28UnitInfo.lua):
 
-- включает `gga2401` в `refCategoryFixedT2Arti`;
+- включает `gga2401` и `gga2404` в `refCategoryFixedT2Arti`;
 - исключает её из `refCategoryFixedT3Arti`;
 - включает её в связанные фильтры `refCategoryFirebaseSuitable`
   и `refCategoryDangerousToLand`;

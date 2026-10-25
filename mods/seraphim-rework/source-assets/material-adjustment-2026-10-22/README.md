@@ -24,9 +24,11 @@ and material PNGs, including the user's existing GGA1401 source changes.
 
 Run `adjust_materials.py` using the Python/numpy/Pillow environment described
 in the project modeling guide. It rebuilds only textures and the fabricator
-shader bindings. It uses the updated per-unit procedural sources. GGA2404 and its archived maps
-were moved to Seraphim Additional Units on 25 October 2026; this helper no longer
-rebuilds that external unit. Historical aggregate reports retain their original data.
+shader bindings. It uses the updated per-unit procedural sources. GGA2404 was briefly extracted and then returned to Seraphim Rework on
+25 October 2026. Its older material backup is now under
+`source-assets/GGA2404/archive/material-adjustment-2026-10-22/`. This helper no
+longer rebuilds it; use its own current authoring sources instead. Historical
+aggregate reports retain their original data.
 `--preview` renders the actual SCM and DDS at mip0 and mip2, with green/blue
 player colors and multiple angles. The comparison's first two columns show
 the old and new materials on the same unchanged SCM.

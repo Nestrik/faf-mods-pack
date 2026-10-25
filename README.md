@@ -26,7 +26,7 @@ mods/
 - [Seraphim T1 Mobile Shield](mods/seraphim-t1-mobile-shield/README.md) — экспериментальный мобильный юнит с направленным персональным щитом.
 - [Seraphim ACU Test Generator](mods/seraphim-acu-test-generator/README.md) — тестовое улучшение командира Серафимов с большой генерацией ресурсов и билд-павера.
 - [Seraphim Rework](mods/seraphim-rework/README.md) — набор изменений Seraphim; сейчас содержит цепочку фабрикаторов материи T1–T3.
-- [Seraphim Additional Units](mods/seraphim-extra-units/README.md) — дополнительные юниты Серафимов: экспериментальный танк GGA0402 и артиллерия GGA2404.
+- [Seraphim Additional Units](mods/seraphim-extra-units/README.md) — дополнительные юниты Серафимов: экспериментальные танки GGA0402 Itha-Suun и GGA0403 Itha-Vael.
 
 ## Справка FAF
 

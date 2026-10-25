@@ -1,837 +1,657 @@
 {
-  "from": "seraphim-rework",
-  "to": "seraphim-extra-units",
-  "uid": "e29909c6-41c4-4cb4-9da1-8d8482111ba1",
+  "date": "2026-10-25",
+  "correction": "Return Vael-Itha GGA2404 to Seraphim Rework; transfer Itha-Vael GGA0403 to Additional Units instead.",
   "moved_files": [
     {
-      "from": "units/GGA0402/GGA0402_albedo.dds",
-      "to": "units/GGA0402/GGA0402_albedo.dds",
-      "sha256_before": "e26a5cff8dfd581b7a873cb542f48a305732ada7a5c02db87b982b7828770919"
-    },
-    {
-      "from": "units/GGA0402/GGA0402_lod0.scm",
-      "to": "units/GGA0402/GGA0402_lod0.scm",
-      "sha256_before": "11848e1b7711f8fc590f48fcc7e6ec8a034ce235c37e69e3e3e331bbe2026046"
-    },
-    {
-      "from": "units/GGA0402/GGA0402_lod1.scm",
-      "to": "units/GGA0402/GGA0402_lod1.scm",
-      "sha256_before": "c8d524080ea0f63ce4b8ccf412568a25064b369875527e5c9cd075754f3ab227"
-    },
-    {
-      "from": "units/GGA0402/GGA0402_mesh.bp",
-      "to": "units/GGA0402/GGA0402_mesh.bp",
-      "sha256_before": "373f01489a9a40d7be4fb5760e6a77d18e0319040f267ace48eb818685888a9f"
-    },
-    {
-      "from": "units/GGA0402/GGA0402_normalsTS.dds",
-      "to": "units/GGA0402/GGA0402_normalsTS.dds",
-      "sha256_before": "5b6c955d6e6dbf0ad788d01e2fa671f72e09e31c600aadac09b249787eff5145"
-    },
-    {
-      "from": "units/GGA0402/GGA0402_script.lua",
-      "to": "units/GGA0402/GGA0402_script.lua",
-      "sha256_before": "1e4b7f1327fcd28eee4822aa702bbfb705063e5be94e61f65cf79e9affd8cab1"
-    },
-    {
-      "from": "units/GGA0402/GGA0402_specteam.dds",
-      "to": "units/GGA0402/GGA0402_specteam.dds",
-      "sha256_before": "935289ab03bed4e9f83a3c3a8b867c28569e143f89d2477dde8dbcfe4cedfa77"
-    },
-    {
-      "from": "units/GGA0402/GGA0402_unit.bp",
-      "to": "units/GGA0402/GGA0402_unit.bp",
-      "sha256_before": "f5542abef8e9fa700a0f5220755e58f9cf1c699c312dcff4ea4ffb84086182fe"
-    },
-    {
-      "from": "source-assets/GGA0402/concept_geometry.py",
-      "to": "source-assets/GGA0402/concept_geometry.py",
-      "sha256_before": "2a9555211a8947d253d472174af16f4fcccc10c7778729fe348e34a632f6cb1c"
-    },
-    {
-      "from": "source-assets/GGA0402/export_findings.json",
-      "to": "source-assets/GGA0402/export_findings.json",
-      "sha256_before": "dd831c22d05f09deef7be27972627a6005a05f5ef5cba3d7094f3ad9ee57ba86"
-    },
-    {
-      "from": "source-assets/GGA0402/file_checks.json",
-      "to": "source-assets/GGA0402/file_checks.json",
-      "sha256_before": "e5bf3344ced16d7145672f9e576ea200a40d543607347ff13281ebbdf66b6454"
-    },
-    {
-      "from": "source-assets/GGA0402/generate_concept_tank.py",
-      "to": "source-assets/GGA0402/generate_concept_tank.py",
-      "sha256_before": "fc5c098ba2b04e3545940217e9ae74c53a8fdbad0871923f305c5da2398fcf10"
-    },
-    {
-      "from": "source-assets/GGA0402/GGA0402_albedo_preview.png",
-      "to": "source-assets/GGA0402/GGA0402_albedo_preview.png",
-      "sha256_before": "f830c892ddd31d73e956b09b84eb9f6974d7fa33bfaab7b17082b96f72a322de"
-    },
-    {
-      "from": "source-assets/GGA0402/GGA0402_albedo_source.png",
-      "to": "source-assets/GGA0402/GGA0402_albedo_source.png",
-      "sha256_before": "f830c892ddd31d73e956b09b84eb9f6974d7fa33bfaab7b17082b96f72a322de"
-    },
-    {
-      "from": "source-assets/GGA0402/GGA0402_alt_color.png",
-      "to": "source-assets/GGA0402/GGA0402_alt_color.png",
-      "sha256_before": "1186e0bf832d8bb52301d8d7e18f3ec6c291501e40a1e8a92937730219f9c3e0"
-    },
-    {
-      "from": "source-assets/GGA0402/GGA0402_front.png",
-      "to": "source-assets/GGA0402/GGA0402_front.png",
-      "sha256_before": "0b2094e8e80e6793ff592ac13ec03a34673ce495835b56ed33eb86e13279e5e2"
-    },
-    {
-      "from": "source-assets/GGA0402/GGA0402_game_view.png",
-      "to": "source-assets/GGA0402/GGA0402_game_view.png",
-      "sha256_before": "6134c57d34a7dca4c11ebe5e8934bc91bc30dadc4fd2dc8ac5f0e624f8f12c01"
-    },
-    {
-      "from": "source-assets/GGA0402/GGA0402_hull_top.png",
-      "to": "source-assets/GGA0402/GGA0402_hull_top.png",
-      "sha256_before": "d22f7b13cca6962de85065cdc2627585e392de56bb35e8091bb0311851bd13c5"
-    },
-    {
-      "from": "source-assets/GGA0402/GGA0402_icon.png",
-      "to": "source-assets/GGA0402/GGA0402_icon.png",
-      "sha256_before": "3edbae72c27414e24271e5e7cc5df486fd032eb4773f4d85ab6bbceff42174c4"
-    },
-    {
-      "from": "source-assets/GGA0402/GGA0402_icon_render.png",
-      "to": "source-assets/GGA0402/GGA0402_icon_render.png",
-      "sha256_before": "b76804eab3f4e217f9dc3ccfeef62bf3ee8df1aac59f892e0762e221398ba1b7"
-    },
-    {
-      "from": "source-assets/GGA0402/GGA0402_normalsTS_source.png",
-      "to": "source-assets/GGA0402/GGA0402_normalsTS_source.png",
-      "sha256_before": "1e6502a2e602c9a3e909aa520fa4d3acd21ad770fea7a3f3e97de668c1a020b9"
-    },
-    {
-      "from": "source-assets/GGA0402/GGA0402_rear.png",
-      "to": "source-assets/GGA0402/GGA0402_rear.png",
-      "sha256_before": "4fd01d6ec8e8ab58d48209fa15958f71e80ad965bf2d8f76ec40b87b144e171a"
-    },
-    {
-      "from": "source-assets/GGA0402/GGA0402_side.png",
-      "to": "source-assets/GGA0402/GGA0402_side.png",
-      "sha256_before": "ef0b72e72e3171f997567c62502b2a0519655fbf73bd8ea1ec106e6cba31e31d"
-    },
-    {
-      "from": "source-assets/GGA0402/GGA0402_source.mtl",
-      "to": "source-assets/GGA0402/GGA0402_source.mtl",
-      "sha256_before": "ba0055eb799ae7e756c5eda2db51d3e4a046a54ce8cb7a1b00e7d8ca2c1964ff"
-    },
-    {
-      "from": "source-assets/GGA0402/GGA0402_source.obj",
-      "to": "source-assets/GGA0402/GGA0402_source.obj",
-      "sha256_before": "f6f75315ea43bb94812d786cd3a84bda6fb0f3c02252210c66e21c7d6b433e26"
-    },
-    {
-      "from": "source-assets/GGA0402/GGA0402_specteam_source.png",
-      "to": "source-assets/GGA0402/GGA0402_specteam_source.png",
-      "sha256_before": "0bb72a04dc17e30b5329d65a2a68379ca5b78abff21637ed2307c9b67099544a"
-    },
-    {
-      "from": "source-assets/GGA0402/GGA0402_team_mask_preview.png",
-      "to": "source-assets/GGA0402/GGA0402_team_mask_preview.png",
-      "sha256_before": "75b67c26b069cabf06d0678510e704cd7ef6f0c3547cddc4f560ed7f0cd0c359"
-    },
-    {
-      "from": "source-assets/GGA0402/GGA0402_top.png",
-      "to": "source-assets/GGA0402/GGA0402_top.png",
-      "sha256_before": "feee6ff66c7e7cf30a5e6fdbe247b88b92b94dab9aeedbed59db4c62a941294e"
-    },
-    {
-      "from": "source-assets/GGA0402/GGA0402_views.png",
-      "to": "source-assets/GGA0402/GGA0402_views.png",
-      "sha256_before": "357ec0a7e34a0adb29e10663d7a2b6d889cb3988ecd91d28b19c574719926da7"
-    },
-    {
-      "from": "source-assets/GGA0402/original_unit_hashes.json",
-      "to": "source-assets/GGA0402/original_unit_hashes.json",
-      "sha256_before": "94f04bf1d951c8dddd7982ddf3e77ef1f85e1fcbbb226b68cf19325f907b19fb"
-    },
-    {
-      "from": "source-assets/GGA0402/README.md",
-      "to": "source-assets/GGA0402/README.md",
-      "sha256_before": "dae805fc0bc168b2a6435d65d5071fdb2a5ec67b701a7c21321bdf4e34cbf439"
-    },
-    {
-      "from": "source-assets/GGA0402/redline_shape_checks.json",
-      "to": "source-assets/GGA0402/redline_shape_checks.json",
-      "sha256_before": "af5b74071c2a2bc558bcc061ad02b1667c236f1f2b37cb50c4ef410ce5e59e72"
-    },
-    {
-      "from": "source-assets/GGA0402/reference-concept.png",
-      "to": "source-assets/GGA0402/reference-concept.png",
-      "sha256_before": "68e6e7ebcf7b7619e8ba9e8e95c01d051fad076719ecb406796f56401be17acf"
-    },
-    {
-      "from": "source-assets/GGA0402/reference-redline-2026-10-24.png",
-      "to": "source-assets/GGA0402/reference-redline-2026-10-24.png",
-      "sha256_before": "aa9b902cb306f0854926bd5a770460c9c8ae3c7aa6dbd0d432bc65bc81f6ee97"
-    },
-    {
-      "from": "source-assets/GGA0402/supcom_binary.py",
-      "to": "source-assets/GGA0402/supcom_binary.py",
-      "sha256_before": "22a7e08c93cf7453320bf237117bbcf2cf1d103a7b118b1a7aa791bf37d78300"
-    },
-    {
-      "from": "source-assets/GGA0402/__pycache__/concept_geometry.cpython-312.pyc",
-      "to": "source-assets/GGA0402/__pycache__/concept_geometry.cpython-312.pyc",
-      "sha256_before": "031f6cc990747fd6b9b933e9803e56c77f749d7c857b121e00d0e83e24cb6a7b"
-    },
-    {
-      "from": "source-assets/GGA0402/__pycache__/generate_concept_tank.cpython-312.pyc",
-      "to": "source-assets/GGA0402/__pycache__/generate_concept_tank.cpython-312.pyc",
-      "sha256_before": "dd7ba7b2248b4634755c91875f1a6417bbc4cd3ac1292b6e0fc13e283616ea45"
-    },
-    {
-      "from": "source-assets/GGA0402/__pycache__/supcom_binary.cpython-312.pyc",
-      "to": "source-assets/GGA0402/__pycache__/supcom_binary.cpython-312.pyc",
-      "sha256_before": "d0ed6fedf54beda1942d7441a93d239687d3779a596e13bbf08c48c2a886e00c"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/concept_geometry.py",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/concept_geometry.py",
-      "sha256_before": "2a9555211a8947d253d472174af16f4fcccc10c7778729fe348e34a632f6cb1c"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/export_findings.json",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/export_findings.json",
-      "sha256_before": "81f4a9232e97ae0d44e20c41ef4590485c1551ee5dac012baf008d2de71ab8b3"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/file_checks.json",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/file_checks.json",
-      "sha256_before": "d0528bb00ac8bdc4ccc434168599707bbdf2cfda3ace582b67b905d6d2416525"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/generate_concept_tank.py",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/generate_concept_tank.py",
-      "sha256_before": "7b74dc38c55ad3c82187685ae933c351a0ad4ead0b5e8c62db4b3c574d1b489e"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_albedo_preview.png",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_albedo_preview.png",
-      "sha256_before": "f830c892ddd31d73e956b09b84eb9f6974d7fa33bfaab7b17082b96f72a322de"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_albedo_source.png",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_albedo_source.png",
-      "sha256_before": "f830c892ddd31d73e956b09b84eb9f6974d7fa33bfaab7b17082b96f72a322de"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_alt_color.png",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_alt_color.png",
-      "sha256_before": "f2c9ba2d28e27bef9ab56a81df93b19aedafca332aab0531887ff6a5ba21e046"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_front.png",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_front.png",
-      "sha256_before": "24e4b9f92895b5ce6b0979bca2ed667dd021d581b3dff30d13f7936f288ec19d"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_game_view.png",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_game_view.png",
-      "sha256_before": "92affef160b828c932758fd37aceeb50ba8ac5bbb07adbec627a851350383a56"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_hull_top.png",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_hull_top.png",
-      "sha256_before": "77dcea8b30be6529822d1b7b87998e9b3490c2de524479f09b0b112c79816bed"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_icon.dds",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_icon.dds",
-      "sha256_before": "156c72cb47aff597b20dc8286ff306bcc2342747c1e79bc8bdb1ee343e882f2f"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_icon.png",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_icon.png",
-      "sha256_before": "2243055f922e3e4838cefae98310f4e30ca989e8226e97c9b7bfe88e2077a560"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_icon_render.png",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_icon_render.png",
-      "sha256_before": "4e6a86c1db40917617b8de3f76dc22ec728c9460313a22798c6ab349be9528df"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_normalsTS_source.png",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_normalsTS_source.png",
-      "sha256_before": "1e6502a2e602c9a3e909aa520fa4d3acd21ad770fea7a3f3e97de668c1a020b9"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_rear.png",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_rear.png",
-      "sha256_before": "87fbc9f60139d4196d4b9825eca086e6f0141103f13159e9dd31903e1e181d3f"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_side.png",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_side.png",
-      "sha256_before": "868a23f2add0b290277d4844b951078c56b37bdca5fbfc47d160c00107456f7a"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_source.mtl",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_source.mtl",
-      "sha256_before": "ba0055eb799ae7e756c5eda2db51d3e4a046a54ce8cb7a1b00e7d8ca2c1964ff"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_source.obj",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_source.obj",
-      "sha256_before": "5ea8e0472b200f6d58c37271c3834adf33bfecb24490d014e46d77ae2e905f0d"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_specteam_source.png",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_specteam_source.png",
-      "sha256_before": "0bb72a04dc17e30b5329d65a2a68379ca5b78abff21637ed2307c9b67099544a"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_team_mask_preview.png",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_team_mask_preview.png",
-      "sha256_before": "75b67c26b069cabf06d0678510e704cd7ef6f0c3547cddc4f560ed7f0cd0c359"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_top.png",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_top.png",
-      "sha256_before": "34e9b043fb7346bc402494776346039b33bf1883f291daac455791e0844c4f18"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_views.png",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/GGA0402_views.png",
-      "sha256_before": "b5d23f2097faa9e839de6d799818b6b037f4ced4b46f092e17a5a62736bcd81e"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/original_unit_hashes.json",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/original_unit_hashes.json",
-      "sha256_before": "94f04bf1d951c8dddd7982ddf3e77ef1f85e1fcbbb226b68cf19325f907b19fb"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/README.md",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/README.md",
-      "sha256_before": "e40ce8ae8c20aff0f95b90811cf53018f4933dd2052722260f7ac6731d5020ba"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/reference-concept.png",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/reference-concept.png",
-      "sha256_before": "68e6e7ebcf7b7619e8ba9e8e95c01d051fad076719ecb406796f56401be17acf"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/supcom_binary.py",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/supcom_binary.py",
-      "sha256_before": "22a7e08c93cf7453320bf237117bbcf2cf1d103a7b118b1a7aa791bf37d78300"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/unit/GGA0402_albedo.dds",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/unit/GGA0402_albedo.dds",
-      "sha256_before": "e26a5cff8dfd581b7a873cb542f48a305732ada7a5c02db87b982b7828770919"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/unit/GGA0402_lod0.scm",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/unit/GGA0402_lod0.scm",
-      "sha256_before": "24635a6422e43df8ec49c1d508cbb7d4585668bf749a2b004b353f5f59e3ef8a"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/unit/GGA0402_lod1.scm",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/unit/GGA0402_lod1.scm",
-      "sha256_before": "aea1bb26e45c3bbb14a898fae0c9272dd9cdd9a2637c2ae0251210abac72d3b0"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/unit/GGA0402_mesh.bp",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/unit/GGA0402_mesh.bp",
-      "sha256_before": "373f01489a9a40d7be4fb5760e6a77d18e0319040f267ace48eb818685888a9f"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/unit/GGA0402_normalsTS.dds",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/unit/GGA0402_normalsTS.dds",
-      "sha256_before": "5b6c955d6e6dbf0ad788d01e2fa671f72e09e31c600aadac09b249787eff5145"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/unit/GGA0402_script.lua",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/unit/GGA0402_script.lua",
-      "sha256_before": "1e4b7f1327fcd28eee4822aa702bbfb705063e5be94e61f65cf79e9affd8cab1"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/unit/GGA0402_specteam.dds",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/unit/GGA0402_specteam.dds",
-      "sha256_before": "935289ab03bed4e9f83a3c3a8b867c28569e143f89d2477dde8dbcfe4cedfa77"
-    },
-    {
-      "from": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/unit/GGA0402_unit.bp",
-      "to": "source-assets/GGA0402/archive/before-redline-detail-2026-10-24/unit/GGA0402_unit.bp",
-      "sha256_before": "f5542abef8e9fa700a0f5220755e58f9cf1c699c312dcff4ea4ffb84086182fe"
-    },
-    {
-      "from": "icons/units/GGA0402_icon.dds",
-      "to": "icons/units/GGA0402_icon.dds",
-      "sha256_before": "bec3ff9a38d498a781acf55b6f20b158d8764a40f6809d11a685fd5f1676c34c"
-    },
-    {
-      "from": "textures/ui/common/icons/units/GGA0402_icon.dds",
-      "to": "textures/ui/common/icons/units/GGA0402_icon.dds",
-      "sha256_before": "bec3ff9a38d498a781acf55b6f20b158d8764a40f6809d11a685fd5f1676c34c"
-    },
-    {
-      "from": "units/GGA2404/GGA2404_albedo.dds",
-      "to": "units/GGA2404/GGA2404_albedo.dds",
+      "from": "mods/seraphim-extra-units/units/GGA2404/GGA2404_albedo.dds",
+      "to": "mods/seraphim-rework/units/GGA2404/GGA2404_albedo.dds",
       "sha256_before": "710969a4171947f9456bd6dc3cc95bbcab80ec46d0c69e1576f37b543e52c3fb"
     },
     {
-      "from": "units/GGA2404/GGA2404_lod0.scm",
-      "to": "units/GGA2404/GGA2404_lod0.scm",
+      "from": "mods/seraphim-extra-units/units/GGA2404/GGA2404_lod0.scm",
+      "to": "mods/seraphim-rework/units/GGA2404/GGA2404_lod0.scm",
       "sha256_before": "e86f1e8053a6b4e22817f521536aa8bbbe8efe02d7c86822972a1f4ba62110c7"
     },
     {
-      "from": "units/GGA2404/GGA2404_lod1.scm",
-      "to": "units/GGA2404/GGA2404_lod1.scm",
+      "from": "mods/seraphim-extra-units/units/GGA2404/GGA2404_lod1.scm",
+      "to": "mods/seraphim-rework/units/GGA2404/GGA2404_lod1.scm",
       "sha256_before": "4ccc7d3eee721e2cfb7db4c86329d080c2d682ea04418f2eaa1400184810d6b8"
     },
     {
-      "from": "units/GGA2404/GGA2404_normalsTS.dds",
-      "to": "units/GGA2404/GGA2404_normalsTS.dds",
+      "from": "mods/seraphim-extra-units/units/GGA2404/GGA2404_normalsTS.dds",
+      "to": "mods/seraphim-rework/units/GGA2404/GGA2404_normalsTS.dds",
       "sha256_before": "7710f8820e86c7e896aaeb8733c536508e285b2a7ab2f54db667ee4bc35f96f8"
     },
     {
-      "from": "units/GGA2404/GGA2404_script.lua",
-      "to": "units/GGA2404/GGA2404_script.lua",
-      "sha256_before": "e648ce2f2a57b01306d9d14ebc6bada5689916a18e3f6520d4e15d773d2e8ec3"
+      "from": "mods/seraphim-extra-units/units/GGA2404/GGA2404_script.lua",
+      "to": "mods/seraphim-rework/units/GGA2404/GGA2404_script.lua",
+      "sha256_before": "a73349135197fbbc699d3fb14a1191b6583b828d91d49deb22fabc174ec0e8b8"
     },
     {
-      "from": "units/GGA2404/GGA2404_specteam.dds",
-      "to": "units/GGA2404/GGA2404_specteam.dds",
+      "from": "mods/seraphim-extra-units/units/GGA2404/GGA2404_specteam.dds",
+      "to": "mods/seraphim-rework/units/GGA2404/GGA2404_specteam.dds",
       "sha256_before": "42817e3448240365aa953f847d3fd78e1d3f0a103f1e10cd22216be7a301d2f8"
     },
     {
-      "from": "units/GGA2404/GGA2404_unit.bp",
-      "to": "units/GGA2404/GGA2404_unit.bp",
-      "sha256_before": "295a2628610e12a2ee6c8b591b4b8528632c5cae1e2f5e6a80042fa20fbb5ced"
+      "from": "mods/seraphim-extra-units/units/GGA2404/GGA2404_unit.bp",
+      "to": "mods/seraphim-rework/units/GGA2404/GGA2404_unit.bp",
+      "sha256_before": "5fd9bf85e9d694d90e1766a115e664ecd5ed189fcb77265ee9e8c9b0565ef51a"
     },
     {
-      "from": "source-assets/GGA2404/army_ramp_colors.json",
-      "to": "source-assets/GGA2404/army_ramp_colors.json",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/army_ramp_colors.json",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/army_ramp_colors.json",
       "sha256_before": "f611ea518ad997e822f02c372394f96cd8331030b686738ca7f2959cd7ccd48a"
     },
     {
-      "from": "source-assets/GGA2404/autocharge_geometry_validation.json",
-      "to": "source-assets/GGA2404/autocharge_geometry_validation.json",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/autocharge_geometry_validation.json",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/autocharge_geometry_validation.json",
       "sha256_before": "22e1cfbd281248df1c5671583fbfc33b10f7851723aa789d12ce6aacef66ddcf"
     },
     {
-      "from": "source-assets/GGA2404/ball_army_ramp_source.png",
-      "to": "source-assets/GGA2404/ball_army_ramp_source.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/ball_army_ramp_source.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/ball_army_ramp_source.png",
       "sha256_before": "0894d5bdf8e98dca2625e838f47106b074f26a4750187594452e0ee644eea8b8"
     },
     {
-      "from": "source-assets/GGA2404/charge_dark_validation.json",
-      "to": "source-assets/GGA2404/charge_dark_validation.json",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/charge_dark_validation.json",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/charge_dark_validation.json",
       "sha256_before": "f3042f84c6c27cd51a5ae3616e376ae2d2ab1a7593cda25c4b974a525bd048e6"
     },
     {
-      "from": "source-assets/GGA2404/engraved_inlays.py",
-      "to": "source-assets/GGA2404/engraved_inlays.py",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/engraved_inlays.py",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/engraved_inlays.py",
       "sha256_before": "7fbaf5b796306afedd5d11cf85aa7f9b88ed9dd43ab208d0eee09397b49d134e"
     },
     {
-      "from": "source-assets/GGA2404/generate_materials.py",
-      "to": "source-assets/GGA2404/generate_materials.py",
-      "sha256_before": "9217fd4b284b689aade836c7e66525a69a3b56c24d4ef76ab2169c7aacabcd00"
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/generate_materials.py",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/generate_materials.py",
+      "sha256_before": "a0129a059019af063c873c575750049b10b4ae1b39d578efb2003d5c5794ad84"
     },
     {
-      "from": "source-assets/GGA2404/generate_turret.py",
-      "to": "source-assets/GGA2404/generate_turret.py",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/generate_turret.py",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/generate_turret.py",
       "sha256_before": "9720aa93750b7216408f28c1d147b8ca1579e79480997916b2f5d20a7bb9d6f1"
     },
     {
-      "from": "source-assets/GGA2404/geometry_validation.json",
-      "to": "source-assets/GGA2404/geometry_validation.json",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/geometry_validation.json",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/geometry_validation.json",
       "sha256_before": "3091ca9681cb3d86cc750ced6105bee0c501e3a5dd966ffdfd33466b59b5f1dc"
     },
     {
-      "from": "source-assets/GGA2404/GGA2404_albedo_baseline.png",
-      "to": "source-assets/GGA2404/GGA2404_albedo_baseline.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/GGA2404_albedo_baseline.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/GGA2404_albedo_baseline.png",
       "sha256_before": "e6700998e4abdb0949857c6256db1b3761b45e74de085b37c18945feab917878"
     },
     {
-      "from": "source-assets/GGA2404/GGA2404_albedo_source.png",
-      "to": "source-assets/GGA2404/GGA2404_albedo_source.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/GGA2404_albedo_source.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/GGA2404_albedo_source.png",
       "sha256_before": "5be222ce1407f5c5e35063eed4d6119eec6e1a0ea0e4fa348cb30499d6d283f7"
     },
     {
-      "from": "source-assets/GGA2404/GGA2404_front.png",
-      "to": "source-assets/GGA2404/GGA2404_front.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/GGA2404_front.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/GGA2404_front.png",
       "sha256_before": "a3d549f0b64b5275f323ece3b97b2ab1a4efddf76cb3d359b0e274e604ba7220"
     },
     {
-      "from": "source-assets/GGA2404/GGA2404_normalsTS_authoring.png",
-      "to": "source-assets/GGA2404/GGA2404_normalsTS_authoring.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/GGA2404_normalsTS_authoring.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/GGA2404_normalsTS_authoring.png",
       "sha256_before": "38e839730eeab0bed058cc90f63a73330e9264ec05db9ec8889225be103b76f2"
     },
     {
-      "from": "source-assets/GGA2404/GGA2404_normalsTS_baseline.png",
-      "to": "source-assets/GGA2404/GGA2404_normalsTS_baseline.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/GGA2404_normalsTS_baseline.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/GGA2404_normalsTS_baseline.png",
       "sha256_before": "77c0d87b78a7fc8dcc87ed20fc647ec6366e4439ef26e561221ccf69d47c4b2f"
     },
     {
-      "from": "source-assets/GGA2404/GGA2404_normalsTS_source.png",
-      "to": "source-assets/GGA2404/GGA2404_normalsTS_source.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/GGA2404_normalsTS_source.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/GGA2404_normalsTS_source.png",
       "sha256_before": "4fa619e962bee1b029e6577f7ea806d9ef6f7d7a295f0a852ff0eb9429d489ce"
     },
     {
-      "from": "source-assets/GGA2404/GGA2404_red.png",
-      "to": "source-assets/GGA2404/GGA2404_red.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/GGA2404_red.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/GGA2404_red.png",
       "sha256_before": "e3caabf25ea71a9bf6b0695f27a8843a7b5dca98678370023df590d57e82f27a"
     },
     {
-      "from": "source-assets/GGA2404/GGA2404_side.png",
-      "to": "source-assets/GGA2404/GGA2404_side.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/GGA2404_side.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/GGA2404_side.png",
       "sha256_before": "a631e527d15f3abc8e794cdb0532876283ad4ff40b52c3bf090a19f3d29833a3"
     },
     {
-      "from": "source-assets/GGA2404/GGA2404_source.blend",
-      "to": "source-assets/GGA2404/GGA2404_source.blend",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/GGA2404_source.blend",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/GGA2404_source.blend",
       "sha256_before": "d467e98a80a6dad907265053c89e87f94966c7cea57e726ea82dc2ac1fffad04"
     },
     {
-      "from": "source-assets/GGA2404/GGA2404_specteam_baseline.png",
-      "to": "source-assets/GGA2404/GGA2404_specteam_baseline.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/GGA2404_specteam_baseline.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/GGA2404_specteam_baseline.png",
       "sha256_before": "a5e2f8056bf2e28ad52ccbf892483e05512b92766d4ef2af1091f05f4ca14a47"
     },
     {
-      "from": "source-assets/GGA2404/GGA2404_specteam_source.png",
-      "to": "source-assets/GGA2404/GGA2404_specteam_source.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/GGA2404_specteam_source.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/GGA2404_specteam_source.png",
       "sha256_before": "7ddd30c3e31427fcfea956b7129a9e4fdbf119b4fc28eea99cf0008a912f46dc"
     },
     {
-      "from": "source-assets/GGA2404/GGA2404_top.png",
-      "to": "source-assets/GGA2404/GGA2404_top.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/GGA2404_top.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/GGA2404_top.png",
       "sha256_before": "60805083278c76f6d1c62a3d32fb7285f4740b0822b56005b8795728e8a08d7f"
     },
     {
-      "from": "source-assets/GGA2404/howitzer_validation.json",
-      "to": "source-assets/GGA2404/howitzer_validation.json",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/howitzer_validation.json",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/howitzer_validation.json",
       "sha256_before": "5cf3f1f6e0a13f4b209fb5cb3f2105c05acdda5e834309ea2ddeae254ca5f205"
     },
     {
-      "from": "source-assets/GGA2404/native_export.py",
-      "to": "source-assets/GGA2404/native_export.py",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/native_export.py",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/native_export.py",
       "sha256_before": "9c467a45c84a547355014b18a09f38776fc16a51dfd66333f688e013fb92a5f8"
     },
     {
-      "from": "source-assets/GGA2404/preview_animation.py",
-      "to": "source-assets/GGA2404/preview_animation.py",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/preview_animation.py",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/preview_animation.py",
       "sha256_before": "0684c307783563a0704a858c58f2218de5b82d116049e83f6ef63d6a7583407a"
     },
     {
-      "from": "source-assets/GGA2404/preview_scm.py",
-      "to": "source-assets/GGA2404/preview_scm.py",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/preview_scm.py",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/preview_scm.py",
       "sha256_before": "0e0a3ac8998042f192f39a2dfe157b81f50127f6947debbc803ab54d43d46e81"
     },
     {
-      "from": "source-assets/GGA2404/README.md",
-      "to": "source-assets/GGA2404/README.md",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/README.md",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/README.md",
       "sha256_before": "b49385848f42d30020e90e8b78fbac5a30d5352994650c7c12d1b2e3419e3d84"
     },
     {
-      "from": "source-assets/GGA2404/rich_base.py",
-      "to": "source-assets/GGA2404/rich_base.py",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/rich_base.py",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/rich_base.py",
       "sha256_before": "7887c0d5fd567781d785c60e5a0875e2c0c19cc3366caba06bd8c8d7fd32b454"
     },
     {
-      "from": "source-assets/GGA2404/ring_gondolas.py",
-      "to": "source-assets/GGA2404/ring_gondolas.py",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/ring_gondolas.py",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/ring_gondolas.py",
       "sha256_before": "bef17e2ccbb0d345a1077bb346d042323657d9ad50a06daec2eef27873d61086"
     },
     {
-      "from": "source-assets/GGA2404/validation.json",
-      "to": "source-assets/GGA2404/validation.json",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/validation.json",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/validation.json",
       "sha256_before": "9571c82f20ecaf46c239afd79836490c8b91a7c42f2b00d1b19a6ec22630e14d"
     },
     {
-      "from": "source-assets/GGA2404/animation-rebuild-2026-10-25/front.png",
-      "to": "source-assets/GGA2404/animation-rebuild-2026-10-25/front.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/animation-rebuild-2026-10-25/front.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/animation-rebuild-2026-10-25/front.png",
       "sha256_before": "9fb14cde6ba34534c47836f6af960b2dd63fb0052c9456135c441b613efea1c3"
     },
     {
-      "from": "source-assets/GGA2404/animation-rebuild-2026-10-25/mechanical_cycle.gif",
-      "to": "source-assets/GGA2404/animation-rebuild-2026-10-25/mechanical_cycle.gif",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/animation-rebuild-2026-10-25/mechanical_cycle.gif",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/animation-rebuild-2026-10-25/mechanical_cycle.gif",
       "sha256_before": "9e87fc907c8a3acc14e54dc1a1354411075c1731e19858209703b7374f8b7a78"
     },
     {
-      "from": "source-assets/GGA2404/animation-rebuild-2026-10-25/mechanical_cycle.png",
-      "to": "source-assets/GGA2404/animation-rebuild-2026-10-25/mechanical_cycle.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/animation-rebuild-2026-10-25/mechanical_cycle.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/animation-rebuild-2026-10-25/mechanical_cycle.png",
       "sha256_before": "22654f353bebae96410f2c4483d28fbb87dc909348705f7a6db3b78afcf9406e"
     },
     {
-      "from": "source-assets/GGA2404/animation-rebuild-2026-10-25/phase_0.png",
-      "to": "source-assets/GGA2404/animation-rebuild-2026-10-25/phase_0.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/animation-rebuild-2026-10-25/phase_0.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/animation-rebuild-2026-10-25/phase_0.png",
       "sha256_before": "a34fa9d1125d0e3cb37b0e693297e4ed7c97b3984ea7844945bc4b64b50a77bb"
     },
     {
-      "from": "source-assets/GGA2404/animation-rebuild-2026-10-25/phase_1.png",
-      "to": "source-assets/GGA2404/animation-rebuild-2026-10-25/phase_1.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/animation-rebuild-2026-10-25/phase_1.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/animation-rebuild-2026-10-25/phase_1.png",
       "sha256_before": "c0a0876b72c6f9d138f4d11e51e2eae8d09ad75a995d86bf6bd4257cfc1a1a46"
     },
     {
-      "from": "source-assets/GGA2404/animation-rebuild-2026-10-25/phase_2.png",
-      "to": "source-assets/GGA2404/animation-rebuild-2026-10-25/phase_2.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/animation-rebuild-2026-10-25/phase_2.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/animation-rebuild-2026-10-25/phase_2.png",
       "sha256_before": "d1d31a9d01871f1fbd59c92c025ee894557ccaf82400633241f9ce781c19f103"
     },
     {
-      "from": "source-assets/GGA2404/animation-rebuild-2026-10-25/phase_3.png",
-      "to": "source-assets/GGA2404/animation-rebuild-2026-10-25/phase_3.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/animation-rebuild-2026-10-25/phase_3.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/animation-rebuild-2026-10-25/phase_3.png",
       "sha256_before": "19025d70634ca6c4e7c413fc9fc2f677e2fb205a36ae25177dfaf8ec1853e6e9"
     },
     {
-      "from": "source-assets/GGA2404/animation-rebuild-2026-10-25/phase_4.png",
-      "to": "source-assets/GGA2404/animation-rebuild-2026-10-25/phase_4.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/animation-rebuild-2026-10-25/phase_4.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/animation-rebuild-2026-10-25/phase_4.png",
       "sha256_before": "ca7222beca96781de6b2eb6721173d7cc3d343fc10f4341671e53e1e2c582d6d"
     },
     {
-      "from": "source-assets/GGA2404/animation-rebuild-2026-10-25/phase_5.png",
-      "to": "source-assets/GGA2404/animation-rebuild-2026-10-25/phase_5.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/animation-rebuild-2026-10-25/phase_5.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/animation-rebuild-2026-10-25/phase_5.png",
       "sha256_before": "5e43f5466cc649b22596424a43f7b60dd548f630b6784b3e2e55436d82d49f88"
     },
     {
-      "from": "source-assets/GGA2404/animation-rebuild-2026-10-25/phase_6.png",
-      "to": "source-assets/GGA2404/animation-rebuild-2026-10-25/phase_6.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/animation-rebuild-2026-10-25/phase_6.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/animation-rebuild-2026-10-25/phase_6.png",
       "sha256_before": "d41bf23bbd8009725969604fe56238172ac554eb14ee35b96860dc0f63af7e0f"
     },
     {
-      "from": "source-assets/GGA2404/animation-rebuild-2026-10-25/phase_7.png",
-      "to": "source-assets/GGA2404/animation-rebuild-2026-10-25/phase_7.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/animation-rebuild-2026-10-25/phase_7.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/animation-rebuild-2026-10-25/phase_7.png",
       "sha256_before": "5ee94aa2d16e63482a45e33946ae62c3523f52dd815ce3221374b43f99917296"
     },
     {
-      "from": "source-assets/GGA2404/animation-rebuild-2026-10-25/preview_notes.json",
-      "to": "source-assets/GGA2404/animation-rebuild-2026-10-25/preview_notes.json",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/animation-rebuild-2026-10-25/preview_notes.json",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/animation-rebuild-2026-10-25/preview_notes.json",
       "sha256_before": "245b3c99bc39ebcdfa2106abdba2af2161c5c6a59eb7e15f8c8a3eb2e80c013c"
     },
     {
-      "from": "source-assets/GGA2404/animation-rebuild-2026-10-25/rig_views.png",
-      "to": "source-assets/GGA2404/animation-rebuild-2026-10-25/rig_views.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/animation-rebuild-2026-10-25/rig_views.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/animation-rebuild-2026-10-25/rig_views.png",
       "sha256_before": "1a60854d749362ada962aff9d98f0780970a32e6bd02a330bdc47a6b91e555bd"
     },
     {
-      "from": "source-assets/GGA2404/animation-rebuild-2026-10-25/side.png",
-      "to": "source-assets/GGA2404/animation-rebuild-2026-10-25/side.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/animation-rebuild-2026-10-25/side.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/animation-rebuild-2026-10-25/side.png",
       "sha256_before": "4aef148fe1ca5bec2fd7944490383ccb37fe6d05dcff4448e9da8f021d03ba25"
     },
     {
-      "from": "source-assets/GGA2404/animation-rebuild-2026-10-25/top.png",
-      "to": "source-assets/GGA2404/animation-rebuild-2026-10-25/top.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/animation-rebuild-2026-10-25/top.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/animation-rebuild-2026-10-25/top.png",
       "sha256_before": "f25687e6b73079886e248800e1a46d9f923d4701a5d5d3a63e1b1d382877cc6e"
     },
     {
-      "from": "source-assets/GGA2404/animation-rebuild-2026-10-25/verification.json",
-      "to": "source-assets/GGA2404/animation-rebuild-2026-10-25/verification.json",
-      "sha256_before": "cb6600d424d4cd3758a164c23349e53ddab7a3cbd3e86bcf46a602d407273893"
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/animation-rebuild-2026-10-25/verification.json",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/animation-rebuild-2026-10-25/verification.json",
+      "sha256_before": "7ba55b0d7c5d567cbf568f940a84d505824b6e4c84e1e20930321298121fabbd"
     },
     {
-      "from": "source-assets/GGA2404/archive/before-2026-10-20-corrections.zip",
-      "to": "source-assets/GGA2404/archive/before-2026-10-20-corrections.zip",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/archive/before-2026-10-20-corrections.zip",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/archive/before-2026-10-20-corrections.zip",
       "sha256_before": "36f42f3329437c2e6b77c4dc286d8e1e4999517b6240cb1e61aef22d35aa5496"
     },
     {
-      "from": "source-assets/GGA2404/archive/before-2026-10-21-auto-recharge.zip",
-      "to": "source-assets/GGA2404/archive/before-2026-10-21-auto-recharge.zip",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/archive/before-2026-10-21-auto-recharge.zip",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/archive/before-2026-10-21-auto-recharge.zip",
       "sha256_before": "f522ba8911149dff30f06cae899b92d724058d7a50cc53a94b8858dcee9d25b4"
     },
     {
-      "from": "source-assets/GGA2404/archive/before-2026-10-21-howitzer.zip",
-      "to": "source-assets/GGA2404/archive/before-2026-10-21-howitzer.zip",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/archive/before-2026-10-21-howitzer.zip",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/archive/before-2026-10-21-howitzer.zip",
       "sha256_before": "13b0e63e59c0da99e29076a49e38026b344d9ab77ab5f5f0ce3aace58b192d03"
     },
     {
-      "from": "source-assets/GGA2404/archive/before-2026-10-21-inlay-correction.zip",
-      "to": "source-assets/GGA2404/archive/before-2026-10-21-inlay-correction.zip",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/archive/before-2026-10-21-inlay-correction.zip",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/archive/before-2026-10-21-inlay-correction.zip",
       "sha256_before": "f56801039c419f5ad85addd1cc90da3e96eafd9b5c7b812f15c5e50a4d667a70"
     },
     {
-      "from": "source-assets/GGA2404/archive/before-2026-10-22-charge-dark-metal.zip",
-      "to": "source-assets/GGA2404/archive/before-2026-10-22-charge-dark-metal.zip",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/archive/before-2026-10-22-charge-dark-metal.zip",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/archive/before-2026-10-22-charge-dark-metal.zip",
       "sha256_before": "4f321b150e93233b3256f832ec99342cb16029eaea17791ba20c7969c8d8410f"
     },
     {
-      "from": "source-assets/GGA2404/archive/before-2026-10-25-animation-repair.zip",
-      "to": "source-assets/GGA2404/archive/before-2026-10-25-animation-repair.zip",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/archive/before-2026-10-25-animation-repair.zip",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/archive/before-2026-10-25-animation-repair.zip",
       "sha256_before": "e3bf1fad6249bb9ccf1b27ef5802f821a0a57372797a083c916da9bda4178e2d"
     },
     {
-      "from": "source-assets/GGA2404/archive/installed-before-2026-10-25-animation-repair.zip",
-      "to": "source-assets/GGA2404/archive/installed-before-2026-10-25-animation-repair.zip",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/archive/installed-before-2026-10-25-animation-repair.zip",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/archive/installed-before-2026-10-25-animation-repair.zip",
       "sha256_before": "fcc26d607cb4e090f8079279e433060eb61fd63451021f7d6e6a72f2b292031a"
     },
     {
-      "from": "source-assets/GGA2404/archive/upstream-82eaab8-ball-mesh.zip",
-      "to": "source-assets/GGA2404/archive/upstream-82eaab8-ball-mesh.zip",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/archive/upstream-82eaab8-ball-mesh.zip",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/archive/upstream-82eaab8-ball-mesh.zip",
       "sha256_before": "ee2a59040d04f39c3803fbcce878a0dff088e382d1a454e3c01b36118ff6a614"
     },
     {
-      "from": "source-assets/GGA2404/__pycache__/preview_animation.cpython-312.pyc",
-      "to": "source-assets/GGA2404/__pycache__/preview_animation.cpython-312.pyc",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/__pycache__/preview_animation.cpython-312.pyc",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/__pycache__/preview_animation.cpython-312.pyc",
       "sha256_before": "82156bce355718e5116220f582782f1785298333f1061e5bd1160e054ef6d9bd"
     },
     {
-      "from": "source-assets/GGA2404/__pycache__/preview_scm.cpython-312.pyc",
-      "to": "source-assets/GGA2404/__pycache__/preview_scm.cpython-312.pyc",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/__pycache__/preview_scm.cpython-312.pyc",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/__pycache__/preview_scm.cpython-312.pyc",
       "sha256_before": "7df557eaf0f6e52fe61dc4e834a4b726d62d09e143d8131399a3d231de457353"
     },
     {
-      "from": "icons/units/GGA2404_icon.dds",
-      "to": "icons/units/GGA2404_icon.dds",
-      "sha256_before": "d18634f61178a1a8e2c9c89c8d206799f5f50d14f641c7ef2b2bfbc119aec0c1"
-    },
-    {
-      "from": "textures/ui/common/icons/units/GGA2404_icon.dds",
-      "to": "textures/ui/common/icons/units/GGA2404_icon.dds",
-      "sha256_before": "d18634f61178a1a8e2c9c89c8d206799f5f50d14f641c7ef2b2bfbc119aec0c1"
-    },
-    {
-      "from": "projectiles/GGP2404/GGP2404_proj.bp",
-      "to": "projectiles/GGP2404/GGP2404_proj.bp",
-      "sha256_before": "7ba300b35d00c2dd4447f1bd77544895ad89f9b2e0263b7e52f382601ae26ad3"
-    },
-    {
-      "from": "projectiles/GGP2404/GGP2404_script.lua",
-      "to": "projectiles/GGP2404/GGP2404_script.lua",
-      "sha256_before": "3abbccdc0d402a5298a11aa00bc0a74a6d1d62c7bcdd06ee31f8ac02a1e44df8"
-    },
-    {
-      "from": "projectiles/GGP2404Charge/GGP2404Charge_proj.bp",
-      "to": "projectiles/GGP2404Charge/GGP2404Charge_proj.bp",
-      "sha256_before": "b8aa1726e68c5bc970c2bc942571f3b875db54ed8f93438c40ac346aefeff6e1"
-    },
-    {
-      "from": "projectiles/GGP2404Charge/GGP2404Charge_script.lua",
-      "to": "projectiles/GGP2404Charge/GGP2404Charge_script.lua",
-      "sha256_before": "11726460fff37b6b271b2f20d1c40e7eedb3e8fb6ee996daec2b7fe803b30f63"
-    },
-    {
-      "from": "source-assets/GGP2404/fix_orb_surface.py",
-      "to": "source-assets/GGP2404/fix_orb_surface.py",
-      "sha256_before": "91e8ca91e0249e6c0d18919cfa58a57a67eb0706fcaca643a164c97e1964f555"
-    },
-    {
-      "from": "source-assets/GGP2404/orb_surface_comparison.png",
-      "to": "source-assets/GGP2404/orb_surface_comparison.png",
-      "sha256_before": "d16f41133d01288728d85869c0f891cf4c00b89a880c5ae1cefd43aab44b711c"
-    },
-    {
-      "from": "source-assets/GGP2404/README.md",
-      "to": "source-assets/GGP2404/README.md",
-      "sha256_before": "d2a250401eff61494796dc3130164c5babc9e6af8870c2233d48a4e72d326f64"
-    },
-    {
-      "from": "source-assets/GGP2404/archive/before-outward-surface-2026-10-21/ball_lightning_lod0.scm",
-      "to": "source-assets/GGP2404/archive/before-outward-surface-2026-10-21/ball_lightning_lod0.scm",
-      "sha256_before": "db614c4f7d284c767ea2247fa87dc9a7db2e2a46b193efa10f07ac02568bac27"
-    },
-    {
-      "from": "lua/vael_itha_effects.lua",
-      "to": "lua/vael_itha_effects.lua",
-      "sha256_before": "467bae48020e7cd78c54ff6ed85e0289938b9d1dd92a41476b88643f3921fdcd"
-    },
-    {
-      "from": "textures/particles/ball_army_ramp.dds",
-      "to": "textures/particles/ball_army_ramp.dds",
-      "sha256_before": "52bfdc6a4b8b0380c07ce6d84a140b3ff0c650fc7da1afbd74a62e8f993fcca8"
-    },
-    {
-      "from": "docs/VAEL_ITHA.md",
-      "to": "docs/VAEL_ITHA.md",
-      "sha256_before": "d4ebd1537b1e9a3a3ba5edd3c374874d15c333e6859c5bc649b0054cde335c33"
-    },
-    {
-      "from": "effects/emitters/ball_hit_emit.bp",
-      "to": "effects/emitters/ball_hit_emit.bp",
-      "sha256_before": "9c67dca6d0a379c07553bc9f355a5a7f5dbac95592728937614876bb1fe56d2d"
-    },
-    {
-      "from": "effects/emitters/ball_impact_emit.bp",
-      "to": "effects/emitters/ball_impact_emit.bp",
-      "sha256_before": "0c08bbe244c3f86dc90afdd7287266103ec1c0cd4e8d6415739e3c25e2ac8a3b"
-    },
-    {
-      "from": "effects/emitters/ball_othuy_arcs_emit.bp",
-      "to": "effects/emitters/ball_othuy_arcs_emit.bp",
-      "sha256_before": "4279b8a36794a3f78a16d76e728a7f16a4afac11e24e09b52272ef24d9b38cc4"
-    },
-    {
-      "from": "effects/emitters/ball_othuy_core_emit.bp",
-      "to": "effects/emitters/ball_othuy_core_emit.bp",
-      "sha256_before": "5f7cc416b0fcf2eacc11270267453397e80ec373adf1f11def2c1a6dd7bab802"
-    },
-    {
-      "from": "effects/emitters/ball_othuy_flash_emit.bp",
-      "to": "effects/emitters/ball_othuy_flash_emit.bp",
-      "sha256_before": "d65b05df6a5c92e018d1829c7d450efa0dde1cbd66f65d2e977c901e7d002b2c"
-    },
-    {
-      "from": "effects/emitters/ball_othuy_haze_emit.bp",
-      "to": "effects/emitters/ball_othuy_haze_emit.bp",
-      "sha256_before": "015bdc7297e82d446e264bb33ac827d5e297a46039d1fa88d3545df6c317952a"
-    },
-    {
-      "from": "effects/emitters/ball_othuy_motes_emit.bp",
-      "to": "effects/emitters/ball_othuy_motes_emit.bp",
-      "sha256_before": "08aeffd33e1b8631659a31de5df9255acb44e4053464ce1dc6b10bf1e7c6a90e"
-    },
-    {
-      "from": "effects/emitters/ball_othuy_surface_emit.bp",
-      "to": "effects/emitters/ball_othuy_surface_emit.bp",
-      "sha256_before": "44edc6fa64a7abd78842e282cdad1aa35c98a61e4b93da8f78c099d2d006a484"
-    },
-    {
-      "from": "effects/emitters/ball_strike_beam_emit.bp",
-      "to": "effects/emitters/ball_strike_beam_emit.bp",
-      "sha256_before": "dacb0d7dc0e082b85b135bcadae86efbadaf3db61dedebe18b26dfa086b996f3"
-    },
-    {
-      "from": "source-assets/material-adjustment-2026-10-22/archive/units/GGA2404/GGA2404_albedo.dds",
-      "to": "source-assets/GGA2404/archive/material-adjustment-2026-10-22/units/GGA2404/GGA2404_albedo.dds",
-      "sha256_before": "5ac4fd003754e23af2a9f8b2d2a367da41f5c20bec14de6e81706c9e358d5765"
-    },
-    {
-      "from": "source-assets/material-adjustment-2026-10-22/archive/units/GGA2404/GGA2404_normalsTS.dds",
-      "to": "source-assets/GGA2404/archive/material-adjustment-2026-10-22/units/GGA2404/GGA2404_normalsTS.dds",
-      "sha256_before": "80e859db0239d9893780df4937bb6132cbe31d73f530d623e42e0422feb18a3b"
-    },
-    {
-      "from": "source-assets/material-adjustment-2026-10-22/archive/units/GGA2404/GGA2404_specteam.dds",
-      "to": "source-assets/GGA2404/archive/material-adjustment-2026-10-22/units/GGA2404/GGA2404_specteam.dds",
-      "sha256_before": "62511e54d4f48addf29b2f9ba6a0de496e793acc21f446475ab239ddbdbe2334"
-    },
-    {
-      "from": "source-assets/material-adjustment-2026-10-22/archive/units/GGA2404/GGA2404_unit.bp",
-      "to": "source-assets/GGA2404/archive/material-adjustment-2026-10-22/units/GGA2404/GGA2404_unit.bp",
-      "sha256_before": "39a7e9a52dc44e1202b7fc400a6fa11920f3c49a1d95d0796960943a110e2ba7"
-    },
-    {
-      "from": "source-assets/material-adjustment-2026-10-22/GGA2404_0.png",
-      "to": "source-assets/GGA2404/archive/material-adjustment-2026-10-22/GGA2404_0.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/archive/material-adjustment-2026-10-22/GGA2404_0.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/archive/material-adjustment-2026-10-22/GGA2404_0.png",
       "sha256_before": "08f58eb060d809a5258d14fda3584d5730f630a2538f9a6c40a3366793f71b30"
     },
     {
-      "from": "source-assets/material-adjustment-2026-10-22/GGA2404_1.png",
-      "to": "source-assets/GGA2404/archive/material-adjustment-2026-10-22/GGA2404_1.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/archive/material-adjustment-2026-10-22/GGA2404_1.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/archive/material-adjustment-2026-10-22/GGA2404_1.png",
       "sha256_before": "4167f30854d2e7428e90de1273f6bc7d59f3869c46449b0684acbb083c070a41"
     },
     {
-      "from": "source-assets/material-adjustment-2026-10-22/GGA2404_2.png",
-      "to": "source-assets/GGA2404/archive/material-adjustment-2026-10-22/GGA2404_2.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/archive/material-adjustment-2026-10-22/GGA2404_2.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/archive/material-adjustment-2026-10-22/GGA2404_2.png",
       "sha256_before": "bf008160d19b12eb83761685051e3e447a0944952b56e8180a6124c4e23f6670"
     },
     {
-      "from": "source-assets/material-adjustment-2026-10-22/GGA2404_3.png",
-      "to": "source-assets/GGA2404/archive/material-adjustment-2026-10-22/GGA2404_3.png",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/archive/material-adjustment-2026-10-22/GGA2404_3.png",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/archive/material-adjustment-2026-10-22/GGA2404_3.png",
       "sha256_before": "baa5278f679728cadd52c7ab2e802830f562dbf395ff4e467b12b082a9a623a5"
     },
     {
-      "from": "source-assets/material-adjustment-2026-10-22/GGA2404_comparison.jpg",
-      "to": "source-assets/GGA2404/archive/material-adjustment-2026-10-22/GGA2404_comparison.jpg",
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/archive/material-adjustment-2026-10-22/GGA2404_comparison.jpg",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/archive/material-adjustment-2026-10-22/GGA2404_comparison.jpg",
       "sha256_before": "ed897a20f38a6ffaf9937c9bc29dec1799386717faad175df4c12b90adaa328f"
+    },
+    {
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/archive/material-adjustment-2026-10-22/units/GGA2404/GGA2404_albedo.dds",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/archive/material-adjustment-2026-10-22/units/GGA2404/GGA2404_albedo.dds",
+      "sha256_before": "5ac4fd003754e23af2a9f8b2d2a367da41f5c20bec14de6e81706c9e358d5765"
+    },
+    {
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/archive/material-adjustment-2026-10-22/units/GGA2404/GGA2404_normalsTS.dds",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/archive/material-adjustment-2026-10-22/units/GGA2404/GGA2404_normalsTS.dds",
+      "sha256_before": "80e859db0239d9893780df4937bb6132cbe31d73f530d623e42e0422feb18a3b"
+    },
+    {
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/archive/material-adjustment-2026-10-22/units/GGA2404/GGA2404_specteam.dds",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/archive/material-adjustment-2026-10-22/units/GGA2404/GGA2404_specteam.dds",
+      "sha256_before": "62511e54d4f48addf29b2f9ba6a0de496e793acc21f446475ab239ddbdbe2334"
+    },
+    {
+      "from": "mods/seraphim-extra-units/source-assets/GGA2404/archive/material-adjustment-2026-10-22/units/GGA2404/GGA2404_unit.bp.txt",
+      "to": "mods/seraphim-rework/source-assets/GGA2404/archive/material-adjustment-2026-10-22/units/GGA2404/GGA2404_unit.bp.txt",
+      "sha256_before": "39a7e9a52dc44e1202b7fc400a6fa11920f3c49a1d95d0796960943a110e2ba7"
+    },
+    {
+      "from": "mods/seraphim-extra-units/source-assets/GGP2404/fix_orb_surface.py",
+      "to": "mods/seraphim-rework/source-assets/GGP2404/fix_orb_surface.py",
+      "sha256_before": "91e8ca91e0249e6c0d18919cfa58a57a67eb0706fcaca643a164c97e1964f555"
+    },
+    {
+      "from": "mods/seraphim-extra-units/source-assets/GGP2404/orb_surface_comparison.png",
+      "to": "mods/seraphim-rework/source-assets/GGP2404/orb_surface_comparison.png",
+      "sha256_before": "d16f41133d01288728d85869c0f891cf4c00b89a880c5ae1cefd43aab44b711c"
+    },
+    {
+      "from": "mods/seraphim-extra-units/source-assets/GGP2404/README.md",
+      "to": "mods/seraphim-rework/source-assets/GGP2404/README.md",
+      "sha256_before": "077950bbf4dee2d7a26f34d50d6d1ee4891598bdf1af408c5ff68a2b1a11bf6c"
+    },
+    {
+      "from": "mods/seraphim-extra-units/source-assets/GGP2404/archive/before-outward-surface-2026-10-21/ball_lightning_lod0.scm",
+      "to": "mods/seraphim-rework/source-assets/GGP2404/archive/before-outward-surface-2026-10-21/ball_lightning_lod0.scm",
+      "sha256_before": "db614c4f7d284c767ea2247fa87dc9a7db2e2a46b193efa10f07ac02568bac27"
+    },
+    {
+      "from": "mods/seraphim-extra-units/projectiles/GGP2404/GGP2404_proj.bp",
+      "to": "mods/seraphim-rework/projectiles/GGP2404/GGP2404_proj.bp",
+      "sha256_before": "7ba300b35d00c2dd4447f1bd77544895ad89f9b2e0263b7e52f382601ae26ad3"
+    },
+    {
+      "from": "mods/seraphim-extra-units/projectiles/GGP2404/GGP2404_script.lua",
+      "to": "mods/seraphim-rework/projectiles/GGP2404/GGP2404_script.lua",
+      "sha256_before": "53921df6ba9db0ffe001054a34df73d37b22d01f40dcc32cfce5f3e708f21123"
+    },
+    {
+      "from": "mods/seraphim-extra-units/projectiles/GGP2404Charge/GGP2404Charge_proj.bp",
+      "to": "mods/seraphim-rework/projectiles/GGP2404Charge/GGP2404Charge_proj.bp",
+      "sha256_before": "b8aa1726e68c5bc970c2bc942571f3b875db54ed8f93438c40ac346aefeff6e1"
+    },
+    {
+      "from": "mods/seraphim-extra-units/projectiles/GGP2404Charge/GGP2404Charge_script.lua",
+      "to": "mods/seraphim-rework/projectiles/GGP2404Charge/GGP2404Charge_script.lua",
+      "sha256_before": "b005ea44900dcaacc51c33b9706a6a4b5cc878164c96c8c9ced7c691a4a7aa43"
+    },
+    {
+      "from": "mods/seraphim-extra-units/lua/vael_itha_effects.lua",
+      "to": "mods/seraphim-rework/lua/vael_itha_effects.lua",
+      "sha256_before": "5ba3b7be838ce05e55104f750d75229548bc6710b188f5a35d6335d2a27f5623"
+    },
+    {
+      "from": "mods/seraphim-extra-units/textures/particles/ball_army_ramp.dds",
+      "to": "mods/seraphim-rework/textures/particles/ball_army_ramp.dds",
+      "sha256_before": "52bfdc6a4b8b0380c07ce6d84a140b3ff0c650fc7da1afbd74a62e8f993fcca8"
+    },
+    {
+      "from": "mods/seraphim-extra-units/docs/VAEL_ITHA.md",
+      "to": "mods/seraphim-rework/docs/VAEL_ITHA.md",
+      "sha256_before": "274a1602c22216826009c8376c58334cbef7b0820e8a752931a34a02c84e11f6"
+    },
+    {
+      "from": "mods/seraphim-extra-units/icons/units/GGA2404_icon.dds",
+      "to": "mods/seraphim-rework/icons/units/GGA2404_icon.dds",
+      "sha256_before": "d18634f61178a1a8e2c9c89c8d206799f5f50d14f641c7ef2b2bfbc119aec0c1"
+    },
+    {
+      "from": "mods/seraphim-extra-units/textures/ui/common/icons/units/GGA2404_icon.dds",
+      "to": "mods/seraphim-rework/textures/ui/common/icons/units/GGA2404_icon.dds",
+      "sha256_before": "d18634f61178a1a8e2c9c89c8d206799f5f50d14f641c7ef2b2bfbc119aec0c1"
+    },
+    {
+      "from": "mods/seraphim-extra-units/effects/emitters/ball_hit_emit.bp",
+      "to": "mods/seraphim-rework/effects/emitters/ball_hit_emit.bp",
+      "sha256_before": "5735a54551a0082c1957a64f49be889dfca31146b2c71d098a24b2e86b17f016"
+    },
+    {
+      "from": "mods/seraphim-extra-units/effects/emitters/ball_impact_emit.bp",
+      "to": "mods/seraphim-rework/effects/emitters/ball_impact_emit.bp",
+      "sha256_before": "35c6a7281b5512ba9ff6fca8f867b50724b015aa300e7e8afe9d5e43065cb5ed"
+    },
+    {
+      "from": "mods/seraphim-extra-units/effects/emitters/ball_othuy_arcs_emit.bp",
+      "to": "mods/seraphim-rework/effects/emitters/ball_othuy_arcs_emit.bp",
+      "sha256_before": "66b7ddf5e4feafa64332fe7b7a78354b07746a78e7c1df882075f9f35fa9e6e9"
+    },
+    {
+      "from": "mods/seraphim-extra-units/effects/emitters/ball_othuy_core_emit.bp",
+      "to": "mods/seraphim-rework/effects/emitters/ball_othuy_core_emit.bp",
+      "sha256_before": "1a4196cb1e5c7147bfa4522146dee6343c66ee02892fa7300b0a603c2a74be61"
+    },
+    {
+      "from": "mods/seraphim-extra-units/effects/emitters/ball_othuy_flash_emit.bp",
+      "to": "mods/seraphim-rework/effects/emitters/ball_othuy_flash_emit.bp",
+      "sha256_before": "d382b82d83ad3f54fc5b1a76afa17f864458a4a5bbd654547c393fee96c0efcc"
+    },
+    {
+      "from": "mods/seraphim-extra-units/effects/emitters/ball_othuy_haze_emit.bp",
+      "to": "mods/seraphim-rework/effects/emitters/ball_othuy_haze_emit.bp",
+      "sha256_before": "d2538ddf00bb96b41f3feec45338276ec83a116ecfe299358f10357f0a615ff3"
+    },
+    {
+      "from": "mods/seraphim-extra-units/effects/emitters/ball_othuy_motes_emit.bp",
+      "to": "mods/seraphim-rework/effects/emitters/ball_othuy_motes_emit.bp",
+      "sha256_before": "c720a8ef7cf1d78950258cdbc2aedb83dffa72a468234d75ec0f4243e6fbbbf8"
+    },
+    {
+      "from": "mods/seraphim-extra-units/effects/emitters/ball_othuy_surface_emit.bp",
+      "to": "mods/seraphim-rework/effects/emitters/ball_othuy_surface_emit.bp",
+      "sha256_before": "7e7ee00bb6bd0d7115dc7965e5c00e5bb12fd7e9c5b23411c976d585cd2e4cf6"
+    },
+    {
+      "from": "mods/seraphim-extra-units/effects/emitters/ball_strike_beam_emit.bp",
+      "to": "mods/seraphim-rework/effects/emitters/ball_strike_beam_emit.bp",
+      "sha256_before": "dacb0d7dc0e082b85b135bcadae86efbadaf3db61dedebe18b26dfa086b996f3"
+    },
+    {
+      "from": "mods/seraphim-rework/units/GGA0403/GGA0403_albedo.dds",
+      "to": "mods/seraphim-extra-units/units/GGA0403/GGA0403_albedo.dds",
+      "sha256_before": "8be23486d944cbaa9012ea92f472b7565d7de8e347528fc8d041203003959c90"
+    },
+    {
+      "from": "mods/seraphim-rework/units/GGA0403/GGA0403_lod0.scm",
+      "to": "mods/seraphim-extra-units/units/GGA0403/GGA0403_lod0.scm",
+      "sha256_before": "edc6c1e8a254c20056fc3fdc7bcef5a38f7bb800ca0e072e0be90b2c774fe62a"
+    },
+    {
+      "from": "mods/seraphim-rework/units/GGA0403/GGA0403_lod1.scm",
+      "to": "mods/seraphim-extra-units/units/GGA0403/GGA0403_lod1.scm",
+      "sha256_before": "f047e7de5dc98ec48305aa5bea70023cdcef4b2d1d585ef5dc012c4b65e0b69a"
+    },
+    {
+      "from": "mods/seraphim-rework/units/GGA0403/GGA0403_mesh.bp",
+      "to": "mods/seraphim-extra-units/units/GGA0403/GGA0403_mesh.bp",
+      "sha256_before": "dd9a27f1579fa7819249100c7043ef1cda7e403223a9e77c3179580cfae876de"
+    },
+    {
+      "from": "mods/seraphim-rework/units/GGA0403/GGA0403_normalsTS.dds",
+      "to": "mods/seraphim-extra-units/units/GGA0403/GGA0403_normalsTS.dds",
+      "sha256_before": "59a5f14880d287d017414d399f0bf05188d3a78a79e16e51800f36feba1e19e8"
+    },
+    {
+      "from": "mods/seraphim-rework/units/GGA0403/GGA0403_script.lua",
+      "to": "mods/seraphim-extra-units/units/GGA0403/GGA0403_script.lua",
+      "sha256_before": "06ec72b72c6a3b4b10681ced157112ff8d58ea31871d3f645f8665ec35f6ba90"
+    },
+    {
+      "from": "mods/seraphim-rework/units/GGA0403/GGA0403_specteam.dds",
+      "to": "mods/seraphim-extra-units/units/GGA0403/GGA0403_specteam.dds",
+      "sha256_before": "bfe8234721ad11a81bce97f3321b899ab1ac727242a7d3c17b1c1441fe19bef0"
+    },
+    {
+      "from": "mods/seraphim-rework/units/GGA0403/GGA0403_unit.bp",
+      "to": "mods/seraphim-extra-units/units/GGA0403/GGA0403_unit.bp",
+      "sha256_before": "5a68f28c3709a3233247e9bf7504ecdc5b55a46dea76a52b7879e31752c45e74"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/export_findings.json",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/export_findings.json",
+      "sha256_before": "2fcbdd1c77411cae18f9edd9390e838fc7f729900de9d38a9d9e66321e50ee76"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/file_checks.json",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/file_checks.json",
+      "sha256_before": "bd7a330e7eb357fa0131a525f6fb47d08ee1293963ff560dca1f3197171d5608"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/generate_crescent_tank.py",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/generate_crescent_tank.py",
+      "sha256_before": "2a6d3398f4c74cbae1e666fe29c4994edd0c905d854ee839cb5a7537c1e955e7"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/GGA0403_albedo_preview.png",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/GGA0403_albedo_preview.png",
+      "sha256_before": "b31b510bb1190d022f0d732f0d98b65cd447e45b946d386c30c9414e0b374f79"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/GGA0403_albedo_source.png",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/GGA0403_albedo_source.png",
+      "sha256_before": "b31b510bb1190d022f0d732f0d98b65cd447e45b946d386c30c9414e0b374f79"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/GGA0403_alt_color.png",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/GGA0403_alt_color.png",
+      "sha256_before": "a287482304ca4c1d4a1a9c4467cf466e1eecc1bf62f31efc3a5c60dfeff23695"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/GGA0403_front.png",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/GGA0403_front.png",
+      "sha256_before": "aac31c50441f1778ee27a888a4befa9bd334f5780046892ab7a7396f9b772fc6"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/GGA0403_game_view.png",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/GGA0403_game_view.png",
+      "sha256_before": "48a37b69f4171f68a828c0f1ece73205376a3ddd85a51616d2c72b47f1215f43"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/GGA0403_hull_top.png",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/GGA0403_hull_top.png",
+      "sha256_before": "9d1ccd82df823d41f49aa84ba25ba4bdd9d294d7f75e5fe3c5165ce8173316d0"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/GGA0403_icon.png",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/GGA0403_icon.png",
+      "sha256_before": "afa37e33f7391eefcacd2f1cacd2ca3a3d35f37de7b0da84ee693fa1dd5cc593"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/GGA0403_icon_render.png",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/GGA0403_icon_render.png",
+      "sha256_before": "5ac09fc091e02223eaf58e3002181b46f68171ea0272a7e9dc461a918d534069"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/GGA0403_normalsTS_source.png",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/GGA0403_normalsTS_source.png",
+      "sha256_before": "4139358de9981662a66ed93e4fd1a363c4a913bd2c5d4e6f16da4b08a2b33321"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/GGA0403_rear.png",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/GGA0403_rear.png",
+      "sha256_before": "bb060b1c3fb5d9079f701c3603ce3dec99a2c230f4b0fdbac37f38720d2e59f9"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/GGA0403_side.png",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/GGA0403_side.png",
+      "sha256_before": "3a2f43b98d505b0d751dd02c9ad2e8eb55650785752cd858b168a117ed82d1a2"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/GGA0403_source.mtl",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/GGA0403_source.mtl",
+      "sha256_before": "23e65e5b520fb456c5c45c0ce4be6859b8e19ca1ee4f45453ab80b88321e07c3"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/GGA0403_source.obj",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/GGA0403_source.obj",
+      "sha256_before": "d3dc0487e745472df259877a11cf146e4e0922400b645d32a335d8fb4bfb7a98"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/GGA0403_specteam_source.png",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/GGA0403_specteam_source.png",
+      "sha256_before": "13e9ecae1ac69b4cc5ea851c7ea9e566c352b1c0ad45004c542372f1d37533d4"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/GGA0403_team_mask_preview.png",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/GGA0403_team_mask_preview.png",
+      "sha256_before": "5c1fbb147719c4b917864cb4209e960f7939ca14eb10d7225d3aaf2e691d8e5d"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/GGA0403_top.png",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/GGA0403_top.png",
+      "sha256_before": "8f5d86c2ca9f5040a1114dc681026ccc1ba0957448bcccbdaf42c020d67d1545"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/GGA0403_views.png",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/GGA0403_views.png",
+      "sha256_before": "f514d770c9d2fb0578dd654b6f387a492a62d0a9dc5d7b3a89a435471cdd68bd"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/original_unit_hashes.json",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/original_unit_hashes.json",
+      "sha256_before": "30987cd404c7c09d8b7fb0d7bcd86e4d3a8120adefb9a171fdaf224e013fce5b"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/README.md",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/README.md",
+      "sha256_before": "c71b42ca20c6c0eddda962bedcac22f06c411d6e3add7215b954ebdcc064fda6"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/reference-concept.png",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/reference-concept.png",
+      "sha256_before": "27bb8cbbd401bdacd50efc3b63a2189f5b5568aa30ce231b36295398dacb26fa"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/supcom_binary.py",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/supcom_binary.py",
+      "sha256_before": "22a7e08c93cf7453320bf237117bbcf2cf1d103a7b118b1a7aa791bf37d78300"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/vael_geometry.py",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/vael_geometry.py",
+      "sha256_before": "59783d113c1f635fffda95cfac1df505b9fb83546a0d85cb75d039b7b04cf969"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/__pycache__/generate_crescent_tank.cpython-312.pyc",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/__pycache__/generate_crescent_tank.cpython-312.pyc",
+      "sha256_before": "ecfa447e5b28c3f6c81f570e118fc0e853cb602b4aae424080c78bec04c7dfda"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/__pycache__/supcom_binary.cpython-312.pyc",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/__pycache__/supcom_binary.cpython-312.pyc",
+      "sha256_before": "c8cab13472507b77f7e265919bc93537174414b5c6ce251928dd3a4d09d3313e"
+    },
+    {
+      "from": "mods/seraphim-rework/source-assets/GGA0403/__pycache__/vael_geometry.cpython-312.pyc",
+      "to": "mods/seraphim-extra-units/source-assets/GGA0403/__pycache__/vael_geometry.cpython-312.pyc",
+      "sha256_before": "d0040889ebd10886c04b98f37458fd5c0e4b8e5f32523ba89a490e288d9b5ac6"
+    },
+    {
+      "from": "mods/seraphim-rework/icons/units/GGA0403_icon.dds",
+      "to": "mods/seraphim-extra-units/icons/units/GGA0403_icon.dds",
+      "sha256_before": "8f00a9ddff7e662cf244ad3fb83c8bde271033ce4dc54ccbd670ee9ecebd1ba3"
+    },
+    {
+      "from": "mods/seraphim-rework/textures/ui/common/icons/units/GGA0403_icon.dds",
+      "to": "mods/seraphim-extra-units/textures/ui/common/icons/units/GGA0403_icon.dds",
+      "sha256_before": "8f00a9ddff7e662cf244ad3fb83c8bde271033ce4dc54ccbd670ee9ecebd1ba3"
     }
-  ]
+  ],
+  "archival_blueprints_renamed": []
 }

@@ -95,8 +95,8 @@ pod's charge visual hides, leaving the rear charged for its shot. Effects reset
 on target loss, halt-fire and death. Native weapon timing, interrupted salvos,
 cooldown and fire-clock behavior still need match testing.
 
-The tank uses its own `GGP0402` projectile, `GGP0402Charge` visual and
-`gga0402_impact_*` emitters. Their original GGA0401 assets and projectile material
+The tank shares the local `GGP0402` projectile, `GGP0402Charge` visual and
+`gga0402_impact_*` emitters with GGA0403 Itha-Vael. Their original GGA0401 assets and projectile material
 maps were copied locally during extraction, preserving their appearance. These
 are resources supplied by this mod, not
 another mod or an installed-copy dependency. Each projectile receives 3,000

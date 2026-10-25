@@ -8,4 +8,4 @@
 
 - [Seraphim T1 Missile Launcher](seraphim-t1-missile-launcher/README.md)
 - [Seraphim Rework](seraphim-rework/README.md)
-- [Seraphim Additional Units](seraphim-extra-units/README.md) — Itha-Suun GGA0402 и Vael-Itha GGA2404, независимый мод дополнительных юнитов.
+- [Seraphim Additional Units](seraphim-extra-units/README.md) — Itha-Suun GGA0402 и Itha-Vael GGA0403, независимый мод дополнительных юнитов.
