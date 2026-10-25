@@ -9,10 +9,11 @@ the sandbox unit-spawn menu: `gga0401`.
 
 | Property | Initial value |
 | --- | --- |
-| Hull HP / regeneration | 40,000 / 20 HP/s |
-| Shield | 20,000 HP, personal, 400 energy/s |
-| Shield regeneration / delay | 200 HP/s / 5 s |
-| Shield collapse / energy recovery | 30 s / 5 s |
+| Hull HP / regeneration | 8,000 / 20 HP/s |
+| Shield | 32,000 HP, personal |
+| Shield configured size | 7 |
+| Shield regeneration / delay | 1,000 HP/s / 5 s |
+| Shield collapse / energy recovery | 20 s / 5 s |
 | Main gun | 80 range, 6,000 damage, radius 4 |
 | Main gun charge / rate | 3 s / `RateOfFire = 0.1` |
 | Projectile | Straight phason sphere, speed 35, lifetime 5 s |

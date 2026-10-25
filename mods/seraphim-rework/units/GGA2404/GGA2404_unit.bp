@@ -46,7 +46,10 @@ UnitBlueprint {
         SkirtOffsetX = -1.5, SkirtOffsetZ = -1.5, SkirtSizeX = 4, SkirtSizeZ = 4,
     },
     SizeX = 3.4, SizeY = 4.4, SizeZ = 3.4,
-    ChargeAnimation = { PostShotDelayTicks = 1, CloseTicks = 3, ClosedInwardOffset = 0.42 },
+    ChargeAnimation = {
+        PostShotDelayTicks = 1, CloseTicks = 3, ClosedInwardOffset = 0.42,
+        HoverHeight = 0.08, HoverPeriodTicks = 40,
+    },
     SelectionSizeX = 1.85, SelectionSizeZ = 1.85, SelectionThickness = 1.9,
     StrategicIconName = 'icon_structure3_artillery', StrategicIconSortPriority = 240,
     Weapon = { {

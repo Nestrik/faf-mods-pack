@@ -87,8 +87,8 @@
         ],
         "Defense": {
           "ArmorType": "Experimental",
-          "Health": 40000,
-          "MaxHealth": 40000,
+          "Health": 8000,
+          "MaxHealth": 8000,
           "RegenRate": 20,
           "AirThreatLevel": 70,
           "SurfaceThreatLevel": 400,
@@ -96,13 +96,13 @@
             "PersonalShield": true,
             "OwnerShieldMesh": "/mods/seraphim-rework/units/GGA0401/GGA0401_mesh",
             "ImpactEffects": "SeraphimShieldHit01",
-            "ShieldSize": 6,
+            "ShieldSize": 7,
             "ShieldVerticalOffset": 0,
             "RegenAssistMult": 60,
-            "ShieldMaxHealth": 20000,
-            "ShieldRegenRate": 200,
+            "ShieldMaxHealth": 32000,
+            "ShieldRegenRate": 1000,
             "ShieldRegenStartTime": 5,
-            "ShieldRechargeTime": 30,
+            "ShieldRechargeTime": 20,
             "ShieldEnergyDrainRechargeTime": 5
           }
         },
@@ -657,7 +657,7 @@
         }
       },
       "path": "D:\\Games\\FafModsCreate\\mods\\seraphim-rework\\units\\GGA0401\\GGA0401_unit.bp",
-      "sha256": "0d13b768ac97fa8732d6527cb0903f97624baaee6d67fb12f481971e5128ea11",
+      "sha256": "7abbe800834f85688b01b311cfadb63bab18d02acb49d7da397dc2b4624f5615",
       "script": "D:\\Games\\FafModsCreate\\mods\\seraphim-rework\\units\\GGA0401\\GGA0401_script.lua"
     },
     {
@@ -2060,11 +2060,11 @@
             "MeshZ": "/effects/entities/Shield01/Shield01z_mesh",
             "RegenAssistMult": 60,
             "ShieldEnergyDrainRechargeTime": 5,
-            "ShieldMaxHealth": 6000,
-            "ShieldRechargeTime": 25,
-            "ShieldRegenRate": 100,
+            "ShieldMaxHealth": 26000,
+            "ShieldRechargeTime": 10,
+            "ShieldRegenRate": 1000,
             "ShieldRegenStartTime": 3,
-            "ShieldSize": 18,
+            "ShieldSize": 12,
             "ShieldVerticalOffset": -2
           }
         },
@@ -2117,11 +2117,11 @@
         },
         "Economy": {
           "AdjacentStructureEnergyMod": -5,
-          "BuildCostEnergy": 360000,
-          "BuildCostMass": 20000,
-          "BuildTime": 30000,
+          "BuildCostEnergy": 90000,
+          "BuildCostMass": 6000,
+          "BuildTime": 11000,
           "MaintenanceConsumptionPerSecondEnergy": 0,
-          "ProductionPerSecondEnergy": 15000,
+          "ProductionPerSecondEnergy": 25000,
           "RebuildBonusIds": [
             "gga1401"
           ]
@@ -2194,7 +2194,7 @@
         }
       },
       "path": "D:\\Games\\FafModsCreate\\mods\\seraphim-rework\\units\\GGA1401\\GGA1401_unit.bp",
-      "sha256": "0607a1f99bf04f30ecd7744afd0b477ab546a136ab40b9011ede5baca3a62776",
+      "sha256": "c5ea9fe3adadf0c2f6153463e01ca7ec197592961d42a877a1b2f4147c3052cd",
       "script": "D:\\Games\\FafModsCreate\\mods\\seraphim-rework\\units\\GGA1401\\GGA1401_script.lua"
     },
     {
@@ -18635,7 +18635,7 @@
       "Юнит",
       "GGA0401",
       "Defense.Health",
-      40000,
+      8000,
       "int",
       "D:\\Games\\FafModsCreate\\mods\\seraphim-rework\\units\\GGA0401\\GGA0401_unit.bp"
     ],
@@ -18645,7 +18645,7 @@
       "Юнит",
       "GGA0401",
       "Defense.MaxHealth",
-      40000,
+      8000,
       "int",
       "D:\\Games\\FafModsCreate\\mods\\seraphim-rework\\units\\GGA0401\\GGA0401_unit.bp"
     ],
@@ -18715,7 +18715,7 @@
       "Юнит",
       "GGA0401",
       "Defense.Shield.ShieldSize",
-      6,
+      7,
       "int",
       "D:\\Games\\FafModsCreate\\mods\\seraphim-rework\\units\\GGA0401\\GGA0401_unit.bp"
     ],
@@ -18745,7 +18745,7 @@
       "Юнит",
       "GGA0401",
       "Defense.Shield.ShieldMaxHealth",
-      20000,
+      32000,
       "int",
       "D:\\Games\\FafModsCreate\\mods\\seraphim-rework\\units\\GGA0401\\GGA0401_unit.bp"
     ],
@@ -18755,7 +18755,7 @@
       "Юнит",
       "GGA0401",
       "Defense.Shield.ShieldRegenRate",
-      200,
+      1000,
       "int",
       "D:\\Games\\FafModsCreate\\mods\\seraphim-rework\\units\\GGA0401\\GGA0401_unit.bp"
     ],
@@ -18775,7 +18775,7 @@
       "Юнит",
       "GGA0401",
       "Defense.Shield.ShieldRechargeTime",
-      30,
+      20,
       "int",
       "D:\\Games\\FafModsCreate\\mods\\seraphim-rework\\units\\GGA0401\\GGA0401_unit.bp"
     ],
@@ -34005,7 +34005,7 @@
       "Юнит",
       "GGA1401",
       "Defense.Shield.ShieldMaxHealth",
-      6000,
+      26000,
       "int",
       "D:\\Games\\FafModsCreate\\mods\\seraphim-rework\\units\\GGA1401\\GGA1401_unit.bp"
     ],
@@ -34015,7 +34015,7 @@
       "Юнит",
       "GGA1401",
       "Defense.Shield.ShieldRechargeTime",
-      25,
+      10,
       "int",
       "D:\\Games\\FafModsCreate\\mods\\seraphim-rework\\units\\GGA1401\\GGA1401_unit.bp"
     ],
@@ -34025,7 +34025,7 @@
       "Юнит",
       "GGA1401",
       "Defense.Shield.ShieldRegenRate",
-      100,
+      1000,
       "int",
       "D:\\Games\\FafModsCreate\\mods\\seraphim-rework\\units\\GGA1401\\GGA1401_unit.bp"
     ],
@@ -34045,7 +34045,7 @@
       "Юнит",
       "GGA1401",
       "Defense.Shield.ShieldSize",
-      18,
+      12,
       "int",
       "D:\\Games\\FafModsCreate\\mods\\seraphim-rework\\units\\GGA1401\\GGA1401_unit.bp"
     ],
@@ -34365,7 +34365,7 @@
       "Юнит",
       "GGA1401",
       "Economy.BuildCostEnergy",
-      360000,
+      90000,
       "int",
       "D:\\Games\\FafModsCreate\\mods\\seraphim-rework\\units\\GGA1401\\GGA1401_unit.bp"
     ],
@@ -34375,7 +34375,7 @@
       "Юнит",
       "GGA1401",
       "Economy.BuildCostMass",
-      20000,
+      6000,
       "int",
       "D:\\Games\\FafModsCreate\\mods\\seraphim-rework\\units\\GGA1401\\GGA1401_unit.bp"
     ],
@@ -34385,7 +34385,7 @@
       "Юнит",
       "GGA1401",
       "Economy.BuildTime",
-      30000,
+      11000,
       "int",
       "D:\\Games\\FafModsCreate\\mods\\seraphim-rework\\units\\GGA1401\\GGA1401_unit.bp"
     ],
@@ -34405,7 +34405,7 @@
       "Юнит",
       "GGA1401",
       "Economy.ProductionPerSecondEnergy",
-      15000,
+      25000,
       "int",
       "D:\\Games\\FafModsCreate\\mods\\seraphim-rework\\units\\GGA1401\\GGA1401_unit.bp"
     ],

@@ -1,4 +1,4 @@
-# GGA2301 reference rebuild
+# GGA2301 — Ishal-Thar
 
 General workflow, tools, format details and troubleshooting are documented in
 the [local FAF modeling guide](../../../../docs/FAF_MODELING.md). Read it before
@@ -33,22 +33,44 @@ disk; they approximate lighting, bloom and reflections and are not game screensh
 - Activation opens the frames by 5 degrees into their modeled rest pose. Idle
   slowly rotates the crystal and bobs it by 0.12 source units over 12 seconds.
 
-## Materials
+## Materials — 25 October 2026
 
-The atlas contains polished silver armor, reflective gunmetal supports, chrome
-edges, steel mechanisms, team-color lighting, crystal, lens and dark metal joints.
+Ishal-Thar replaces the former generic in-game name. Its original transparent
+build-menu icon depicts this turret's actual silhouette and replaces the reused
+stock T2 icon in both FAF icon locations. `GGA2301_icon_generated.png` was created
+with the built-in imagegen tool; `icon_prompt.txt` records the prompt.
+Run `prepare_icon.py` to package it as 64×64 BC3 with seven transparent mip levels.
+
+The repainted atlas contains dark silver armor, gunmetal supports, restrained
+silver edges, steel mechanisms, team-color lighting and dark metal joints.
+Armor RGB is about (40,46,50), versus approximately (105,116,129) in the previous
+DDS; edges are about (74,81,86). The original paired contours and nested ovals
+are retained. Both LODs now use the native `Seraphim` shader, as confirmed in
+locally mounted FAF `units.nx2` for XSB2301/XSB2303/XSB2401. Its `effects.nx2`
+`effects/mesh.fx` reads the player mask from Albedo.A, packed normals from G/A,
+and produces white emission from albedo RGB above 0.4 in PBR_Seraphim. Structural
+tiles remain below that threshold; steel shine comes from material channels.
+
+`rebuild_materials.py` rebuilds only texture maps and previews, preserving meshes,
+animations and gameplay. It also remains reproducible through the full generator.
+The former files are saved in `archive/before-ishal-thar-2026-10-25/`.
+
 The material references `reference-seraphim-materials-01.png` and
 `reference-seraphim-materials-02.png` show the requested stock Seraphim finish:
 shiny metal with player-colored paired contours and nested oval markings.
-Structural material reflection/specular channels are high, while the armor and
-support inlays use the team mask without bloom. Fine engraving is also represented
+Structural reflection/specular channels retain controlled metallic shine; armor
+and support inlays use the team mask without bloom. Fine engraving is also represented
 in the normal map. The large panels remain metallic between the colored lines.
-SpecTeam uses R for environment reflection, G for sunlight specular, B for
-brightness/bloom and A for player color. The crystal, light strips and flowing
+SpecTeam uses R for medium-fidelity reflection, G for gloss/PBR roughness and B
+for brightness/bloom. Its A is zero; Albedo.A holds player color. The crystal, light strips and flowing
 armor inlays respond to player color. The crystal is faceted and opaque with the
-stock Unit shader; the reference's glass transmission is approximated by shading.
+Seraphim shader; the reference's glass transmission is approximated by shading.
 The preview renderer reads the reflection channel and tangent-space normal map;
 its analytic environment is illustrative and differs from the game's cubemap.
+Previews now decode the exported DDS instead of source PNGs. All ten material
+mip levels are decoded during this pass; channels remain present under A=0.
+File checks and SCM renders were performed, but this version has not been run
+in a game. Only the project working copy was updated, per the user's request.
 
 ## Export references checked on 2026-10-20
 

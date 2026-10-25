@@ -25,11 +25,14 @@ def sample_map(texture,uv):
             +(texture[y1,x0]*(1-fx)+texture[y1,x1]*fx)*fy)
 
 
-def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24,1.0), size=960):
+def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24,1.0), size=960,
+               posed_vertices=None, hidden_bones=None, runtime_textures=False):
     target_size=size
     size=math.ceil(size*1.5)
     vertices,faces=load_scm(scm)
-    faces=faces[~np.isin(vertices[faces[:,0],16],[10,11])]
+    if posed_vertices is not None:
+        vertices=posed_vertices
+    faces=faces[~np.isin(vertices[faces[:,0],16],[10,11] if hidden_bones is None else hidden_bones)]
     positions=vertices[:,:3]
     a,e=math.radians(azimuth),math.radians(elevation)
     view=normalized((math.sin(a)*math.cos(e),math.sin(e),math.cos(a)*math.cos(e)))
@@ -47,10 +50,12 @@ def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24
     shadow=np.exp(-((xx-size*.5)/(size*.31))**2-((yy-ground_y)/(size*.07))**2)*.42
     canvas*=1-shadow[:,:,None]
     zbuffer=np.full((size,size),-np.inf)
-    albedo_rgba=np.asarray(Image.open(asset_dir/"GGA2404_albedo_source.png"))/255
+    maps=Path(scm).parent if runtime_textures else asset_dir
+    suffix='.dds' if runtime_textures else '_source.png'
+    albedo_rgba=np.asarray(Image.open(maps/("GGA2404_albedo"+suffix)))/255
     albedo=albedo_rgba[:,:,:3]
-    spec=np.asarray(Image.open(asset_dir/"GGA2404_specteam_source.png"))/255
-    normal_map=np.asarray(Image.open(asset_dir/"GGA2404_normalsTS_source.png"))/127.5-1
+    spec=np.asarray(Image.open(maps/("GGA2404_specteam"+suffix)))/255
+    normal_map=np.asarray(Image.open(maps/("GGA2404_normalsTS"+suffix)))/127.5-1
     sun=normalized((-.45,.75,.65)); half=normalized(sun+view)
     for face in faces:
         geometric=np.cross(positions[face[1]]-positions[face[0]],positions[face[2]]-positions[face[0]])

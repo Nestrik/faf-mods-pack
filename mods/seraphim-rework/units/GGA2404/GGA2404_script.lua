@@ -1,6 +1,8 @@
 local SStructureUnit = import('/lua/seraphimunits.lua').SStructureUnit
 local PhasonWeapon = import('/lua/seraphimweapons.lua').SDFExperimentalPhasonProj
 
+-- The game's Lua parser does not support the Lua 5.1 length operator.
+-- Keep array insertion compatible with the engine, including in imported FX.
 GGA2404 = ClassUnit(SStructureUnit) {
     OnStopBeingBuilt = function(self, builder, layer)
         SStructureUnit.OnStopBeingBuilt(self, builder, layer)
@@ -12,6 +14,7 @@ GGA2404 = ClassUnit(SStructureUnit) {
             local rotator = CreateRotator(self, bone, 'z')
             rotator:SetTargetSpeed(150)
             rotator:SetAccel(300)
+            table.insert(self.FieldRotators, rotator)
             self.Trash:Add(rotator)
         end
         self.ChargeRotator = CreateRotator(self, 'Charge', 'z')
@@ -23,7 +26,7 @@ GGA2404 = ClassUnit(SStructureUnit) {
         self.GondolaSliders = {}
         for _, bone in ipairs({'GondolaL', 'GondolaR'}) do
             local slider = CreateSlider(self, bone)
-            self.GondolaSliders[#self.GondolaSliders + 1] = slider
+            table.insert(self.GondolaSliders, slider)
             self.Trash:Add(slider)
         end
         -- A visual projectile inherits the launcher's army and visibility. It is
@@ -36,19 +39,24 @@ GGA2404 = ClassUnit(SStructureUnit) {
             visual:SetChargeProgress(0)
             self.Trash:Add(visual)
         end
+        self:ForkThread(self.HoverThread)
         self:SetChargePose(0, false)
         self:BeginRecharge(false)
-        self:ForkThread(self.HoverThread)
         if LOG then LOG('Vael-Itha GGA2404: charge animation initialized') end
     end,
 
     HoverThread = function(self)
-        while not self:BeenDestroyed() do
-            self.HoverSlider:SetGoal(0, 0.6, 0):SetSpeed(0.6)
-            WaitSeconds(2)
-            if self:BeenDestroyed() then return end
-            self.HoverSlider:SetGoal(0, -0.6, 0):SetSpeed(0.6)
-            WaitSeconds(2)
+        local cfg = self.Blueprint.ChargeAnimation
+        local amplitude = cfg.HoverHeight / self.Blueprint.Display.UniformScale
+        local phase = 0
+        local step = 2 * math.pi / cfg.HoverPeriodTicks
+        -- Follow a continuous wave instead of moving to two endpoints and
+        -- pausing. Hover is above pitch in the rig, so it remains vertical.
+        self.HoverSlider:SetSpeed(amplitude * step * 10)
+        while not self.Dead and not self:BeenDestroyed() do
+            self.HoverSlider:SetGoal(0, amplitude * math.sin(phase), 0)
+            phase = math.mod(phase + step, 2 * math.pi)
+            WaitTicks(1)
         end
     end,
 
@@ -59,8 +67,10 @@ GGA2404 = ClassUnit(SStructureUnit) {
         local nativeOffset = cfg.ClosedInwardOffset / self.Blueprint.Display.UniformScale
         local offset = nativeOffset * (1 - openness)
         local speed = previous and math.max(0.001, math.abs(openness - previous) * nativeOffset * 10) or -1
-        self.GondolaSliders[1]:SetGoal(offset, 0, 0):SetSpeed(speed)
-        self.GondolaSliders[2]:SetGoal(-offset, 0, 0):SetSpeed(speed)
+        self.GondolaSliders[1]:SetGoal(offset, 0, 0)
+        self.GondolaSliders[1]:SetSpeed(speed)
+        self.GondolaSliders[2]:SetGoal(-offset, 0, 0)
+        self.GondolaSliders[2]:SetSpeed(speed)
         if self.ChargeVisual and not self.ChargeVisual:BeenDestroyed() then
             self.ChargeVisual:SetChargeProgress(growing and (0.04 + 0.96 * openness) or 0)
         end

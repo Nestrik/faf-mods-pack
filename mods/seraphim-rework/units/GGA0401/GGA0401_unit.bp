@@ -20,7 +20,7 @@ UnitBlueprint {
         'TANK', 'VISIBLETORECON',
     },
     Defense = {
-        ArmorType = 'Experimental', Health = 40000, MaxHealth = 40000,
+        ArmorType = 'Experimental', Health = 8000, MaxHealth = 8000,
         RegenRate = 20, AirThreatLevel = 70, SurfaceThreatLevel = 400,
         Shield = {
             PersonalShield = true,
@@ -29,10 +29,10 @@ UnitBlueprint {
             -- as the owner mesh; shield hits use native Seraphim effects.
             OwnerShieldMesh = '/mods/seraphim-rework/units/GGA0401/GGA0401_mesh',
             ImpactEffects = 'SeraphimShieldHit01',
-            ShieldSize = 6, ShieldVerticalOffset = 0,
+            ShieldSize = 7, ShieldVerticalOffset = 0,
             RegenAssistMult = 60,
-            ShieldMaxHealth = 20000, ShieldRegenRate = 200,
-            ShieldRegenStartTime = 5, ShieldRechargeTime = 30,
+            ShieldMaxHealth = 32000, ShieldRegenRate = 1000,
+            ShieldRegenStartTime = 5, ShieldRechargeTime = 20,
             ShieldEnergyDrainRechargeTime = 5,
         },
     },

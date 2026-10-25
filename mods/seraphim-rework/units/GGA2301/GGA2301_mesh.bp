@@ -8,7 +8,7 @@ MeshBlueprint {
             SpecularName = '/mods/seraphim-rework/units/GGA2301/GGA2301_specteam.dds',
             NormalsName = '/mods/seraphim-rework/units/GGA2301/GGA2301_normalsTS.dds',
             LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
-            ShaderName = 'Unit',
+            ShaderName = 'Seraphim',
         },
         {
             LODCutoff = 215,
@@ -17,7 +17,7 @@ MeshBlueprint {
             SpecularName = '/mods/seraphim-rework/units/GGA2301/GGA2301_specteam.dds',
             NormalsName = '/mods/seraphim-rework/units/GGA2301/GGA2301_normalsTS.dds',
             LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
-            ShaderName = 'Unit',
+            ShaderName = 'Seraphim',
         },
     },
     SortOrder = 1000,

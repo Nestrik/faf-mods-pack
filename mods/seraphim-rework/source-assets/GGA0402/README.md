@@ -84,7 +84,9 @@ One rack has `MuzzleBones = { 'MainForeMuzzle', 'MainAftMuzzle' }`,
 `MuzzleSalvoSize = 2`, `MuzzleSalvoDelay = 0.3`, `ProjectilesPerOnFire = 1`
 and damage 3,000 per shell. `RackRecoilDistance = 0` avoids FAF's delayed-salvo
 initialization error. There is no second independent main weapon or additional
-damage callback. Range, AA, shield, hull, movement and cost are copied.
+damage callback. Range, AA, shield, hull, movement and cost retain the original
+GGA0401 values from before its 24 October rebalance. GGA0402 keeps its own
+40,000 hull HP and 20,000 HP personal shield.
 
 `RackSalvoChargeTime = 3` replaces per-muzzle charging; `MuzzleChargeDelay = 0`.
 Otherwise the native firing loop would charge another three seconds for the

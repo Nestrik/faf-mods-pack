@@ -50,7 +50,7 @@ UnitBlueprint {
         FactionName = 'Seraphim',
         Icon = 'land',
         SelectionPriority = 5,
-        UnitName = '<LOC gga2301_name>Seraphim Heavy Point Defense',
+        UnitName = '<LOC gga2301_name>Ishal-Thar',
     },
     Intel = { VisionRadius = 24 },
     Interface = {

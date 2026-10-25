@@ -231,3 +231,50 @@ a FAF screenshot or proof of game rendering. See charge_dark_validation.json.
 Pre-change assets are archived in before-2026-10-22-charge-dark-metal.zip. The
 revised initialization/materials have passed file and mocked API checks only.
 A match with this revision and the friend's game.log are still needed.
+
+## October 25: confirmed script-load failure and idle rebuild
+
+The local FAF 3840 `game_28011333.log`, lines 985–987, identifies the actual
+failure: `gga2404_script.lua(28): ']' expected near 'end'`. The module never
+defined `TypeClass`, so the game substituted the generic Unit class. This explains
+why the native weapon could aim and play its sound while the custom charge,
+animation and projectile behavior were missing. The October 22 rotator change
+did not address this parser failure.
+
+The unsupported Lua 5.1 array-length operator is replaced with `table.insert`
+in both the gondola array and `lua/vael_itha_effects.lua`. The second occurrence
+would otherwise prevent the charge/shot effect module from loading after the
+unit script was repaired. Slider setters are now separate calls too; field
+rotators are retained in their named list as well as Trash.
+
+Idle hover is rebuilt as a continuous sine wave updated each simulation tick:
+±0.08 game units over 40 ticks (4 seconds), instead of two linear moves with
+pauses. The vertical Hover bone remains above TurretPitch, and no animator keys
+the aiming or muzzle bones. Gondola closure, paid autonomous charge, ready hold,
+field rotation and shot recoil keep their existing procedural controllers.
+The configured charge remains 2000 energy and the nominal firing cycle 8 seconds.
+No replacement full-rig SCA is used: the old clips override aiming and stay obsolete.
+
+`preview_animation.py` reads the exported SCM skeleton and actual runtime DDS,
+then generates mechanical cycle frames and front/side/top views in
+`animation-rebuild-2026-10-25/`. Run it with Python, numpy and Pillow. These are
+illustrative mesh poses, without the engine's particles, economy or firing logic.
+SCM and texture geometry/materials did not require regeneration.
+
+Checks recorded in `animation-rebuild-2026-10-25/verification.json`:
+all eight relevant Lua/blueprint files compile with Lua 5.1, and their code has no
+unsupported length operator; both LODs have the same 12-bone skeleton and matching
+Charge/Muzzle origins. Including the larger hover, conservative foundation
+clearance is 0.246 / 0.239 game units, and closed gondola clearance is 0.0985.
+Compilation with Lua 5.1 is a syntax check, not a substitute for the engine parser.
+
+Previous runtime resources are in `archive/before-2026-10-25-animation-repair.zip`;
+the installed previous resources, including obsolete SCA files, are separately
+preserved in `archive/installed-before-2026-10-25-animation-repair.zip`.
+The complete mod folder is copied for local deployment while preserving unrelated
+installed runtime files that differ from ongoing workspace edits. Changed runtime files are compared
+by SHA256. **No new match was run:** window control was denied with
+`Computer Use was not approved to use forgedalliance`. The old match log proves the
+original load failure, not successful firing of this revision. Verify in a fresh
+match: initial charge without a target, hover, aiming, ready hold, projectile,
+recoil/closing/recharge, energy stall and target/hold-fire changes.

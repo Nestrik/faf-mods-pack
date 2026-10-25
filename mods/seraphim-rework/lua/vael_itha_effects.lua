@@ -27,7 +27,7 @@ function CreateOrb(entity, progress)
         local emitter = CreateAttachedEmitter(entity, -1, entity.Army, FX .. spec[1] .. '_emit.bp')
         TintEmitter(emitter, entity.Army)
         entity.Trash:Add(emitter)
-        effects[#effects + 1] = {Emitter=emitter, Rate=spec[2]}
+        table.insert(effects, {Emitter=emitter, Rate=spec[2]})
     end
     UpdateOrb(effects, progress or 1)
     return effects

@@ -5,7 +5,7 @@ const require=createRequire('C:/Users/Nestr/.cache/codex-runtimes/codex-primary-
 const {Workbook,SpreadsheetFile,FileBlob}=await import(pathToFileURL(require.resolve('@oai/artifact-tool')).href);
 const dir='D:/Games/FafModsCreate/outputs/experimental_units_20261024';
 if(process.argv.includes('--filters-only')){
-  const filename=`${dir}/Экспериментальные_юниты_Seraphim_Rework_и_BlackOpsFAF.xlsx`;
+  const filename=`${dir}/Экспериментальные_юниты_Seraphim_Rework_и_BlackOpsFAF_обновлено.xlsx`;
   const existing=await SpreadsheetFile.importXlsx(await FileBlob.load(filename));
   for(let i=0;i<8;i++)for(const t of existing.worksheets.getItemAt(i).tables.items)t.showFilterButton=true;
   existing.recalculate();
@@ -19,7 +19,7 @@ const data=JSON.parse(await fs.readFile(`${dir}/work/data.json`,'utf8'));
 const wb=Workbook.create();
 const units=data.units;
 const sheets={};
-const sources=[...new Set([...data.raw.map(x=>x[7]),...data.scripts.map(x=>x[5])])];
+const sources=[...new Set(data.raw.map(x=>x[7]))];
 const sourceMap=new Map(sources.map((p,i)=>[p,`S${String(i+1).padStart(3,'0')}`]));
 const clean=s=>typeof s==='string'?s.replace(/<LOC [^>]+>/g,''):s;
 const val=(o,p)=>{for(const k of p.split('.')) o=o?.[k]; return o??null;};
@@ -116,14 +116,6 @@ const ws=table('Оружие','Все записи вооружения','136 з
 ws.getRange(`G6:I${weaponRows.length+5}`).format.wrapText=true;
 ws.getRange(`A6:AN${weaponRows.length+5}`).format.rowHeight=40;
 
-const rawRows=data.raw.map(r=>[...r.slice(0,5),r[5],r[6],sourceMap.get(r[7])]);
-table('Все поля','Все явно заданные поля чертежей','Полный развёрнутый набор параметров юнитов и 72 привязок чертежей снарядов. Индексы массивов начинаются с 1.',
- ['ID юнита','Название','Объект','ID / виртуальный путь','Поле Lua','Значение','Тип данных','Источник'],rawRows,{0:15,1:29,2:13,3:65,4:70,5:100,6:14,7:12});
-
-const scriptRows=data.scripts.map(r=>[...r.slice(0,5),sourceMap.get(r[5])]);
-table('Скрипты','Скрипты и динамическая механика','Исходные строки скриптов юнитов, снарядов и общих модулей. Фильтруйте по ID, типу и коду источника.',
- ['ID юнита','Название / модуль','Тип скрипта','Строка','Код Lua','Источник'],scriptRows,{0:15,1:34,2:30,3:10,4:150,5:12});
-
 const notes=[
  ['Общее','Состав','21 основной юнит из прошлого запроса: 4 Seraphim Rework и 17 BlackOpsFAF. Ещё 3 служебных объекта вынесены в отдельную категорию в сравнении.'],
  ['Общее','База данных','Снимок локальных файлов на 24.10.2026. Seraphim Rework — рабочий проект, BlackOpsFAF — установленные копии.'],
@@ -131,7 +123,6 @@ const notes=[
  ['Общее','Работа','BuildTime — очки строительства. Без ограничений ресурсов время = BuildTime / суммарная эффективная скорость строительства.'],
  ['Общее','Вооружение','Damage — исходное поле оружия. Не является DPS. RateOfFire не учитывает автоматически зарядку, стойки, залпы, задержки и специальные скрипты.'],
  ['Общее','Дальность','Максимальная дальность в сравнении берётся из MaxRadius всех записей оружия, кроме записей смерти. Поэтому значение может относиться к ПВО или ПРО.'],
- ['Общее','Полнота','Все явно заданные поля выбранных unit.bp и найденных связанных projectile.bp сохранены на листе «Все поля», включая визуальные и технические параметры. Унаследованные значения движка не подставлялись.'],
  ['Общее','Скрипты','Изменения во время игры, дочерние юниты и переключаемые режимы отражены в исходных скриптах и замечаниях. Числа в сравнении не являются результатом запуска симуляции.'],
  ['Общее','Проверка','Чертежи и связи снарядов прочитаны из локальных файлов. Все прямые и найденные дочерние ссылки на projectile.bp разрешены. Игра не запускалась.'],
  ['BlackOpsFAF','StellarBuff','Цена Philadelphia не меняется. При активном баффе ProductionPerSecondMass умножается на 2, ProductionPerSecondEnergy = исходное × 2 − 1. Основные таблицы показывают базовые значения.'],
@@ -162,13 +153,13 @@ console.log(inspect.ndjson);
 const errors=await wb.inspect({kind:'match',searchTerm:'#REF!|#DIV/0!|#VALUE!|#NAME\\?|#N/A|#NUM!|#NULL!|#SPILL!|#CALC!',options:{useRegex:true,maxResults:20},summary:'Formula errors',maxChars:1500});
 console.log(errors.ndjson);
 for(const [name,s] of Object.entries(sheets)){
-  const range=name==='Примечания'?'A2:C11':name==='Все поля'?'A2:H13':name==='Скрипты'?'A2:F13':name==='Оружие'?'A2:O13':name==='Сравнение'?'A2:O13':'A2:L13';
+  const range=name==='Примечания'?'A2:C11':name==='Оружие'?'A2:O13':name==='Сравнение'?'A2:O13':'A2:L13';
   const preview=await wb.render({sheetName:name,range,scale:1.25,format:'png'});
   await fs.writeFile(`${dir}/work/preview_${Object.keys(sheets).indexOf(name)+1}.png`,new Uint8Array(await preview.arrayBuffer()));
   console.log(`Rendered ${name}`);
 }
 const output=await SpreadsheetFile.exportXlsx(wb);
-const filename=`${dir}/Экспериментальные_юниты_Seraphim_Rework_и_BlackOpsFAF.xlsx`;
+const filename=`${dir}/Экспериментальные_юниты_Seraphim_Rework_и_BlackOpsFAF_обновлено.xlsx`;
 await output.save(filename);
-await fs.writeFile(`${dir}/work/verification.json`,JSON.stringify({units:units.length,main:21,helpers:3,weapons:weaponRows.length,fields:rawRows.length,scripts:scriptRows.length,sources:sources.length,sheets:Object.keys(sheets),output:filename},null,2));
-console.log(JSON.stringify({output:filename,sheets:Object.keys(sheets).length,units:units.length,weapons:weaponRows.length,fields:rawRows.length}));
+await fs.writeFile(`${dir}/work/verification.json`,JSON.stringify({units:units.length,main:21,helpers:3,weapons:weaponRows.length,sourceFields:data.raw.length,sources:sources.length,sheets:Object.keys(sheets),output:filename},null,2));
+console.log(JSON.stringify({output:filename,sheets:Object.keys(sheets).length,units:units.length,weapons:weaponRows.length,sourceFields:data.raw.length}));

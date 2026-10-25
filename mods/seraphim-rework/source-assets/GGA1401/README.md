@@ -91,13 +91,13 @@ of the exported SCM/SCA. This does not substitute for an engine match.
 | Parameter | Value |
 | --- | ---: |
 | Technology | Experimental (T4), no TECH3 category |
-| Energy production | 15,000/s |
-| Shield upkeep | 0; full 15,000/s remains available |
+| Energy production | 25,000/s |
+| Shield upkeep | 0; full 25,000/s remains available |
 | Hull | 24,000 HP |
-| Shield | 6,000 HP, diameter 18, vertical offset -2 |
-| Shield regeneration | 100 HP/s after 3 seconds without damage |
-| Shield recharge | 25 seconds after collapse, 5 after energy depletion |
-| Construction | 20,000 mass, 360,000 energy, 30,000 build points |
+| Shield | 26,000 HP, size 12, vertical offset -2 |
+| Shield regeneration | 1,000 HP/s after 3 seconds without damage |
+| Shield recharge | 10 seconds after collapse, 5 after energy depletion |
+| Construction | 6,000 mass, 90,000 energy, 11,000 build points |
 | Build skirt | 8×8, offsets -1.5/-1.5, same as XSB1301 |
 | Ground footprint | 5×5, same as XSB1301 |
 | Death behavior | Stock Othuy storm from Ythotha; no ordinary blast |
@@ -108,8 +108,8 @@ toggle controls only the dome; power production continues. T3 adjacency bonuses
 are retained instead of inventing an unverified T4 adjacency table. The unit is
 an independent build, not an upgrade or replacement for XSB1301.
 
-The shield dimensions, costs and hull are initial balance choices.
-The requested 15,000 production and T3-sized placement are fixed requirements.
+The shield dimensions, costs, production and hull are current balance choices.
+The T3-sized placement is unchanged.
 
 ## Destruction
 
@@ -158,6 +158,6 @@ See `docs/M28AI_COMPATIBILITY.md`; actual AI construction is unverified.
 
 Status: exported files and software previews are checked separately from game
 behavior. No local match has been run for this unit. In game, verify construction
-menu visibility, 15,000/s economy increase, dome coverage/interception, toggle,
+menu visibility, 25,000/s economy increase, dome coverage/interception, toggle,
 recharge, animation, adjacency, Othuy release without an ordinary blast,
 unfinished-building destruction, safe reclaim and the game log.

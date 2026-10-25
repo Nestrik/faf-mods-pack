@@ -6,6 +6,7 @@ This module builds real mesh geometry; preview images are renders of the SCM.
 from __future__ import annotations
 
 import math
+from io import BytesIO
 import struct
 from collections import defaultdict
 from pathlib import Path
@@ -273,12 +274,13 @@ def make_textures(asset_dir, unit_dir, save_dds):
     specteam=np.zeros_like(albedo)
     normals=np.zeros_like(albedo)
     normals[:]=(128,128,128,128)
-    # Every structural finish is silver metal. SpecTeam R/G carry the shine,
-    # rather than gold paint or prepainted reflections in the diffuse map.
-    palettes=((145,159,177),(84,100,120),(184,196,211),(108,127,149),
-              (176,192,199),(156,188,198),(48,91,106),(58,72,91))
-    finishes={"armor":(241,234),"dark":(224,220),"edge":(251,246),
-              "steel":(235,232),"joint":(216,221)}
+    # Ishal-Thar: restrained steel like the native Seraphim material contract.
+    # In PBR_Seraphim RGB > 102 adds white emission, so armor stays below it.
+    # Shine comes from the material, with darker supports and modest edge contrast.
+    palettes=((40,46,50),(18,23,27),(72,80,86),(33,41,47),
+              (76,88,92),(48,68,65),(34,63,57),(11,16,18))
+    finishes={"armor":(225,185),"dark":(185,160),"edge":(240,205),
+              "steel":(210,180),"joint":(140,140)}
     u,v=np.meshgrid(np.linspace(0,1,128),np.linspace(0,1,256))
     brush=.65*np.sin(v*255*.83)+.5*np.sin(u*127*.53+v*255*.16)
     sheen=1.6*np.sin(math.pi*u)+1.2*np.cos(v*math.pi*2)
@@ -303,25 +305,23 @@ def make_textures(asset_dir, unit_dir, save_dds):
             normals[region][:,:,3]=np.clip((nx*.5+.5)*255,0,255).astype(np.uint8)
         elif name in ("team","crystal","lens"):
             packed[:,:,3]=255
-            packed[:,:,2]={"team":130,"crystal":128,"lens":190}[name]
+            packed[:,:,2]={"team":65,"crystal":85,"lens":125}[name]
             if name=="crystal":
                 shard=12*np.sin(22*u+9*v)+8*np.sin(43*u-27*v)
                 value+=(shard+20*np.maximum(0,1-abs(u-.5-v*.15)*4))[:,:,None]
                 packed[:,:,0]=115; packed[:,:,1]=190
             elif name=="lens":
                 value+=(25*np.sin(u*math.pi)*np.sin(v*math.pi))[:,:,None]
-        # 2026-10-22: darker hull, retaining gloss and player-color inlays.
-        value *= .76
-        packed[:,:,0] *= .88
-        packed[:,:,2] *= .85
         albedo[region][:,:,:3]=np.clip(value,0,255).astype(np.uint8)
-        albedo[region][:,:,3]=255
+        # Native Seraphim reads team color from Albedo.A, not SpecTeam.A.
+        albedo[region][:,:,3]=np.clip(packed[:,:,3],0,255).astype(np.uint8)
+        packed[:,:,3]=0
         specteam[region]=np.clip(packed,0,255).astype(np.uint8)
     for suffix,data in (("albedo",albedo),("specteam",specteam),("normalsTS",normals)):
         im=Image.fromarray(data)
         save_dds(im,unit_dir/f"GGA2301_{suffix}.dds",independent_channels=True)
         im.save(asset_dir/f"GGA2301_{suffix}_source.png")
-    Image.fromarray(specteam[:,:,3]).save(asset_dir/"GGA2301_team_mask_preview.png")
+    Image.fromarray(albedo[:,:,3]).save(asset_dir/"GGA2301_team_mask_preview.png")
     Image.fromarray(albedo).save(asset_dir/"GGA2301_albedo_preview.png")
 
 
@@ -365,7 +365,23 @@ def sample_map(texture,uv):
             +(texture[y1,x0]*(1-fx)+texture[y1,x1]*fx)*fy)
 
 
-def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24,1.0), size=960):
+def load_dds_mip(path, level=0):
+    """Decode a shipped BC3 mip, including data under zero alpha."""
+    data=Path(path).read_bytes()
+    h,w=struct.unpack_from('<II',data,12)
+    assert 0 <= level < struct.unpack_from('<I',data,28)[0]
+    offset=128
+    for _ in range(level):
+        offset+=((w+3)//4)*((h+3)//4)*16
+        w,h=max(1,w//2),max(1,h//2)
+    header=bytearray(data[:128])
+    struct.pack_into('<II',header,12,h,w)
+    struct.pack_into('<I',header,28,1)
+    length=((w+3)//4)*((h+3)//4)*16
+    return Image.open(BytesIO(header+data[offset:offset+length])).convert('RGBA')
+
+
+def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24,1.0), size=960, texture_mip=0):
     target_size=size
     size=math.ceil(size*1.5)
     vertices,faces=load_scm(scm)
@@ -386,9 +402,10 @@ def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24
     shadow=np.exp(-((xx-size*.5)/(size*.31))**2-((yy-ground_y)/(size*.07))**2)*.42
     canvas*=1-shadow[:,:,None]
     zbuffer=np.full((size,size),-np.inf)
-    albedo=np.asarray(Image.open(asset_dir/"GGA2301_albedo_source.png"))[:,:,:3]/255
-    spec=np.asarray(Image.open(asset_dir/"GGA2301_specteam_source.png"))/255
-    normal_map=np.asarray(Image.open(asset_dir/"GGA2301_normalsTS_source.png"))/127.5-1
+    unit_dir=Path(scm).parent
+    albedo=np.asarray(load_dds_mip(unit_dir/"GGA2301_albedo.dds",texture_mip))/255
+    spec=np.asarray(load_dds_mip(unit_dir/"GGA2301_specteam.dds",texture_mip))/255
+    normal_map=np.asarray(load_dds_mip(unit_dir/"GGA2301_normalsTS.dds",texture_mip))/127.5-1
     sun=normalized((-.45,.75,.65)); half=normalized(sun+view)
     for face in faces:
         geometric=np.cross(positions[face[1]]-positions[face[0]],positions[face[2]]-positions[face[0]])
@@ -418,8 +435,10 @@ def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24
         normal=tangent*perturb[:,3:4]+bitangent*perturb[:,1:2]+normal*nz
         normal/=np.maximum(np.linalg.norm(normal,axis=1,keepdims=True),1e-9)
         base=sample_map(albedo,uv); packed=sample_map(spec,uv)
-        team=packed[:,3:4]
-        tint=np.clip(np.array(player)*base*1.35,0,1)
+        team=base[:,3:4]
+        base=(base[:,[2,2,1]]+np.array((.4,.43,.47)))*.8
+        ndotv=np.clip(normal@view,0,1)[:,None]
+        tint=(2*ndotv**6-2*ndotv+1.5)*np.array(player)
         base=base*(1-team)+tint*team
         diffuse=np.clip(normal@sun,0,1)[:,None]
         sky=np.clip(normal[:,1:2]*.1+.10,.02,.20)
@@ -430,11 +449,12 @@ def render_scm(scm, asset_dir, output, azimuth=35, elevation=19, player=(.12,.24
         band=np.exp(-((reflection[:,1:2]-.19)/.115)**2)*.46
         softbox=np.clip(reflection@normalized((-.55,.45,.7)),0,1)[:,None]**28*.85
         environment+=band+softbox
-        metal=packed[:,0:1]
+        metal=np.ones_like(packed[:,0:1])
         reflected_tint=(1-team)*(.35+.60*base)+team*(.05+.9*base)
         color=base*(.32+.46*diffuse+sky*.5)*(1-.55*metal)
         color+=environment*metal*reflected_tint
-        shine=(np.clip(normal@half,0,1)**65)[:,None]*packed[:,1:2]*.56
+        gloss=packed[:,1:2]
+        shine=np.clip(normal@half,0,1)[:,None]**(18+62*gloss)*gloss*.7
         color+=shine*(.85+.15*base)
         color+=base*packed[:,2:3]*.32
         patch=canvas[lo[1]:hi[1]+1,lo[0]:hi[0]+1]
