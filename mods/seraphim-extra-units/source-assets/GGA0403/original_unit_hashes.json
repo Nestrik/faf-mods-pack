@@ -1,0 +1,66 @@
+[
+  {
+    "Path": "D:\\Games\\FafModsCreate\\mods\\seraphim-extra-units\\units\\GGA0401\\GGA0401_albedo.dds",
+    "Hash": "E26A5CFF8DFD581B7A873CB542F48A305732ADA7A5C02DB87B982B7828770919"
+  },
+  {
+    "Path": "D:\\Games\\FafModsCreate\\mods\\seraphim-extra-units\\units\\GGA0401\\GGA0401_lod0.scm",
+    "Hash": "B5F604DC4E003E24F34CF7F2FF3DAF73F95C1B410E373CB82C55D8EBAE285DFF"
+  },
+  {
+    "Path": "D:\\Games\\FafModsCreate\\mods\\seraphim-extra-units\\units\\GGA0401\\GGA0401_lod1.scm",
+    "Hash": "E40F00FB9C0FB0BAC3093CF3579CEE45185B731A8E32113C64173C0FAF93A917"
+  },
+  {
+    "Path": "D:\\Games\\FafModsCreate\\mods\\seraphim-extra-units\\units\\GGA0401\\GGA0401_mesh.bp",
+    "Hash": "4F638B00ECA7AC50FFC12D38A4A04BEA529EC52910379C577A57B4387DA27832"
+  },
+  {
+    "Path": "D:\\Games\\FafModsCreate\\mods\\seraphim-extra-units\\units\\GGA0401\\GGA0401_normalsTS.dds",
+    "Hash": "5B6C955D6E6DBF0AD788D01E2FA671F72E09E31C600AADAC09B249787EFF5145"
+  },
+  {
+    "Path": "D:\\Games\\FafModsCreate\\mods\\seraphim-extra-units\\units\\GGA0401\\GGA0401_script.lua",
+    "Hash": "D2194B753B36C88CEBCB5F95DE893EF7008860D8B77F11DD82D48335A5A2EB20"
+  },
+  {
+    "Path": "D:\\Games\\FafModsCreate\\mods\\seraphim-extra-units\\units\\GGA0401\\GGA0401_specteam.dds",
+    "Hash": "935289AB03BED4E9F83A3C3A8B867C28569E143F89D2477DDE8DBCFE4CEDFA77"
+  },
+  {
+    "Path": "D:\\Games\\FafModsCreate\\mods\\seraphim-extra-units\\units\\GGA0401\\GGA0401_unit.bp",
+    "Hash": "0D13B768AC97FA8732D6527CB0903F97624BAAEE6D67FB12F481971E5128EA11"
+  },
+  {
+    "Path": "D:\\Games\\FafModsCreate\\mods\\seraphim-extra-units\\units\\GGA0402\\GGA0402_albedo.dds",
+    "Hash": "E26A5CFF8DFD581B7A873CB542F48A305732ADA7A5C02DB87B982B7828770919"
+  },
+  {
+    "Path": "D:\\Games\\FafModsCreate\\mods\\seraphim-extra-units\\units\\GGA0402\\GGA0402_lod0.scm",
+    "Hash": "24635A6422E43DF8EC49C1D508CBB7D4585668BF749A2B004B353F5F59E3EF8A"
+  },
+  {
+    "Path": "D:\\Games\\FafModsCreate\\mods\\seraphim-extra-units\\units\\GGA0402\\GGA0402_lod1.scm",
+    "Hash": "AEA1BB26E45C3BBB14A898FAE0C9272DD9CDD9A2637C2AE0251210ABAC72D3B0"
+  },
+  {
+    "Path": "D:\\Games\\FafModsCreate\\mods\\seraphim-extra-units\\units\\GGA0402\\GGA0402_mesh.bp",
+    "Hash": "373F01489A9A40D7BE4FB5760E6A77D18E0319040F267ACE48EB818685888A9F"
+  },
+  {
+    "Path": "D:\\Games\\FafModsCreate\\mods\\seraphim-extra-units\\units\\GGA0402\\GGA0402_normalsTS.dds",
+    "Hash": "5B6C955D6E6DBF0AD788D01E2FA671F72E09E31C600AADAC09B249787EFF5145"
+  },
+  {
+    "Path": "D:\\Games\\FafModsCreate\\mods\\seraphim-extra-units\\units\\GGA0402\\GGA0402_script.lua",
+    "Hash": "1E4B7F1327FCD28EEE4822AA702BBFB705063E5BE94E61F65CF79E9AFFD8CAB1"
+  },
+  {
+    "Path": "D:\\Games\\FafModsCreate\\mods\\seraphim-extra-units\\units\\GGA0402\\GGA0402_specteam.dds",
+    "Hash": "935289AB03BED4E9F83A3C3A8B867C28569E143F89D2477DDE8DBCFE4CEDFA77"
+  },
+  {
+    "Path": "D:\\Games\\FafModsCreate\\mods\\seraphim-extra-units\\units\\GGA0402\\GGA0402_unit.bp",
+    "Hash": "F5542ABEF8E9FA700A0F5220755E58F9CF1C699C312DCFF4EA4FFB84086182FE"
+  }
+]

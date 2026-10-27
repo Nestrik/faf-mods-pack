@@ -1,0 +1,16 @@
+ProjectileBlueprint {
+    Categories = { 'DIRECTFIRE', 'PROJECTILE', 'SERAPHIM' },
+    Display = {
+        UniformScale = 0.1,
+        Mesh = { LODs = { {
+            MeshName = '/mods/Project Roc Unicorns/projectiles/GGP0401/GGP0401_lod0.scm',
+            AlbedoName = '/mods/Project Roc Unicorns/units/GGA0401/GGA0401_albedo.dds',
+            SpecularName = '/mods/Project Roc Unicorns/units/GGA0401/GGA0401_specteam.dds',
+            NormalsName = '/mods/Project Roc Unicorns/units/GGA0401/GGA0401_normalsTS.dds',
+            LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
+            ShaderName = 'Seraphim', LODCutoff = 400,
+        } } },
+    },
+    General = { Category = 'Direct Fire', Faction = 'Seraphim', Weapon = 'Heavy Charged Phason Cannon' },
+    Physics = { DestroyOnWater = true, InitialSpeed = 35, UseGravity = false, TrackTarget = false, TurnRate = 0, VelocityAlign = true },
+}

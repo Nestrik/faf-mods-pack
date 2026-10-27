@@ -1,0 +1,9 @@
+name = "Seraphim Additional Units"
+uid = "e29909c6-41c4-4cb4-9da1-8d8482111ba1"
+version = 1
+description = "Additional Seraphim units: Itha-Suun and Itha-Vael experimental hover tanks."
+author = "Local project"
+selectable = true
+enabled = true
+exclusive = false
+ui_only = false

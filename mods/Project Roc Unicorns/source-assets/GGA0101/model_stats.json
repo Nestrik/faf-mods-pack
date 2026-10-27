@@ -1,0 +1,18 @@
+{
+  "GGA0101_lod0": {
+    "triangles": 4632,
+    "vertices": 8072
+  },
+  "GGA0101_lod1": {
+    "triangles": 1996,
+    "vertices": 3588
+  },
+  "GGA0101_wreck_lod0": {
+    "triangles": 4648,
+    "vertices": 8172
+  },
+  "GGA0101_wreck_lod1": {
+    "triangles": 1948,
+    "vertices": 3560
+  }
+}

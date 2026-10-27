@@ -1,0 +1,199 @@
+{
+  "date": "2026-10-21",
+  "game_assets_copied": false,
+  "stock_units": {
+    "xsb2301": {
+      "albedo": {
+        "path": "units/XSB2301/XSB2301_Albedo.dds",
+        "sha256": "9ace6aa79fbce837c71b2c06150437fe9231ffe1d95927bfecabdd755cd4514f",
+        "size": [
+          512,
+          512
+        ],
+        "median_rgba": [
+          13.0,
+          13.0,
+          13.0,
+          0.0
+        ],
+        "p90_rgba": [
+          33.0,
+          36.0,
+          33.0,
+          255.0
+        ]
+      },
+      "specteam": {
+        "path": "units/XSB2301/XSB2301_SpecTeam.dds",
+        "sha256": "7a27dd9d7afeb013bd78e3d334da6e88cdb8c3ad353bcef0b92ab3b05c317696",
+        "size": [
+          512,
+          512
+        ],
+        "median_rgba": [
+          255.0,
+          182.0,
+          0.0,
+          0.0
+        ],
+        "p90_rgba": [
+          255.0,
+          199.0,
+          0.0,
+          0.0
+        ]
+      },
+      "normalsts": {
+        "path": "units/XSB2301/XSB2301_normalsTS.dds",
+        "sha256": "326629ded9e0e7569e91f98765bf00916749097a004bed7ea25efb381b1aca1b",
+        "size": [
+          512,
+          512
+        ],
+        "median_rgba": [
+          148.0,
+          150.0,
+          148.0,
+          128.0
+        ],
+        "p90_rgba": [
+          148.0,
+          150.0,
+          148.0,
+          128.0
+        ]
+      }
+    },
+    "xsb2303": {
+      "albedo": {
+        "path": "units/XSB2303/XSB2303_Albedo.dds",
+        "sha256": "cbfc517bfd40a266febe4f4a095048e29c083e2031533a0fababeddb0338cbe3",
+        "size": [
+          512,
+          512
+        ],
+        "median_rgba": [
+          8.0,
+          8.0,
+          8.0,
+          0.0
+        ],
+        "p90_rgba": [
+          24.0,
+          24.0,
+          24.0,
+          139.0
+        ]
+      },
+      "specteam": {
+        "path": "units/XSB2303/XSB2303_SpecTeam.dds",
+        "sha256": "014919d16ce3ad53be0d2cda44d8ebc1cc5b0c13d6b92afdd7e8be6a591be44d",
+        "size": [
+          512,
+          512
+        ],
+        "median_rgba": [
+          255.0,
+          182.0,
+          0.0,
+          0.0
+        ],
+        "p90_rgba": [
+          255.0,
+          199.0,
+          0.0,
+          0.0
+        ]
+      },
+      "normalsts": {
+        "path": "units/XSB2303/XSB2303_normalsTS.dds",
+        "sha256": "b0833fe978c9bb94f0191a188b37b5ecc12022dfec440e813b335f15694cd783",
+        "size": [
+          512,
+          512
+        ],
+        "median_rgba": [
+          148.0,
+          150.0,
+          148.0,
+          128.0
+        ],
+        "p90_rgba": [
+          156.0,
+          156.0,
+          156.0,
+          128.0
+        ]
+      }
+    },
+    "xsb2401": {
+      "albedo": {
+        "path": "units/XSB2401/XSB2401_Albedo.dds",
+        "sha256": "f65242cc21a8c5c82405169c308318373ffa235131b847f08135402e8a56ac67",
+        "size": [
+          1024,
+          1024
+        ],
+        "median_rgba": [
+          33.0,
+          32.0,
+          33.0,
+          0.0
+        ],
+        "p90_rgba": [
+          49.0,
+          48.0,
+          49.0,
+          252.0
+        ]
+      },
+      "specteam": {
+        "path": "units/XSB2401/XSB2401_SpecTeam.dds",
+        "sha256": "ba2cdbbf34fba52aecfb0565984327aa6d8b833d358180b6b8fffa747a145d39",
+        "size": [
+          1024,
+          1024
+        ],
+        "median_rgba": [
+          255.0,
+          211.0,
+          0.0,
+          0.0
+        ],
+        "p90_rgba": [
+          255.0,
+          235.0,
+          0.0,
+          0.0
+        ]
+      },
+      "normalsts": {
+        "path": "units/XSB2401/XSB2401_normalsTS.dds",
+        "sha256": "05c37f3c44fc81fbc2563f9b2565ec083910e9803da5f28ec42f27b596b82827",
+        "size": [
+          1024,
+          1024
+        ],
+        "median_rgba": [
+          150.0,
+          148.0,
+          150.0,
+          128.0
+        ],
+        "p90_rgba": [
+          162.0,
+          162.0,
+          162.0,
+          129.0
+        ]
+      }
+    }
+  },
+  "shader_archive": "D:/Games/FAF Cache/gamedata/effects.nx5",
+  "shader_member": "effects/mesh.fx",
+  "notes": [
+    "Whole-atlas statistics include unused texels. They are evidence of packing and material ranges, not a palette to copy.",
+    "Stock shader Seraphim reads team mask from Albedo.A. ComputeNormal samples G and A against binormal and tangent."
+  ],
+  "shader_sha256": "3cab8c81d576ccc4082a989433bdacff1ac99a6a8c3bb042c0f903d4dece0692"
+}

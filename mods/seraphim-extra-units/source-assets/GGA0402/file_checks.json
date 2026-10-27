@@ -1,0 +1,60 @@
+{
+  "blueprints_parsed": 3,
+  "main_damage_per_shell": 3000,
+  "salvo_projectiles": 2,
+  "salvo_total_damage": 6000,
+  "inter_shot_seconds": 0.3,
+  "shared_charge_seconds": 3,
+  "per_muzzle_charge_seconds": 0,
+  "range": 80,
+  "original_runtime_files_unchanged": true,
+  "all_four_aa_blueprints_unchanged": true,
+  "economy_and_core_parameters_copied": true,
+  "game_launched": false,
+  "installed_copy_updated": false,
+  "bones": 24,
+  "matching_lod_skeletons": true,
+  "bone_inverse_matrices_valid": true,
+  "aa_parenting_valid": true,
+  "muzzle_positions_source": {
+    "MainForeMuzzle": [
+      0,
+      15,
+      21.5
+    ],
+    "MainAftMuzzle": [
+      0,
+      21,
+      2.5
+    ]
+  },
+  "resolved_resource_paths": 13,
+  "dds_mip_levels_checked": 10,
+  "generator_sources_compile": true,
+  "duplicate_icons_identical": true,
+  "runtime_sha256": {
+    "units\\GGA0402\\GGA0402_albedo.dds": "e26a5cff8dfd581b7a873cb542f48a305732ada7a5c02db87b982b7828770919",
+    "units\\GGA0402\\GGA0402_lod0.scm": "11848e1b7711f8fc590f48fcc7e6ec8a034ce235c37e69e3e3e331bbe2026046",
+    "units\\GGA0402\\GGA0402_lod1.scm": "c8d524080ea0f63ce4b8ccf412568a25064b369875527e5c9cd075754f3ab227",
+    "units\\GGA0402\\GGA0402_mesh.bp": "373f01489a9a40d7be4fb5760e6a77d18e0319040f267ace48eb818685888a9f",
+    "units\\GGA0402\\GGA0402_normalsTS.dds": "5b6c955d6e6dbf0ad788d01e2fa671f72e09e31c600aadac09b249787eff5145",
+    "units\\GGA0402\\GGA0402_script.lua": "1e4b7f1327fcd28eee4822aa702bbfb705063e5be94e61f65cf79e9affd8cab1",
+    "units\\GGA0402\\GGA0402_specteam.dds": "935289ab03bed4e9f83a3c3a8b867c28569e143f89d2477dde8dbcfe4cedfa77",
+    "units\\GGA0402\\GGA0402_unit.bp": "f5542abef8e9fa700a0f5220755e58f9cf1c699c312dcff4ea4ffb84086182fe",
+    "icons\\units\\GGA0402_icon.dds": "bec3ff9a38d498a781acf55b6f20b158d8764a40f6809d11a685fd5f1676c34c",
+    "textures\\ui\\common\\icons\\units\\GGA0402_icon.dds": "bec3ff9a38d498a781acf55b6f20b158d8764a40f6809d11a685fd5f1676c34c"
+  },
+  "redline_revision_2026_10_24": {
+    "hatching_interpreted_as_solid_growth": true,
+    "no_serrated_edges": true,
+    "blueprint_script_mesh_blueprint_unchanged": true,
+    "materials_unchanged": true,
+    "skeletons_and_gun_pivots_unchanged": true,
+    "unit_tangent_bases_valid": true,
+    "lods_within_16_bit_indices": true,
+    "source_compile": true,
+    "shape_checks": "redline_shape_checks.json",
+    "game_launched": false,
+    "installed_copy_updated": false
+  }
+}

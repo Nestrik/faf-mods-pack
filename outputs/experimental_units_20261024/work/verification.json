@@ -1,0 +1,17 @@
+{
+  "units": 24,
+  "main": 21,
+  "helpers": 3,
+  "weapons": 136,
+  "sourceFields": 14963,
+  "sources": 87,
+  "sheets": [
+    "Сравнение",
+    "Экономика",
+    "Защита",
+    "Движение и разведка",
+    "Оружие",
+    "Примечания"
+  ],
+  "output": "D:/Games/FafModsCreate/outputs/experimental_units_20261024/Экспериментальные_юниты_Seraphim_Rework_и_BlackOpsFAF_обновлено.xlsx"
+}
