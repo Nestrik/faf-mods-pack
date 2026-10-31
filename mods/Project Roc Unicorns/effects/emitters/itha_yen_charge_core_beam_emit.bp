@@ -1,0 +1,14 @@
+-- Bright cores of violet electrical links between the moving gondolas; visual only, no damage.
+BeamBlueprint {
+    StartColor = { w=0, x=1, y=.95, z=1 },
+    EndColor = { w=0, x=.94, y=.84, z=1 },
+    Blendmode = 3,
+    LODCutoff = 400,
+    Length = 1.4,
+    Lifetime = .3,
+    RepeatRate = .025,
+    TextureName = '/textures/particles/electricity_beam_02.dds',
+    Thickness = .06,
+    UShift = 0,
+    VShift = .8,
+}

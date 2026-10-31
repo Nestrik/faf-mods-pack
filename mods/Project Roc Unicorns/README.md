@@ -9,46 +9,29 @@ Project Roc Unicorns. Both mods can be enabled together.
 
 ## Experimental hover assault tank
 
-`GGA0401` **Itha-Yen** is a separate Seraphim experimental hover tank, built by T3
-engineers and commanders with T3 engineering. Its original rounded steel model
-occupies approximately **4×6** game units and includes four independent AA
-turrets, an open focusing cannon, two mesh LODs, native Seraphim materials,
-player-color inlays and a custom construction icon.
+`GGA0401` **Dush'Nai** replaces the original Itha-Yen model with an eight-petal
+hover hull and paired floating gondolas. It has reflective dark steel, army-color
+ornaments and fixed violet ring lining. Three native SCM LODs share a 33-bone
+rig. Its construction icon now depicts this model.
 
-The naval-style hull rebuild follows the user's Seraphim ship reference: a swept
-central keel, one long port island, two separate starboard islands, an offset
-aft shard and three unequal open fins. Hull sections have real open gaps and
-gently drift at different phases; AA mounts are parented to their moving islands.
-The exported model measures **3.96×5.90** horizontally. The existing reflective
-metal and player-color patterns are retained. Updated meshes, sources, previews
-and construction icon are included; the new model/drift still need match testing.
+One main gun fires the existing phason sphere at **80 range**, dealing **6,000
+damage** with **4 splash radius**, **3-second muzzle charge** and `RateOfFire =
+0.1`. The four inherited AA weapons and AA metadata are removed. Ground/water
+speed remains **3.6**, reverse **2.5**. Durability is **8,000 hull HP** plus a
+**32,000 HP personal shield**, regenerating **1,000 HP/s after 5 seconds**.
+Cost remains **32,000 mass / 480,000 energy / 52,000 build points**.
 
-The main gun fires a large phason sphere along a **direct-fire trajectory** at
-**80 range**, with **6,000 damage**, **4 splash radius**, **3 seconds of visible
-charging**, and `RateOfFire = 0.1`. The four AA turrets each deal **60 damage**,
-with **3 splash radius**, **2 shots/s**, and **30 range**, targeting aircraft
-independently. The tank moves at **3.6** on both land and water, compared with
-the stock Ythotha's **2.5**; reverse speed is **2.5**.
+After a shot the gondolas close, electrical links intensify, the original phason
+model grows between the rings and the gondolas reopen. A full sphere waits for a
+target. A blocked terrain corridor is rejected before the native salvo/clock;
+the weapon searches actively known enemies with clear paths using its original
+priorities. A path closing during charge cancels discharge and its clock. No
+player orders, vision radius or projectile damage behavior are changed.
 
-The 22 October balance revision halves main-shell damage and reduces range from
-100 to 80. Impacts add a brief bright white flash, an expanding blue energy ring
-and outward electrical arcs; these are visual particles with no extra damage.
-The same flash/ring/arcs play on shield hits. Their appearance needs match verification.
-
-Current durability is **8,000 hull HP** plus a **32,000 HP personal shield**.
-The native `PersonalShield` mechanism routes damage only for the owner and has
-no surrounding projectile-interception dome; the hull stays metallic and native
-Seraphim shield-hit effects show impacts. The shield regenerates
-**1,000 HP/s after 5 seconds**, and takes **20 seconds** to recharge after
-collapse, or **5 seconds** after an energy outage. Its configured shield size
-is **7**. Initial build cost:
-**32,000 mass / 480,000 energy / 52,000 build points**. Balance is provisional.
-
-SCM/DDS files and rendered previews were checked. Loading, building, movement,
-aiming, shield behavior and firing still need verification in a local match;
-the game was not launched for this addition. M28AI's land-experimental category
-matches this unit; actual AI selection and engine `CanBuild` are unverified.
-See [sources, previews and verification notes](source-assets/GGA0401/README.md).
+User checks confirm building, movement, firing, accepted charge animation and
+AA removal. Latest blocked-target/progress recovery and the new icon have file
+and mocked-state checks, with fresh match verification pending. Source/rebuild
+instructions: [approved hover model](source-assets/GGA0401/approved-hover/README.md).
 
 ## T4 experimental power generator
 
@@ -194,3 +177,10 @@ starts with T2 factories. No early T1/T2 fabricator strategy was added.
 
 See [the complete role audit and limitations](docs/M28AI_COMPATIBILITY.md).
 Source/category checks do not confirm actual M28AI behavior in a local match.
+
+
+Local v5 land-placement adjustment for Vael-Itha GGA2404: LAND category and
+MaxGroundVariation 1.1 (matching stock Seraphim T3 artillery), preserving the
+4x4 build skirt and all combat/model parameters. Water building remains disabled.
+This addresses a likely overstrict terrain-placement condition; new game
+placement verification is pending. Dush'Nai v4 updates remain included.

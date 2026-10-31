@@ -1,101 +1,147 @@
 local HoverTank = import('/lua/seraphimunits.lua').SHoverLandUnit
 local SeraphimWeapons = import('/lua/seraphimweapons.lua')
 local PhasonCannon = SeraphimWeapons.SDFExperimentalPhasonProj
-local AAGun = SeraphimWeapons.SAAOlarisCannonWeapon
+local FirePath = import('/mods/Project Roc Unicorns/lua/dush_nai_fire_path.lua')
+local ChargeAnimation = import('/mods/Project Roc Unicorns/lua/itha_yen_charge.lua')
 
 GGA0401 = ClassUnit(HoverTank) {
     OnStopBeingBuilt = function(self, builder, layer)
         HoverTank.OnStopBeingBuilt(self, builder, layer)
-        -- Separate hull islands drift very gently. AA aiming bones are children
-        -- of their hull island, so the mount and its guns travel together.
-        self.HullSliders = {}
-        for _, spec in ipairs({
-            { 'PortHull', 0, 0.30 }, { 'StarboardFore', 2.1, 0.22 },
-            { 'StarboardAft', 4.2, 0.27 }, { 'AftShard', 1.3, 0.20 },
-        }) do
-            local slider = CreateSlider(self, spec[1])
-            slider:SetSpeed(-1)
-            self.Trash:Add(slider)
-            table.insert(self.HullSliders, { slider, spec[2], spec[3] })
-        end
-        self:ForkThread(self.FloatHullThread)
-        local visual = self:CreateProjectileAtBone(
-            '/mods/Project Roc Unicorns/projectiles/GGP0401Charge/GGP0401Charge_proj.bp', 'MainMuzzle')
-        if visual and not visual:BeenDestroyed() then
-            self.ChargeVisual = visual
-            visual:AttachBoneTo(-1, self, 'MainMuzzle')
-            visual:SetDrawScale(0.000001)
-            self.Trash:Add(visual)
-        end
-    end,
-
-    FloatHullThread = function(self)
-        local phase = 0
-        while not self.Dead and not self:BeenDestroyed() do
-            for _, spec in ipairs(self.HullSliders) do
-                spec[1]:SetGoal(0, spec[3] * math.sin(phase + spec[2]), 0)
-            end
-            phase = phase + math.pi / 40
-            WaitTicks(1)
-        end
-    end,
-
-    ResetChargeVisual = function(self)
-        self.ChargeEpoch = (self.ChargeEpoch or 0) + 1
-        if self.ChargeVisual and not self.ChargeVisual:BeenDestroyed() then
-            self.ChargeVisual:SetDrawScale(0.000001)
-        end
-    end,
-
-    BeginChargeVisual = function(self, duration)
-        self:ResetChargeVisual()
-        local epoch = self.ChargeEpoch
-        self:ForkThread(function(unit)
-            local ticks = math.max(1, math.floor(duration * 10) - 1)
-            for tick = 0, ticks do
-                if unit.Dead or unit:BeenDestroyed() or unit.ChargeEpoch ~= epoch then return end
-                local t = tick / ticks
-                local scale = t * t * (3 - 2 * t)
-                if unit.ChargeVisual and not unit.ChargeVisual:BeenDestroyed() then
-                    unit.ChargeVisual:SetDrawScale(0.1 * (0.05 + 0.95 * scale))
-                end
-                if tick < ticks then WaitTicks(1) end
-            end
-        end)
+        ChargeAnimation.Initialize(self)
     end,
 
     OnKilled = function(self, instigator, damageType, overkillRatio)
-        self:ResetChargeVisual()
+        ChargeAnimation.Stop(self)
         HoverTank.OnKilled(self, instigator, damageType, overkillRatio)
+    end,
+
+    OnDestroy = function(self)
+        ChargeAnimation.Stop(self)
+        HoverTank.OnDestroy(self)
     end,
 
     Weapons = {
         MainGun = ClassWeapon(PhasonCannon) {
-            FxMuzzleFlashScale = 1.3,
-            FxChargeMuzzleFlashScale = 1.3,
-            PlayFxMuzzleChargeSequence = function(self, muzzle)
-                self.unit:BeginChargeVisual(self.Blueprint.MuzzleChargeDelay)
-                PhasonCannon.PlayFxMuzzleChargeSequence(self, muzzle)
+            -- Engine callback: unlike suppressing a projectile after spawning,
+            -- this keeps a blocked gun from starting another firing cycle.
+            CanWeaponFire = function(self)
+                return PhasonCannon.CanWeaponFire(self) and FirePath.IsClear(self, 'MainMuzzle')
             end,
-            PlayFxMuzzleSequence = function(self, muzzle)
-                self.unit:ResetChargeVisual()
-                PhasonCannon.PlayFxMuzzleSequence(self, muzzle)
+            -- A target or the shooter can move during the native 3 s charge.
+            -- Recheck at release; no new projectile/damage if the path closes.
+            CreateProjectileAtMuzzle = function(self, muzzle)
+                if not FirePath.IsClear(self, muzzle) then
+                    self:CancelBlockedCycle()
+                    return nil
+                end
+                return PhasonCannon.CreateProjectileAtMuzzle(self, muzzle)
             end,
-            OnLostTarget = function(self)
-                self.unit:ResetChargeVisual()
-                PhasonCannon.OnLostTarget(self)
+            CancelBlockedCycle = function(self)
+                self.TerrainRejectedTarget = self:GetCurrentTarget()
+                self.BlockedOnRelease = true
+                self.FireClockEpoch = (self.FireClockEpoch or 0) + 1
+                self.unit:SetWorkProgress(1)
             end,
-            RackSalvoFiringState = State(PhasonCannon.RackSalvoFiringState) {
-                OnHaltFire = function(self)
-                    self.unit:ResetChargeVisual()
-                    PhasonCannon.RackSalvoFiringState.OnHaltFire(self)
+            OnWeaponFired = function(self)
+                PhasonCannon.OnWeaponFired(self)
+                if self.BlockedOnRelease then
+                    self.BlockedOnRelease = false
+                    ChangeState(self, self.TerrainBlockedState)
+                end
+            end,
+            TerrainBlockedState = State {
+                StateName = 'TerrainBlockedState',
+                WeaponWantEnabled = false,
+                WeaponAimWantEnabled = false,
+                Main = function(self)
+                    self.FireClockEpoch = (self.FireClockEpoch or 0) + 1
+                    self.unit:SetBusy(false)
+                    self.unit:SetWorkProgress(1)
+                    local rejected = self.TerrainRejectedTarget
+                    self.TerrainRejectedTarget = nil
+                    self:ResetTarget()
+                    local target = FirePath.FindClearTarget(self, 'MainMuzzle', rejected)
+                    if target then
+                        self.ClearShotTarget = target
+                        ChangeState(self, self.RetargetClearState)
+                        return
+                    end
+                    -- Native target acquisition is retried without polling a
+                    -- fake firing cycle or issuing/changing player orders.
+                    WaitTicks(10)
+                    if not self:BeenDestroyed() and not self.unit.Dead then
+                        self:ResetTarget()
+                        ChangeState(self, self.IdleState)
+                    end
                 end,
             },
+            RetargetClearState = State {
+                StateName = 'RetargetClearState',
+                WeaponWantEnabled = true,
+                WeaponAimWantEnabled = true,
+                Main = function(self)
+                    local target = self.ClearShotTarget
+                    self.ClearShotTarget = nil
+                    if target and not target.Dead and not target:BeenDestroyed() then
+                        self:SetTargetEntity(target)
+                    end
+                    ChangeState(self, self.RackSalvoFireReadyState)
+                end,
+            },
+            RackSalvoFiringState = State(PhasonCannon.RackSalvoFiringState) {
+                Main = function(self)
+                    -- This is before native Main forks RenderClockThread,
+                    -- plays charge audio or sets up the three-second salvo.
+                    -- WeaponHasTarget is an end-of-tick cache in moho. Let
+                    -- a just-acquired target settle before the terrain guard.
+                    if not self:WeaponHasTarget() then
+                        WaitTicks(1)
+                        if not self:WeaponHasTarget() then
+                            ChangeState(self, self.IdleState)
+                            return
+                        end
+                    end
+                    if not FirePath.IsClear(self, 'MainMuzzle') then
+                        self.TerrainRejectedTarget = self:GetCurrentTarget()
+                        ChangeState(self, self.TerrainBlockedState)
+                        return
+                    end
+                    self.BlockedOnRelease = false
+                    self.FireClockEpoch = (self.FireClockEpoch or 0) + 1
+                    PhasonCannon.RackSalvoFiringState.Main(self)
+                end,
+                RenderClockThread = function(self, seconds)
+                    -- Equivalent native clock, with cancellation for a target
+                    -- that becomes obstructed during the charge.
+                    local epoch = self.FireClockEpoch
+                    local total = math.max(1, math.floor(seconds * 10 + .5))
+                    for remaining = total, 0, -1 do
+                        if self:BeenDestroyed() or self.unit.Dead or self.FireClockEpoch ~= epoch then return end
+                        if not self.unit:IsUnitState('SiloBuildingAmmo') then
+                            self.unit:SetWorkProgress(1 - remaining / total)
+                        end
+                        WaitTicks(1)
+                    end
+                end,
+            },
+            FxMuzzleFlashScale = 1.3,
+            -- The attached original phason sphere and distributed electrical
+            -- field replace the stock single-muzzle charge flash.
+            FxChargeMuzzleFlash = {},
+            PlayFxMuzzleChargeSequence = function(self, muzzle)
+                ChargeAnimation.BeginWeaponCharge(self.unit, self.Blueprint.MuzzleChargeDelay)
+            end,
+            PlayFxMuzzleSequence = function(self, muzzle)
+                if not FirePath.IsClear(self, muzzle) then
+                    self:CancelBlockedCycle()
+                    return
+                end
+                ChargeAnimation.OnShot(self.unit, self:GetWeaponRoF())
+                PhasonCannon.PlayFxMuzzleSequence(self, muzzle)
+            end,
+            -- Clear-path firing uses the unchanged native salvo. A blocked
+            -- path waits outside it, preserving the accepted visual controller.
         },
-        AA1 = ClassWeapon(AAGun) { FxMuzzleFlashScale = 0.7 },
-        AA2 = ClassWeapon(AAGun) { FxMuzzleFlashScale = 0.7 },
-        AA3 = ClassWeapon(AAGun) { FxMuzzleFlashScale = 0.7 },
-        AA4 = ClassWeapon(AAGun) { FxMuzzleFlashScale = 0.7 },
     },
 }
 TypeClass = GGA0401

@@ -212,3 +212,25 @@ GGA0402 из Additional Units не добавляется. Историческ�
 выше относятся к исходному PR. Проверки совмещённой версии и принятые решения
 перечислены в [заметках о слиянии](VAEL_ITHA_WEAPON_REBUILD.md#pr-3-conflict-resolution--2026-10-27).
 Новый матч FAF при разрешении конфликтов не запускался.
+
+
+## Local land-placement correction, 31 October 2026
+
+User reports a red construction ghost on land. GGA2404 already explicitly permits
+LAYER_Land and forbids Water/Seabed/Sub/Air/Orbit, so it is not a water structure.
+MaxGroundVariation was .2, substantially stricter than stock Seraphim artillery
+XSB2302 (1.1). Set to 1.1 and add the standard LAND category. This is a plausible
+terrain-tolerance/classification fix; the exact cause has not been demonstrated
+with an engine placement test.
+
+Footprint 1x1 with skirt 4x4 and offsets -1.5/-1.5 is internally consistent with
+stock offset conventions: offset = (footprint - skirt)/2. Preserve these values,
+FlattenSkirt, model dimensions, stats, build categories and the working weapon
+and hover logic. Do not shrink the authored 4x4 build area to bypass placement.
+No water placement was enabled. Cost/HP/weapons/visuals and 138 other runtime
+files (including Dush'Nai icon/targeting v4) are SHA256-identical.
+
+Parsed-blueprint comparison and package checks pass. In-game placement on a clear
+land site remains unverified. Previous local background runtime attempts logged
+D3D9 device-creation failure, so they do not provide construction evidence.
+Package/results: F:/FAF-Development/outputs/Vael_Itha_Land_Placement_v5.
