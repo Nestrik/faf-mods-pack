@@ -15,11 +15,9 @@ UnitBlueprint {
             RegenAssistMult = 60, ShieldEnergyDrainRechargeTime = 5 },
     },
     Display = { UniformScale = 0.1, Abilities = { 'Shield Dome', 'Autonomous Suicide Drones' },
+        AnimationRings = '/mods/Project Roc Unicorns/units/NEA0401/NEA0401_rings_idle.sca',
         Mesh = { LODs = {
             { MeshName = '/mods/Project Roc Unicorns/units/NEA0401/NEA0401_lod0.scm', AlbedoName = '/mods/Project Roc Unicorns/units/NEA0401/NEA0401_albedo.dds',
-              SpecularName = '/mods/Project Roc Unicorns/units/NEA0401/NEA0401_specteam.dds', NormalsName = '/mods/Project Roc Unicorns/units/NEA0401/NEA0401_normalsTS.dds',
-              ShaderName = 'Aeon', LODCutoff = 180 },
-            { MeshName = '/mods/Project Roc Unicorns/units/NEA0401/NEA0401_lod1.scm', AlbedoName = '/mods/Project Roc Unicorns/units/NEA0401/NEA0401_albedo.dds',
               SpecularName = '/mods/Project Roc Unicorns/units/NEA0401/NEA0401_specteam.dds', NormalsName = '/mods/Project Roc Unicorns/units/NEA0401/NEA0401_normalsTS.dds',
               ShaderName = 'Aeon', LODCutoff = 600 },
         } },
