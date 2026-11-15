@@ -1,0 +1,5 @@
+ProjectileBlueprint {
+    Categories={'PROJECTILE','DIRECTFIRE','SERAPHIM'},
+    General={Category='Direct Fire',Faction='Seraphim'},
+    Physics={InitialSpeed=320,MaxSpeed=320,Acceleration=0,UseGravity=false,TrackTarget=false,TurnRate=0,VelocityAlign=true,DestroyOnWater=true},
+}

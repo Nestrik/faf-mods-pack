@@ -1,0 +1,1 @@
+MeshBlueprint { LODs={{MeshName='/mods/Project Roc Unicorns/units/GGA0405/wreck.scm', AlbedoName='/mods/Project Roc Unicorns/units/GGA0405/wreck_albedo.dds', SpecularName='/mods/Project Roc Unicorns/units/GGA0405/wreck_spec.dds', NormalsName='/mods/Project Roc Unicorns/units/GGA0405/normalsTS.dds', ShaderName='Unit', LODCutoff=700,}},}

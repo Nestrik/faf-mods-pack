@@ -1,0 +1,1 @@
+BeamBlueprint { Blendmode=2, StartColor={w=0,x=1,y=1,z=1}, EndColor={w=0,x=1,y=1,z=1}, LODCutoff=500, Length=2000, Lifetime=10, RepeatRate=0.04, TextureName='/mods/Project Roc Unicorns/textures/particles/razlom_beam.dds', Thickness=0.26, UShift=0, VShift=-2 }
