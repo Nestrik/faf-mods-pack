@@ -1,0 +1,11 @@
+TrailEmitterBlueprint {
+    BlendMode = 0,
+    LODCutoff = 215,
+    Lifetime = -1,
+    RampTexture = '/mods/Project Roc Unicorns/textures/particles/sha_veyr_white_fringe_ramp.dds',
+    RepeatTexture = '/mods/Project Roc Unicorns/textures/particles/sha_veyr_irregular_motes_2.dds',
+    Size = 0.075,
+    SortOrder = 1,
+    TextureRepeatRate = 0.81,
+    TrailLength = 6,
+}

@@ -1,16 +1,16 @@
 ProjectileBlueprint {
     Categories = { 'DIRECTFIRE', 'PROJECTILE', 'SERAPHIM' },
     General = { Category = 'Direct Fire', Faction = 'Seraphim', Weapon = 'Comet Cannon' },
-    Display = { UniformScale = 1.8545454545454545, Mesh = { LODs = { {
+    Display = { UniformScale = 1.3909090909090909, Mesh = { LODs = { {
         MeshName = '/mods/Project Roc Unicorns/projectiles/GGP2302/GGP2302_lod0.scm',
         AlbedoName = '/mods/Project Roc Unicorns/projectiles/GGP2302/GGP2302_albedo.dds',
         SpecularName = '/mods/Project Roc Unicorns/projectiles/GGP2302/GGP2302_specteam.dds',
         NormalsName = '/mods/Project Roc Unicorns/projectiles/GGP2302/GGP2302_normalsTS.dds',
-        ShaderName = 'Unit', LookupName = '/textures/environment/Falloff_seraphim_lookup.dds', LODCutoff = 180,
+        ShaderName = 'GlassAlpha', LookupName = '/textures/environment/Falloff_seraphim_lookup.dds', LODCutoff = 180,
     } } } },
-    Physics = { DestroyOnWater = true, InitialSpeed = 30, InitialSpeedRange = 0,
-        MaxSpeed = 30, Acceleration = 0, UseGravity = false, TrackTarget = false,
+    Physics = { DestroyOnWater = true, InitialSpeed = 34.5, InitialSpeedRange = 0,
+        MaxSpeed = 34.5, Acceleration = 0, UseGravity = false, TrackTarget = false,
         TurnRate = 0, VelocityAlign = true, Lifetime = 8 },
-    SizeX = 0.408, SizeY = 0.408, SizeZ = 0.408,
+    SizeX = 0.306, SizeY = 0.306, SizeZ = 0.306,
     Audio = { Impact = Sound { Bank = 'Impacts', Cue = 'X_Impact_Land_Gen_Seraphim', LodCutoff = 'Weapon_LodCutoff' } },
 }

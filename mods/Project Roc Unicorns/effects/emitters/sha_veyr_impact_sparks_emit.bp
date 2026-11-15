@@ -2,7 +2,7 @@ EmitterBlueprint {
     Lifetime = 0.1,
     Repeattime = 1,
     TextureFramecount = 1,
-    Blendmode = 1,
+    Blendmode = 0,
     LocalVelocity = false,
     LocalAcceleration = false,
     Gravity = false,
