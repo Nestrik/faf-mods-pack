@@ -40,7 +40,7 @@ UnitBlueprint {
     Economy = { BuildCostEnergy = 65000, BuildCostMass = 6500, BuildTime = 7800 },
     Footprint = { SizeX = 1, SizeZ = 1 },
     General = {
-        FactionName = 'Seraphim', UnitName = 'Vael-Itha', Icon = 'land', SelectionPriority = 6,
+        FactionName = 'Seraphim', UnitName = "Gro'Za", Icon = 'land', SelectionPriority = 6,
         CommandCaps = { RULEUCC_Attack = true, RULEUCC_RetaliateToggle = true, RULEUCC_Stop = true },
     },
     Intel = { VisionRadius = 35 },

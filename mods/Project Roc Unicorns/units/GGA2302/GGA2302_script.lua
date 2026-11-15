@@ -180,7 +180,7 @@ GGA2302 = ClassUnit(SStructureUnit) {
             CanWeaponFire = function(self)
                 return Cannon.CanWeaponFire(self) and self:VolleyIsClear()
             end,
-            -- One native shot creates three projectiles in the same simulation tick.
+            -- Native rack lists all three muzzles: UI and simulation share the same volley.
             PlaySound = function(self, sound)
                 if not self.SilentVolleyCopy then Cannon.PlaySound(self, sound) end
             end,
@@ -193,9 +193,7 @@ GGA2302 = ClassUnit(SStructureUnit) {
             end,
             PlayFxMuzzleSequence = function(self, muzzle)
                 if not self:VolleyIsClear() then return end
-                for _, bone in ipairs(self.VolleyMuzzles) do
-                    Cannon.PlayFxMuzzleSequence(self, bone)
-                end
+                Cannon.PlayFxMuzzleSequence(self, muzzle)
             end,
             CreateProjectileAtMuzzle = function(self, muzzle)
                 if not self:VolleyIsClear() then
@@ -203,18 +201,13 @@ GGA2302 = ClassUnit(SStructureUnit) {
                     self.HaltFireOrdered = true
                     return nil
                 end
-                local target = self:GetCurrentTargetPos()
-                local first
-                for _, bone in ipairs(self.VolleyMuzzles) do
-                    local projectile = Cannon.CreateProjectileAtMuzzle(self, bone)
-                    GroundSpread.Apply(projectile, target,
-                        self.Blueprint.GroundSpreadRadius, self.Blueprint.MuzzleVelocity)
-                    first = first or projectile
-                    self.SilentVolleyCopy = true
-                end
+                self.SilentVolleyCopy = muzzle ~= 'MuzzleLeft'
+                local projectile = Cannon.CreateProjectileAtMuzzle(self, muzzle)
                 self.SilentVolleyCopy = false
-                if first then self:ForkThread(self.PulseRecoil) end
-                return first
+                GroundSpread.Apply(projectile, self:GetCurrentTargetPos(),
+                    self.Blueprint.GroundSpreadRadius, self.Blueprint.MuzzleVelocity)
+                if projectile and muzzle == 'MuzzleLeft' then self:ForkThread(self.PulseRecoil) end
+                return projectile
             end,
             PulseRecoil = function(self)
                 if self:BeenDestroyed() or self.unit.Dead then return end
@@ -235,7 +228,6 @@ GGA2302 = ClassUnit(SStructureUnit) {
                 WeaponAimWantEnabled = false,
                 Main = function(self)
                     self.unit:SetBusy(false)
-                    self.unit:SetWorkProgress(1)
                     local rejected = self.RejectedTarget
                     self.RejectedTarget = nil
                     self:ResetTarget()

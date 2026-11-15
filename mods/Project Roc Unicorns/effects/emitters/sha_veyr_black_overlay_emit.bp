@@ -1,0 +1,11 @@
+TrailEmitterBlueprint {
+    BlendMode = 0,
+    LODCutoff = 215,
+    Lifetime = -1,
+    RampTexture = '/mods/Project Roc Unicorns/textures/particles/sha_veyr_black_overlay_ramp.dds',
+    RepeatTexture = '/mods/Project Roc Unicorns/textures/particles/sha_veyr_stardust_stars.dds',
+    Size = 0.10,
+    SortOrder = 1,
+    TextureRepeatRate = 18,
+    TrailLength = 6,
+}
