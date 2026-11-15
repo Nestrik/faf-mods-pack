@@ -1,0 +1,7 @@
+PropBlueprint {
+    Categories={'RECLAIMABLE'},
+    Display={MeshBlueprint='/mods/Project Roc Unicorns/units/GGA0405/wreck_mesh'},
+    Economy={ReclaimMassMax=1,ReclaimTime=5},
+    Interface={HelpText="Ra'Zlom wreckage"}, Physics={BlockPath=false},
+    ScriptClass='Wreckage', ScriptModule='/lua/wreckage.lua', SizeX=8,SizeY=2.5,SizeZ=8,
+}
