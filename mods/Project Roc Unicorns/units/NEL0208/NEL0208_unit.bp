@@ -3,7 +3,7 @@ UnitBlueprint {
     Categories = { 'BUILTBYTIER2COMMANDER', 'BUILTBYTIER2ENGINEER', 'BUILTBYTIER3COMMANDER', 'BUILTBYTIER3ENGINEER', 'CQUEMOV', 'DRAGBUILD', 'NEEDMOBILEBUILD', 'EXPERIMENTAL', 'TECH2', 'INDIRECTFIRE', 'ARTILLERY', 'OVERLAYINDIRECTFIRE', 'LAND', 'MOBILE', 'PRODUCTFA', 'RECLAIMABLE', 'SELECTABLE', 'UEF', 'VISIBLETORECON' },
     Defense = { ArmorType = 'Normal', Health = 2200, MaxHealth = 2200, SurfaceThreatLevel = 30 },
     Display = { AnimationWalk = '/mods/Project Roc Unicorns/units/NEL0208/NEL0208_tracks.sca', AnimationWalkRate = 1, Mesh = { LODs = {{ LODCutoff = 200, MeshName = '/mods/Project Roc Unicorns/units/NEL0208/NEL0208_lod0.scm', AlbedoName = '/mods/Project Roc Unicorns/units/NEL0208/NEL0208_albedo.dds', SpecularName = '/mods/Project Roc Unicorns/units/NEL0208/NEL0208_specteam.dds', NormalsName = '/mods/Project Roc Unicorns/units/NEL0208/NEL0208_normalsTS.dds', ShaderName = 'Unit' }} }, UniformScale = 1 },
-    Economy = { BuildCostEnergy = 14000, BuildCostMass = 1800, BuildTime = 7500 },
+    Economy = { BuildCostEnergy = 14000, BuildCostMass = 3600, BuildTime = 15000 },
     Footprint = { SizeX = 3, SizeZ = 4 },
     General = {
         CommandCaps = { RULEUCC_Attack = true, RULEUCC_Guard = true, RULEUCC_Move = true, RULEUCC_Patrol = true, RULEUCC_RetaliateToggle = true, RULEUCC_Stop = true },
