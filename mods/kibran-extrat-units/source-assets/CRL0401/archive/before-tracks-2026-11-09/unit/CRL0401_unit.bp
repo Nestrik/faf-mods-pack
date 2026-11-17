@@ -1,0 +1,19 @@
+UnitBlueprint {
+    Description = 'Experimental Mobile Engineering Station',
+    BuildBotTotal = 3,
+    Categories = { 'BUILTBYTIER3COMMANDER', 'BUILTBYTIER3ENGINEER', 'CONSTRUCTION', 'CYBRAN', 'ENGINEER', 'EXPERIMENTAL', 'LAND', 'MOBILE', 'NEEDMOBILEBUILD', 'PRODUCTFA', 'RECLAIM', 'RECLAIMABLE', 'REPAIR', 'SELECTABLE', 'SHOWQUEUE', 'SORTCONSTRUCTION', 'VISIBLETORECON' },
+    Defense = { ArmorType = 'Normal', Health = 2750, MaxHealth = 2750 },
+    Display = { MeshBlueprint = '/mods/kibran-extrat-units/units/CRL0401/CRL0401_mesh', UniformScale = 1, Abilities = { 'Automatic repair and reclaim' } },
+    Economy = { BuildCostEnergy = 5700, BuildCostMass = 980, BuildTime = 4500, BuildRate = 35, MaxBuildDistance = 25 },
+    Footprint = { SizeX = 3, SizeZ = 3 },
+    General = {
+        FactionName = 'Cybran', Icon = 'land', Category = 'Construction', Classification = 'RULEUC_Engineer', UnitName = 'Mobile Hive',
+        BuildBones = { AimBone = 0, BuildEffectBones = { 'BuildPoint' } },
+        CommandCaps = { RULEUCC_Move = true, RULEUCC_Stop = true, RULEUCC_Patrol = true, RULEUCC_Guard = true, RULEUCC_Repair = true, RULEUCC_Reclaim = true, RULEUCC_Pause = true },
+    },
+    Intel = { VisionRadius = 15 },
+    Physics = { MotionType = 'RULEUMT_Land', MaxSpeed = 2, MaxSpeedReverse = 1, MaxAcceleration = 1, MaxBrake = 2, TurnRate = 45, TurnRadius = 0, RotateOnSpot = true, DragCoefficient = 0.2, SkirtSizeX = 3, SkirtSizeZ = 3, SkirtOffsetX = -1.5, SkirtOffsetZ = -1.5, BuildOnLayerCaps = { LAYER_Land = true, LAYER_Air = false, LAYER_Water = false, LAYER_Seabed = false, LAYER_Sub = false, LAYER_Orbit = false } },
+    SizeX = 3, SizeY = 2.6, SizeZ = 3, SelectionSizeX = 3, SelectionSizeZ = 3, SelectionThickness = 0.4,
+    StrategicIconName = 'icon_experimental_generic',
+    Wreckage = { Blueprint = '/props/DefaultWreckage/DefaultWreckage_prop.bp', HealthMult = 0.9, MassMult = 0.9, EnergyMult = 0, ReclaimTimeMultiplier = 1, WreckageLayers = { Land = true } },
+}

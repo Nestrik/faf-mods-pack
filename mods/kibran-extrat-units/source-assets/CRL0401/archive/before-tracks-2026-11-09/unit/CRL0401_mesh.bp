@@ -1,0 +1,6 @@
+MeshBlueprint {
+    LODs = {
+        { MeshName = '/mods/kibran-extrat-units/units/CRL0401/CRL0401_lod0.scm', AlbedoName = '/mods/kibran-extrat-units/units/CRL0401/CRL0401_albedo.dds', SpecularName = '/mods/kibran-extrat-units/units/CRL0401/CRL0401_specteam.dds', NormalsName = '/mods/kibran-extrat-units/units/CRL0401/CRL0401_normalsTS.dds', ShaderName = 'Unit', LODCutoff = 80 },
+        { MeshName = '/mods/kibran-extrat-units/units/CRL0401/CRL0401_lod1.scm', AlbedoName = '/mods/kibran-extrat-units/units/CRL0401/CRL0401_albedo.dds', SpecularName = '/mods/kibran-extrat-units/units/CRL0401/CRL0401_specteam.dds', NormalsName = '/mods/kibran-extrat-units/units/CRL0401/CRL0401_normalsTS.dds', ShaderName = 'Unit', LODCutoff = 220 },
+    },
+}

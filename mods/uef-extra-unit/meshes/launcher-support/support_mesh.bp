@@ -1,0 +1,10 @@
+MeshBlueprint {
+    LODs = {{
+        LODCutoff = 200,
+        MeshName = '/mods/uef-extra-unit/meshes/launcher-support/support_lod0.scm',
+        AlbedoName = '/mods/uef-extra-unit/meshes/rocket-rack/rocket_rack_albedo.dds',
+        SpecularName = '/mods/uef-extra-unit/meshes/rocket-rack/rocket_rack_specteam.dds',
+        NormalsName = '/mods/uef-extra-unit/meshes/rocket-rack/rocket_rack_normalsTS.dds',
+        ShaderName = 'Unit',
+    }},
+}

@@ -1,0 +1,6 @@
+ProjectileBlueprint {
+    Categories = { 'UEF', 'PROJECTILE', 'INDIRECTFIRE' },
+    Display = { Mesh = { LODs = {{ LODCutoff = 150, ShaderName = 'TMeshAlpha', MeshName = '/projectiles/CDFRocketMeson01/CDFRocketMeson01_lod0.scm', AlbedoName = '/projectiles/CDFRocketMeson01/CDFRocketMeson01_albedo.dds' }} }, UniformScale = 0.22 },
+    General = { Category = 'Artillery', Faction = 'UEF', Weapon = 'Rocket' },
+    Physics = { DestroyOnWater = true, LeadTarget = false, TurnRate = 360, UseGravity = true, VelocityAlign = true },
+}

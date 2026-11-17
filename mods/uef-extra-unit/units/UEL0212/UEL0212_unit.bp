@@ -1,0 +1,30 @@
+UnitBlueprint {
+    Description = 'Experimental T2 Assault Tank',
+    
+    Categories = { 'BUILTBYTIER2COMMANDER', 'BUILTBYTIER2ENGINEER', 'BUILTBYTIER3COMMANDER', 'BUILTBYTIER3ENGINEER', 'CQUEMOV', 'DRAGBUILD', 'NEEDMOBILEBUILD', 'DIRECTFIRE', 'LAND', 'MOBILE', 'OVERLAYDIRECTFIRE', 'PRODUCTFA', 'RECLAIMABLE', 'SELECTABLE', 'TANK', 'TECH2', 'EXPERIMENTAL', 'UEF', 'VISIBLETORECON' },
+    Defense = { ArmorType = 'Normal', Health = 8500, MaxHealth = 8500, RegenRate = 3, SurfaceThreatLevel = 50 },
+    Display = { UniformScale = 1, Mesh = { IconFadeInZoom = 130, LODs = {
+        { LODCutoff = 100, MeshName = '/mods/uef-extra-unit/units/UEL0212/UEL0212_lod0.scm', ShaderName = 'Unit', AlbedoName = '/mods/uef-extra-unit/units/UEL0212/UEL0212_albedo.dds', NormalsName = '/mods/uef-extra-unit/units/UEL0212/UEL0212_normalsTS.dds', SpecularName = '/mods/uef-extra-unit/units/UEL0212/UEL0212_specteam.dds' },
+    } } },
+    Economy = { BuildCostMass = 2400, BuildCostEnergy = 13500, BuildTime = 11000 },
+    General = { FactionName = 'UEF', Icon = 'land', UnitName = 'Cerberus', CommandCaps = { RULEUCC_Attack = true, RULEUCC_Guard = true, RULEUCC_Move = true, RULEUCC_Patrol = true, RULEUCC_RetaliateToggle = true, RULEUCC_Stop = true } },
+    Intel = { VisionRadius = 30 },
+    Physics = { BackUpDistance = 8, DragCoefficient = 0.2, MaxAcceleration = 1.8, MaxBrake = 1.8, MaxSpeed = 2.5, MaxSpeedReverse = 2.5, MaxSteerForce = 2.2, MeshExtentsX = 2, MeshExtentsY = 1.8, MeshExtentsZ = 3, MotionType = 'RULEUMT_Land', RotateOnSpot = false, RotateOnSpotThreshold = 0.1, TurnRadius = 0, TurnRate = 45, SkirtSizeX = 2, SkirtSizeZ = 3 },
+    Footprint = { SizeX = 2, SizeZ = 3 },
+    SizeX = 2, SizeY = 1.8, SizeZ = 3, SelectionSizeX = 1, SelectionSizeZ = 1.5, SelectionThickness = 0.5,
+    StrategicIconName = 'icon_land2_directfire',
+    Weapon = {{
+        AboveWaterTargetsOnly = true, Audio = { Fire = Sound { Bank = 'UELWeapon', Cue = 'UEL0202_Cannon_Dbl', LodCutoff = 'Weapon_LodCutoff' } },
+        BallisticArc = 'RULEUBA_LowArc', CollideFriendly = false, Damage = 180, DamageRadius = 0.6, DamageType = 'Normal', DisplayName = 'Triple Gauss Cannon',
+        FireTargetLayerCapsTable = { Land = 'Land' }, FiringTolerance = 1, Label = 'FrontTurret01', MaxRadius = 28,
+        -- Three muzzles fire in sequence using the stock UEF gauss projectile.
+        MuzzleSalvoDelay = 0.2, MuzzleSalvoSize = 3, MuzzleVelocity = 50, ProjectileId = '/projectiles/TDFGauss04/TDFGauss04_proj.bp', ProjectileLifetimeUsesMultiplier = 1.15,
+        RackBones = {{ MuzzleBones = { 'Muzzle_Top', 'Muzzle_Left', 'Muzzle_Right' }, RackBone = 'Turret_Barrel' }}, RackFireTogether = false, RackRecoilDistance = 0, RackReloadTimeout = 0, RackSalvoChargeTime = 0, RackSalvoReloadTime = 0, RackSalvoSize = 1, RackSlavedToTurret = true,
+        RangeCategory = 'UWRC_DirectFire', RateOfFire = 0.5, TargetPriorities = { 'MOBILE', '(STRUCTURE * DEFENSE - ANTIMISSILE)', 'ALLUNITS' }, TargetRestrictDisallow = 'UNTARGETABLE',
+        TurretBoneMuzzle = 'Muzzle_Top', TurretBonePitch = 'Turret_Barrel', TurretBoneYaw = 'Turret', TurretDualManipulators = false, TurretPitch = 0, TurretPitchRange = 15, TurretPitchSpeed = 35, TurretYaw = 0, TurretYawRange = 180, TurretYawSpeed = 55, Turreted = true, WeaponCategory = 'Direct Fire', WeaponRepackTimeout = 0, WeaponUnpacks = false,
+    }},
+    Wreckage = { Blueprint = '/props/DefaultWreckage/DefaultWreckage_prop.bp', EnergyMult = 0, HealthMult = 0.9, MassMult = 0.9, ReclaimTimeMultiplier = 1, WreckageLayers = { Land = true } },
+}
+
+
+

@@ -1,6 +1,19 @@
 local CConstructionUnit = import('/lua/cybranunits.lua').CConstructionUnit
 
 CRL0401 = ClassUnit(CConstructionUnit) {
+    OnMotionHorzEventChange = function(self, new, old)
+        CConstructionUnit.OnMotionHorzEventChange(self, new, old)
+        if new == 'Stopped' then
+            if self.TrackAnimator then self.TrackAnimator:SetRate(0) end
+        elseif old == 'Stopped' then
+            if not self.TrackAnimator then
+                self.TrackAnimator = self.Trash:Add(CreateAnimator(self, true))
+                self.TrackAnimator:PlayAnim(self.Blueprint.Display.AnimationWalk, true)
+                self.TrackAnimator:SetDirectionalAnim(true)
+            end
+            self.TrackAnimator:SetRate(self.Blueprint.Display.AnimationWalkRate or 1)
+        end
+    end,
     OnStopBeingBuilt = function(self, builder, layer)
         CConstructionUnit.OnStopBeingBuilt(self, builder, layer)
         self.Trash:Add(ForkThread(self.AutoWork, self))

@@ -1,0 +1,10 @@
+MeshBlueprint {
+    LODs = {{
+        LODCutoff = 600,
+        MeshName = '/mods/uef-extra-unit/meshes/launch-hatch/launch_hatch_lod0.scm',
+        AlbedoName = '/mods/uef-extra-unit/meshes/launch-hatch/launch_hatch_albedo.dds',
+        SpecularName = '/mods/uef-extra-unit/meshes/launch-hatch/launch_hatch_specteam.dds',
+        NormalsName = '/mods/uef-extra-unit/meshes/launch-hatch/launch_hatch_normalsTS.dds',
+        ShaderName = 'Unit',
+    }},
+}
