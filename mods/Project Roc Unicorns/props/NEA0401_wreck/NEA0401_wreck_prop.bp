@@ -1,0 +1,9 @@
+PropBlueprint {
+    Categories = { 'RECLAIMABLE' },
+    Display = { MeshBlueprint = '/mods/Project Roc Unicorns/props/NEA0401_wreck/NEA0401_wreck_mesh' },
+    Economy = { ReclaimMassMax = 1, ReclaimTime = 5 },
+    Interface = { HelpText = 'Halo Nest wreckage' },
+    Physics = { BlockPath = false },
+    ScriptClass = 'Wreckage', ScriptModule = '/lua/wreckage.lua',
+    SizeX = 4.5, SizeY = 2.4, SizeZ = 6.7,
+}

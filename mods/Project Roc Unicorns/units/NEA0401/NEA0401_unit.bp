@@ -40,7 +40,7 @@ UnitBlueprint {
     SelectionThickness = 0.3, LifeBarHeight = 0.1, LifeBarOffset = 2.6, LifeBarSize = 4,
     StrategicIconName = 'icon_experimental_generic', StrategicIconSortPriority = 120,
     Transport = { TransportClass = 4 },
-    Wreckage = { Blueprint = '/props/DefaultWreckage/DefaultWreckage_prop.bp',
+    Wreckage = { Blueprint = '/mods/Project Roc Unicorns/props/NEA0401_wreck/NEA0401_wreck_prop.bp', UseCustomMesh = true,
         HealthMult = 0.9, MassMult = 0.8, EnergyMult = 0, ReclaimTimeMultiplier = 1,
         WreckageLayers = { Land = true, Seabed = true, Water = true } },
 }

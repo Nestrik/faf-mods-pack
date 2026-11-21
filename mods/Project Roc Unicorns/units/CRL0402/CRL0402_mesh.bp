@@ -1,0 +1,6 @@
+MeshBlueprint {
+    LODs = {
+        { MeshName = '/mods/Project Roc Unicorns/units/CRL0402/CRL0402_lod0.scm', AlbedoName = '/mods/Project Roc Unicorns/units/CRL0402/CRL0402_albedo.dds', SpecularName = '/mods/Project Roc Unicorns/units/CRL0402/CRL0402_specteam.dds', NormalsName = '/mods/Project Roc Unicorns/units/CRL0402/CRL0402_normalsTS.dds', ShaderName = 'Unit', LODCutoff = 140 },
+        { MeshName = '/mods/Project Roc Unicorns/units/CRL0402/CRL0402_lod1.scm', AlbedoName = '/mods/Project Roc Unicorns/units/CRL0402/CRL0402_albedo.dds', SpecularName = '/mods/Project Roc Unicorns/units/CRL0402/CRL0402_specteam.dds', NormalsName = '/mods/Project Roc Unicorns/units/CRL0402/CRL0402_normalsTS.dds', ShaderName = 'Unit', LODCutoff = 350 },
+    },
+}
