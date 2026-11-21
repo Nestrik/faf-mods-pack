@@ -1,0 +1,9 @@
+MeshBlueprint {
+    LODs = { {
+        MeshName = '/mods/Project Roc Unicorns/units/NEA0401/NEA0401_lod0.scm',
+        AlbedoName = '/mods/Project Roc Unicorns/props/NEA0401_wreck/NEA0401_wreck_albedo.dds',
+        SpecularName = '/env/common/props/wreckage_noise.dds',
+        NormalsName = '/mods/Project Roc Unicorns/units/NEA0401/NEA0401_normalsTS.dds',
+        ShaderName = 'Wreckage', LODCutoff = 600,
+    } },
+}

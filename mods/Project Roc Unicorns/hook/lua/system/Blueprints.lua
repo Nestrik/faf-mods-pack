@@ -12,3 +12,21 @@ function ModBlueprints(all_blueprints)
         all_blueprints.Unit.gga0404 = nil
     end
 end
+
+-- FAF recalculates density from health; apply the narrow override after processing.
+local function SetSonicDensity(blueprints)
+    local unit = blueprints.Unit and blueprints.Unit.uel0210
+    if unit then unit.AverageDensity = 45000 end
+end
+
+local PreviousPostModBlueprints = PostModBlueprints
+function PostModBlueprints(blueprints)
+    PreviousPostModBlueprints(blueprints)
+    SetSonicDensity(blueprints)
+end
+
+local PreviousBatchProcessUnits = BatchProcessUnits
+function BatchProcessUnits(blueprints)
+    PreviousBatchProcessUnits(blueprints)
+    SetSonicDensity(blueprints)
+end
