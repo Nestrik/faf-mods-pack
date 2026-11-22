@@ -1,27 +1,34 @@
+local Ring = import('/mods/Project Roc Unicorns/lua/razlom_ring.lua')
 local ProjectileWeapon = import('/lua/sim/defaultweapons.lua').DefaultProjectileWeapon
 local BeamWeapon = import('/lua/sim/defaultweapons.lua').DefaultBeamWeapon
 local CollisionBeam = import('/lua/sim/collisionbeam.lua').CollisionBeam
 local WeaponCallbacks = import('/lua/sim/weapon.lua').Weapon
 local FirePath = import('/mods/Project Roc Unicorns/lua/razlom_fire_path.lua')
+local GroundSpread = import('/mods/Project Roc Unicorns/lua/sha_veyr_ground_spread.lua')
 local FX = '/mods/Project Roc Unicorns/effects/emitters/razlom_'
-
 local AuxBeam = Class(CollisionBeam) {
-    FxBeam = { FX .. 'aux_beam.bp' },
-    FxBeamStartPoint = { FX .. 'muzzle_emit.bp', FX .. 'sparks_emit.bp' },
-    FxBeamEndPoint = { FX .. 'muzzle_emit.bp' },
-    FxBeamEndPointScale = 0.6,
+    FxBeam = { FX .. 'aa_halo_beam.bp', FX .. 'aux_beam.bp' },
+    FxBeamStartPoint = { FX .. 'aa_eye_glow_emit.bp', FX .. 'aa_eye_sparks_emit.bp' },
+    FxBeamEndPoint = { FX .. 'aa_cut_glow_emit.bp', FX .. 'aa_cut_sparks_emit.bp' },
+    FxBeamEndPointScale = 1.0,
     TerrainImpactType = 'LargeBeam01',
     TerrainImpactScale = 0.25,
 }
-local ChargeBeam = Class(CollisionBeam) {
-    FxBeam = { FX .. 'charge1_beam.bp' },
-    FxBeamStartPoint = { FX .. 'charge_emit.bp', FX .. 'sparks_emit.bp' },
-    -- The targeting/charging beam is strictly visual, including at shield collisions.
-    DoDamage = function(self, instigator, damageData, targetEntity) end,
-    UpdateTerrainCollisionEffects = function(self, impactType) end,
-}
-
 AuxWeapon = ClassWeapon(BeamWeapon) {
+    SetWeaponEnabled = function(self, enabled)
+        BeamWeapon.SetWeaponEnabled(self, enabled and self.WaterClear ~= false)
+    end,
+    CanWeaponFire = function(self)
+        return self.WaterClear ~= false and BeamWeapon.CanWeaponFire(self)
+    end,
+    CreateProjectileAtMuzzle = function(self, muzzle)
+        local p = self.unit:GetPosition(muzzle)
+        if p[2] <= GetSurfaceHeight(p[1],p[3])+.08 then
+            self:PlayFxBeamEnd()
+            return
+        end
+        return BeamWeapon.CreateProjectileAtMuzzle(self,muzzle)
+    end,
     BeamType = AuxBeam,
     FxMuzzleFlash = {},
     FxChargeMuzzleFlash = {},
@@ -32,23 +39,46 @@ AuxWeapon = ClassWeapon(BeamWeapon) {
 }
 
 SiegeWeapon = ClassWeapon(ProjectileWeapon) {
-    FxMuzzleFlash = { FX .. 'shot_emit.bp', FX .. 'sparks_emit.bp' },
-    FxChargeMuzzleFlash = {},
-    OnCreate = function(self)
-        ProjectileWeapon.OnCreate(self)
-        self.ChargeBeam = ChargeBeam { Weapon = self, BeamBone = 0, OtherBone = 'MainMuzzle', CollisionCheckInterval = 1 }
-        self.ChargeBeam:SetParentWeapon(self)
-        self.ChargeBeam:Disable()
-        self.Trash:Add(self.ChargeBeam)
+    SetWeaponEnabled = function(self, enabled)
+        ProjectileWeapon.SetWeaponEnabled(self, enabled and self.WaterClear ~= false)
     end,
+    -- This floating weapon must never mark its mobile owner busy or immobile.
+    -- Keep the native state transitions, but scope the deployment lock to firing.
+    WeaponUnpackingState = State(ProjectileWeapon.WeaponUnpackingState) {
+        Main = function(self)
+            self.WeaponCanFire = false
+            self:PlayFxWeaponUnpackSequence()
+            if not self.unit.Dead then
+                ChangeState(self, self.RackSalvoFireReadyState)
+            end
+        end,
+    },
+    WeaponPackingState = State(ProjectileWeapon.WeaponPackingState) {
+        Main = function(self)
+            WaitSeconds(self.Blueprint.WeaponRepackTimeout or 2)
+            if self.unit.Dead then return end
+            self.WeaponCanFire = false
+            self:AimManipulatorSetEnabled(false)
+            self:PlayFxWeaponPackSequence()
+            if not self.unit.Dead then ChangeState(self, self.IdleState) end
+        end,
+    },
+    PlayFxWeaponUnpackSequence = function(self)
+        self.WeaponPackState = 'Unpacking'
+        Ring.Deploy(self.unit)
+        self.WeaponPackState = 'Unpacked'
+    end,
+    PlayFxWeaponPackSequence = function(self)
+        self.WeaponPackState = 'Packing'
+        Ring.Stow(self.unit)
+        self.WeaponPackState = 'Packed'
+    end,
+    FxMuzzleFlash = {}, -- the shared comet already has a luminous launch corona
+    FxChargeMuzzleFlash = {},
     StopCharge = function(self)
         self.Charging = false
-        self.WeaponCanFire = true
-        if self.ChargeBeam and not self.ChargeBeam:BeenDestroyed() then self.ChargeBeam:Disable() end
         local unit = self.unit
         if unit and not unit.Dead and not unit:BeenDestroyed() then
-            unit:SetWorkProgress(1)
-            unit:SetBusy(false)
             if unit.Rotor then unit.Rotor:SetTargetSpeed(15) end
             if unit.CounterRotor then unit.CounterRotor:SetTargetSpeed(-15) end
         end
@@ -58,6 +88,41 @@ SiegeWeapon = ClassWeapon(ProjectileWeapon) {
         ProjectileWeapon.OnLostTarget(self)
     end,
     UpdateOrderedAttackPursuit = function(self)
+        -- Never reset automatic targets or enter pursuit during player movement.
+        -- Restore the normal radius only if a preceding attack used pursuit.
+        if FirePath.HasNonAttackOrder(self.unit) then
+            self.EnrouteAttack = nil
+            if self.OrderedAttackPursuit then
+                self.OrderedAttackPursuit = false
+                self:ChangeMaxRadius(self.Blueprint.MaxRadius)
+                ChangeState(self, self.IdleState)
+            end
+            return
+        end
+        local distant, orderedTarget = FirePath.GetDistantAttack(self)
+        if distant then
+            -- Keep the player attack order and the weapon's full combat range.
+            -- SetTargetEntity changes only this weapon, never the command queue.
+            if self.OrderedAttackPursuit then
+                self.OrderedAttackPursuit = false
+                self:ChangeMaxRadius(self.Blueprint.MaxRadius)
+                ChangeState(self, self.IdleState)
+            end
+            self.EnrouteAttack = true
+            local target = FirePath.FindClearTarget(self, 'MainMuzzle', orderedTarget)
+            if target then
+                local current = self:GetCurrentTarget()
+                if current and current.GetSource and not current:BeenDestroyed() then current = current:GetSource() end
+                if current ~= target then self:SetTargetEntity(target) end
+            end
+            return
+        end
+        if self.EnrouteAttack then
+            self.EnrouteAttack = nil
+            local aim, target = FirePath.GetOrderedAttack(self.unit)
+            if target then self:SetTargetEntity(target)
+            elseif aim then self:SetTargetGround(aim) end
+        end
         local blocked = FirePath.OrderedAttackIsBlocked(self)
         if blocked and not self.OrderedAttackPursuit then
             self.OrderedAttackPursuit = true
@@ -69,119 +134,34 @@ SiegeWeapon = ClassWeapon(ProjectileWeapon) {
             self:ChangeMaxRadius(self.Blueprint.MaxRadius)
             ChangeState(self, self.IdleState)
         end
+        -- Free automatic targeting from an occluded enemy without rewriting orders.
+        if not self.OrderedAttackPursuit and not FirePath.GetOrderedAttack(self.unit)
+            and self:WeaponHasTarget() and not FirePath.IsClear(self, 'MainMuzzle') then
+            local target = FirePath.FindClearTarget(self, 'MainMuzzle', self:GetCurrentTarget())
+            self:ResetTarget()
+            if target then self:SetTargetEntity(target) end
+        end
     end,
     OrderedAttackPursuitState = State {
         WeaponWantEnabled = true, WeaponAimWantEnabled = false,
-        Main = function(self) self.WeaponCanFire = false; self.unit:SetBusy(false) end,
+        Main = function(self) self.WeaponCanFire = false; self:StopCharge() end,
         OnLostTarget = function(self) WeaponCallbacks.OnLostTarget(self) end,
         OnGotTarget = function(self) WeaponCallbacks.OnGotTarget(self) end,
         OnFire = function(self) end,
     },
     CanWeaponFire = function(self)
-        return not self.OrderedAttackPursuit and not self.unit.Moving
-            and ProjectileWeapon.CanWeaponFire(self) and FirePath.IsClear(self, 'MainMuzzle')
+        return self.WaterClear ~= false and self.unit.Ring and self.unit.Ring.ready and not self.OrderedAttackPursuit and ProjectileWeapon.CanWeaponFire(self)
+            and FirePath.IsClear(self, 'MainMuzzle')
     end,
-    TerrainBlockedState = State {
-        WeaponWantEnabled = false, WeaponAimWantEnabled = false,
-        OnLostTarget = function(self) WeaponCallbacks.OnLostTarget(self) end,
-        OnGotTarget = function(self) WeaponCallbacks.OnGotTarget(self) end,
-        OnFire = function(self) end,
-        Main = function(self)
-            self:StopCharge()
-            local rejected = self:GetCurrentTarget()
-            self:ResetTarget()
-            while not self.unit.Dead do
-                local target = FirePath.FindClearTarget(self, 'MainMuzzle', rejected)
-                if target then
-                    self.NextClearTarget = target
-                    ChangeState(self, self.RetargetState)
-                    return
-                end
-                WaitTicks(5)
-                rejected = nil
-                if self:WeaponHasTarget() and FirePath.IsClear(self, 'MainMuzzle') then
-                    ChangeState(self, self.RackSalvoChargeState)
-                    return
-                end
-            end
-        end,
-    },
-    RetargetState = State {
-        WeaponWantEnabled = true, WeaponAimWantEnabled = true,
-        Main = function(self)
-            local target = self.NextClearTarget
-            self.NextClearTarget = nil
-            if target and not target.Dead then self:SetTargetEntity(target) end
-            WaitTicks(1)
-            ChangeState(self, self.RackSalvoChargeState)
-        end,
-    },
-    RackSalvoChargeState = State(ProjectileWeapon.RackSalvoChargeState) {
-        Main = function(self)
-            self.unit:SetBusy(false)
-            if not self:WeaponHasTarget() then WaitTicks(1) end
-            if self.unit.Moving or not self:WeaponHasTarget() then
-                WaitTicks(3)
-                ChangeState(self, self.IdleState)
-                return
-            end
-            if not FirePath.IsClear(self, 'MainMuzzle') then
-                ChangeState(self, self.TerrainBlockedState)
-                return
-            end
-            self.Charging = true
-            self.WeaponCanFire = false
-            self:PlayFxRackSalvoChargeSequence()
-            for tick = 0, 29 do
-                if self.unit.Dead then self:StopCharge(); return end
-                if self.unit.Moving or not self:WeaponHasTarget() then
-                    self:StopCharge(); ChangeState(self, self.IdleState); return
-                end
-                if not FirePath.IsClear(self, 'MainMuzzle') then
-                    self:StopCharge(); ChangeState(self, self.TerrainBlockedState); return
-                end
-                if tick == 0 or tick == 10 or tick == 20 then
-                    self.ChargeBeam:Disable()
-                    self.ChargeBeam.FxBeam = { FX .. 'charge' .. (math.floor(tick / 10) + 1) .. '_beam.bp' }
-                    self.ChargeBeam:Enable()
-                end
-                local speed = 15 + 345 * tick / 29
-                self.unit.Rotor:SetTargetSpeed(speed)
-                self.unit.CounterRotor:SetTargetSpeed(-speed * 0.8)
-                self.unit:SetWorkProgress(tick / 30)
-                WaitTicks(1)
-            end
-            self.WeaponCanFire = true
-            ChangeState(self, self.RackSalvoFireReadyState)
-        end,
-    },
-    RackSalvoFireReadyState = State(ProjectileWeapon.RackSalvoFireReadyState) {
-        Main = function(self)
-            self.WeaponCanFire = true
-            self.unit:SetBusy(false)
-            while not self.unit.Dead do
-                if self.unit.Moving or not self:WeaponHasTarget() then
-                    self:StopCharge(); ChangeState(self, self.IdleState); return
-                end
-                if not FirePath.IsClear(self, 'MainMuzzle') then
-                    self:StopCharge(); ChangeState(self, self.TerrainBlockedState); return
-                end
-                WaitTicks(2)
-            end
-        end,
-    },
     CreateProjectileAtMuzzle = function(self, muzzle)
-        if self.unit.Moving or not FirePath.IsClear(self, muzzle) then
-            self:StopCharge()
-            return nil
-        end
-        self.Charging = false
+        if self.WaterClear == false or not self.unit.Ring or not self.unit.Ring.ready or not FirePath.IsClear(self, muzzle) then return nil end
         local projectile = ProjectileWeapon.CreateProjectileAtMuzzle(self, muzzle)
-        -- Native projectile collisions stop the flash at shields / walls / terrain.
-        self:ForkThread(function(weapon)
-            WaitTicks(2)
-            weapon:StopCharge()
-        end)
+        GroundSpread.Apply(projectile, self:GetCurrentTargetPos(),
+            self.Blueprint.GroundSpreadRadius, self.Blueprint.MuzzleVelocity)
+        if projectile then
+            if self.unit.Rotor then self.unit.Rotor:SetTargetSpeed(240) end
+            if self.unit.CounterRotor then self.unit.CounterRotor:SetTargetSpeed(-192) end
+        end
         return projectile
     end,
 }

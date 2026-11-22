@@ -132,7 +132,7 @@ UnitBlueprint {
     Weapon = {
         {
             AboveWaterTargetsOnly = true,
-            Audio = { Fire = Sound { Bank = 'PRU_ShaVeyr', Cue = 'ShaVeyr_Blaster', LodCutoff = 'Weapon_LodCutoff' } },
+            Audio = { Fire = Sound { Bank = 'PRU_LocalGrohot', Cue = 'ShaVeyr_Blaster', LodCutoff = 'Weapon_LodCutoff' } },
             BallisticArc = 'RULEUBA_None',
             CollideFriendly = true,
             Damage = 650,

@@ -1,11 +1,4 @@
 Parts = {
-    { Bone = 'MainYaw', Mesh = '/mods/Project Roc Unicorns/units/GGA0405/part_01_00_mesh' },
-    { Bone = 'MainYaw', Mesh = '/mods/Project Roc Unicorns/units/GGA0405/part_01_01_mesh' },
-    { Bone = 'MainYaw', Mesh = '/mods/Project Roc Unicorns/units/GGA0405/part_01_02_mesh' },
-    { Bone = 'MainYaw', Mesh = '/mods/Project Roc Unicorns/units/GGA0405/part_01_03_mesh' },
-    { Bone = 'MainPitch', Mesh = '/mods/Project Roc Unicorns/units/GGA0405/part_02_00_mesh' },
-    { Bone = 'Rotor', Mesh = '/mods/Project Roc Unicorns/units/GGA0405/part_03_00_mesh' },
-    { Bone = 'CounterRotor', Mesh = '/mods/Project Roc Unicorns/units/GGA0405/part_04_00_mesh' },
     { Bone = 'LEFT_front_Hip_link', Mesh = '/mods/Project Roc Unicorns/units/GGA0405/part_05_00_mesh' },
     { Bone = 'LEFT_front_Armored_shin', Mesh = '/mods/Project Roc Unicorns/units/GGA0405/part_06_00_mesh' },
     { Bone = 'LEFT_front_Clawed_foot', Mesh = '/mods/Project Roc Unicorns/units/GGA0405/part_07_00_mesh' },
@@ -28,4 +21,5 @@ Parts = {
     { Bone = 'AuxLeftPitch', Mesh = '/mods/Project Roc Unicorns/units/GGA0405/part_24_00_mesh' },
     { Bone = 'AuxRightYaw', Mesh = '/mods/Project Roc Unicorns/units/GGA0405/part_25_00_mesh' },
     { Bone = 'AuxRightPitch', Mesh = '/mods/Project Roc Unicorns/units/GGA0405/part_26_00_mesh' },
+    { Bone = 'RingTilt', Mesh = '/mods/Project Roc Unicorns/units/GGA0405/ring_live_mesh' },
 }

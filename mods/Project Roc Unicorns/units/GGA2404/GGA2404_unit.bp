@@ -22,9 +22,9 @@ UnitBlueprint {
         } },
         UniformScale = 0.05, Mesh = { IconFadeInZoom = 160, LODs = { {
     MeshName = '/mods/Project Roc Unicorns/units/GGA2404/GGA2404_lod0.scm',
-    AlbedoName = '/mods/Project Roc Unicorns/units/GGA2404/GGA2404_albedo.dds',
-    SpecularName = '/mods/Project Roc Unicorns/units/GGA2404/GGA2404_specteam.dds',
-    NormalsName = '/mods/Project Roc Unicorns/units/GGA2404/GGA2404_normalsTS.dds',
+    AlbedoName = '/mods/Project Roc Unicorns/units/GGA2404/GGA2404_rebaked_albedo.dds',
+    SpecularName = '/mods/Project Roc Unicorns/units/GGA2404/GGA2404_rebaked_specteam.dds',
+    NormalsName = '/mods/Project Roc Unicorns/units/GGA2404/GGA2404_rebaked_normalsTS.dds',
     LookupName = '/textures/environment/Falloff_seraphim_lookup.dds',
     ShaderName = 'Seraphim', LODCutoff = 150,
 },

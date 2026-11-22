@@ -123,6 +123,15 @@ end
 
 -- Read only the active order. Do not replace, clear or reorder player commands.
 local CommandTypes = import('/lua/sim/commands/shared.lua').UnitQueueDataToCommand
+-- Ordinary move/patrol/guard commands belong to the native navigator.
+function HasNonAttackOrder(unit)
+    local queue = unit:GetCommandQueue()
+    local order = queue and queue[1]
+    if not order then return false end
+    local info = CommandTypes[order.commandType]
+    return not info or info.Type ~= 'Attack'
+end
+
 function GetOrderedAttack(unit)
     local queue = unit:GetCommandQueue()
     local order = queue and queue[1]
@@ -141,4 +150,14 @@ end
 function OrderedAttackIsBlocked(weapon)
     local aim, target = GetOrderedAttack(weapon.unit)
     return aim and not ClearToPoint(weapon, 'MainMuzzle', aim, target) or false
+end
+
+-- A distant explicit attack remains in the native queue while this weapon shoots locally.
+function GetDistantAttack(weapon)
+    local aim, target = GetOrderedAttack(weapon.unit)
+    if not aim then return nil end
+    local origin = weapon.unit:GetPosition('MainMuzzle')
+    local dx, dz = aim[1]-origin[1], aim[3]-origin[3]
+    local radius = weapon.Blueprint.MaxRadius
+    if dx*dx+dz*dz > radius*radius then return aim, target end
 end

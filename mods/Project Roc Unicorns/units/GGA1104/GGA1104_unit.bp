@@ -62,7 +62,7 @@ UnitBlueprint {
                 },
             },
         },
-        UniformScale = 0.05,
+        UniformScale = 0.0625,
     },
     Economy = {
         BuildRate = 10,
@@ -80,7 +80,7 @@ UnitBlueprint {
         Icon = 'land',
         SelectionPriority = 5,
         ToggleCaps = { RULEUTC_ProductionToggle = true },
-        UnitName = '<LOC gga1104_name>T1 Mass Fabricator',
+        UnitName = 'Nyalia',
         UpgradesTo = 'gga1204',
     },
     LifeBarHeight = 0.075,
