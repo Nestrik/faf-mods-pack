@@ -1,3 +1,4 @@
+local Ring = import('/mods/Project Roc Unicorns/lua/razlom_ring.lua')
 local Walker = import('/lua/seraphimunits.lua').SWalkingLandUnit
 local Motion = import('/lua/sim/units/mobileunit.lua').MobileUnit
 local Gait = import('/mods/Project Roc Unicorns/lua/razlom_locomotion.lua')
@@ -51,6 +52,18 @@ local function BuildEffect(unit, builder, effectsBag, scaleFactor)
 end
 
 GGA0405 = ClassUnit(Walker) {
+    -- The root mesh is the entire intact hull, not a detachable debris fragment.
+    ShowUnitDestructionDebris = false,
+    CreateWreckageProp = function(self, overkillRatio)
+        local wreck = Walker.CreateWreckageProp(self, overkillRatio)
+        if wreck then
+            -- Use the dedicated collapsed wreck, not an auto-generated live-mesh copy.
+            wreck:SetMesh('/mods/Project Roc Unicorns/units/GGA0405/wreck_' .. Random(1,3) .. '_mesh')
+        end
+        self:HideBone(0, true)
+        return wreck
+    end,
+
     OnCreate = function(self)
         Walker.OnCreate(self)
         self.ModelParts = {}
@@ -58,33 +71,11 @@ GGA0405 = ClassUnit(Walker) {
         -- Native build shader only scales the unit mesh, not attached Entities.
         -- Keep it hidden until the complete assembly can be revealed atomically.
         self:HideBone(0, true)
-        self.Rotor = CreateRotator(self, 'Rotor', 'z', nil, 0, 60, 0)
-        self.CounterRotor = CreateRotator(self, 'CounterRotor', 'z', nil, 0, 60, 0)
-        self.Trash:Add(self.Rotor)
-        self.Trash:Add(self.CounterRotor)
     end,
     CreateFinishedVisualParts = function(self)
-        if self.FinishedVisualsCreated then return end
+        -- All visible parts are rigidly skinned to this unit's native skeleton.
+        -- This preserves army colour and the existing bone animation controllers.
         self.FinishedVisualsCreated = true
-        for _, part in ipairs(Parts) do
-            local entity = Entity { Owner = self, Army = self.Army }
-            -- Initialise before mesh creation; all live chunks attach to the native skeleton.
-            entity:SetPosition(self:GetPosition(), true)
-            entity:SetOrientation(self:GetOrientation(), true)
-            entity:SetDrawScale(1)
-            entity:SetMesh(part.Mesh)
-            if string.find(part.Bone, '^LEFT_') or string.find(part.Bone, '^RIGHT_') then
-                self.LegVisuals[part.Bone] = self.LegVisuals[part.Bone] or {}
-                table.insert(self.LegVisuals[part.Bone], entity)
-            end
-            entity:AttachBoneTo(-1, self, part.Bone)
-            entity:SetVizToFocusPlayer('Intel')
-            entity:SetVizToAllies('Intel')
-            entity:SetVizToEnemies('Intel')
-            entity:SetVizToNeutrals('Intel')
-            self.Trash:Add(entity)
-            table.insert(self.ModelParts, entity)
-        end
     end,
     DestroyConstructionVisuals = function(self)
         for _, part in ipairs(self.ConstructionParts or {}) do
@@ -115,6 +106,31 @@ GGA0405 = ClassUnit(Walker) {
         self:SetMesh('/mods/Project Roc Unicorns/units/GGA0405/chassis_live_mesh', true)
         self:ShowBone(0, true)
         self:CreateFinishedVisualParts()
+        self:ForkThread(function(unit)
+            local states = {}
+            while not unit.Dead and not unit:BeenDestroyed() do
+                local p = unit:GetPosition()
+                local water = GetSurfaceHeight(p[1],p[3])
+                -- Deployed centre 6.21, bounding radius <1.73: all of the tilted ring clears water.
+                local allowed = {MainGun=p[2]+4.30>water}
+                for _,label in ipairs({'AuxLeft','AuxRight'}) do
+                    local muzzle=unit:GetPosition(label..'Muzzle')
+                    allowed[label]=muzzle[2]>GetSurfaceHeight(muzzle[1],muzzle[3])+.08
+                end
+                for label,enabled in pairs(allowed) do
+                    local weapon=unit:GetWeaponByLabel(label)
+                    weapon.WaterClear=enabled
+                    if states[label]~=enabled then
+                        states[label]=enabled
+                        weapon:SetWeaponEnabled(enabled)
+                        if not enabled and label~='MainGun' then weapon:PlayFxBeamEnd() end
+                    end
+                end
+                WaitTicks(2)
+            end
+        end)
+
+        Ring.Initialize(self)
         Gait.Initialize(self)
         self:ForkThread(function(unit)
             local gun = unit:GetWeaponByLabel('MainGun')
@@ -137,6 +153,7 @@ GGA0405 = ClassUnit(Walker) {
         end
     end,
     RemoveVisualParts = function(self)
+        Ring.DestroyEffects(self)
         self:DestroyConstructionVisuals()
         for _, part in ipairs(self.ModelParts or {}) do
             if not part:BeenDestroyed() then part:Destroy() end

@@ -1,0 +1,12 @@
+BeamBlueprint {
+    Blendmode = 3,
+    StartColor = {x=1,y=1,z=1,w=1},
+    EndColor = {x=1,y=1,z=1,w=1},
+    TextureName = '/mods/Project Roc Unicorns/textures/particles/razlom_aa_laser_halo.dds',
+    Thickness = 0.16,
+    Length = 2000,
+    Lifetime = 10,
+    RepeatRate = 0.04,
+    UShift = 0, VShift = 0,
+    LODCutoff = 500,
+}

@@ -1,1 +1,7 @@
-MeshBlueprint { LODs = {{ MeshName = '/mods/Project Roc Unicorns/units/GGA0405/chassis_live.scm', AlbedoName = '/mods/Project Roc Unicorns/units/GGA0405/albedo.dds', SpecularName = '/mods/Project Roc Unicorns/units/GGA0405/specteam.dds', NormalsName = '/mods/Project Roc Unicorns/units/GGA0405/normalsTS.dds', LookupName = '/textures/environment/Falloff_seraphim_lookup.dds', ShaderName = 'Seraphim', LODCutoff = 700, }}, }
+MeshBlueprint {
+    IconFadeInZoom = 130,
+    LODs = {
+        {MeshName = '/mods/Project Roc Unicorns/units/GGA0405/chassis_live.scm', AlbedoName = '/mods/Project Roc Unicorns/units/GGA0405/albedo.dds', SpecularName = '/mods/Project Roc Unicorns/units/GGA0405/specteam.dds', NormalsName = '/mods/Project Roc Unicorns/units/GGA0405/normalsTS.dds', LookupName = '/textures/environment/Falloff_seraphim_lookup.dds', ShaderName = 'Seraphim', LODCutoff = 200,},
+        {MeshName = '/mods/Project Roc Unicorns/units/GGA0405/chassis_lod1.scm', AlbedoName = '/mods/Project Roc Unicorns/units/GGA0405/albedo.dds', SpecularName = '/mods/Project Roc Unicorns/units/GGA0405/specteam.dds', NormalsName = '/mods/Project Roc Unicorns/units/GGA0405/normalsTS.dds', LookupName = '/textures/environment/Falloff_seraphim_lookup.dds', ShaderName = 'Seraphim', LODCutoff = 400,},
+    },
+}

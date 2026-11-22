@@ -102,16 +102,25 @@ local function poseBone(unit,bone,orientation,dt)
  end
 end
 local function impact(unit,leg)
- local parts=unit.LegVisuals[leg.data.name..'_Clawed_foot']
- local foot=parts and parts[1]
- if foot and not foot:BeenDestroyed() then
-  for _,fx in ipairs(import('/lua/effecttemplates.lua').FootFall01) do
-   CreateEmitterAtEntity(foot,unit.Army,fx):OffsetEmitter(0,-leg.data.ankle[2],0):ScaleEmitter(1.4)
-  end
+ -- Feet now belong to the native unit mesh; keep impact effects on their bones.
+ for _,fx in ipairs(import('/lua/effecttemplates.lua').FootFall01) do
+  CreateAttachedEmitter(unit,leg.data.name..'_Clawed_foot',unit.Army,fx):OffsetEmitter(0,-leg.data.ankle[2],0):ScaleEmitter(1.4)
+ end
+ -- This procedural gait does not emit native OnAnimCollision events.
+ -- Apply the experimental stomp exactly once at the planted foot, not its ankle.
+ local p = {leg.foot[1], GetTerrainHeight(leg.foot[1],leg.foot[3]), leg.foot[3]}
+ local damage = unit.Blueprint.FootfallDamage
+ if damage then DamageArea(unit,p,damage.Radius,damage.Amount,damage.Type,damage.DamageFriendly) end
+ if GetSurfaceHeight(p[1],p[3]) <= p[2]+.05 then
+  local outward = sub(leg.data.ankle,leg.data.hip)
+  outward = rotate(leg.orientation,outward)
+  local heading = math.atan2(outward[1],outward[3]) + math.pi
+  CreateDecal(p,heading,'/mods/Project Roc Unicorns/textures/razlom_footprint.dds','',
+      'Albedo',1.15,1.55,180,100,unit.Army)
  end
  -- Called exactly once, after the visible foot has reached its planted pose.
  unit:PlayUnitSound('FootFallGeneric')
- unit:ShakeCamera(22,.09,0,.10)
+ unit:ShakeCamera(25,.125,0,.35)
  unit.Gait.landings=(unit.Gait.landings or 0)+1
 end
 
@@ -125,10 +134,29 @@ function Update(unit,dt)
  local op=unit:GetPosition();local origin={op[1],op[2],op[3]};local q=horizontalOrientation(unit)
  local forward=rotate(q,{0,0,1});local oldForward=rotate(g.lastQ,{0,0,1})
  local angular=dt>0 and math.atan2(cross(oldForward,forward)[2],dot(oldForward,forward))/dt or 0
- local anticipated=qmul({0,math.sin(angular*.4/2),0,math.cos(angular*.4/2)},q)
+
  local velocity=dt>0 and mul(sub(origin,g.last),1/dt) or {0,0,0};velocity[2]=0
  if length(velocity)>5 then velocity={0,0,0} end -- teleport does not create an enormous step
- local moving=length(velocity)>.02 or unit.Moving
+ -- Shorter placement lead only while pivoting nearly in place.
+ local turningInPlace=length(velocity)<.2 and math.abs(angular)>.02
+ local turnLead=turningInPlace and .12 or .4
+ local anticipated=qmul({0,math.sin(angular*turnLead/2),0,math.cos(angular*turnLead/2)},q)
+ local moving=length(velocity)>.02 or math.abs(angular)>.01 or unit.Moving
+ -- Read-only navigation trace: records order changes without reissuing commands.
+ g.auditClock=(g.auditClock or 0)+dt
+ if g.auditClock>=.5 then
+  g.auditClock=0
+  local queue=unit:GetCommandQueue() or {}
+  local order=queue[1]
+  local signature=order and (tostring(order.commandType)..':'..tostring(order.x)..':'..tostring(order.z)) or 'empty'
+  if signature~=g.auditOrder then
+   local goal=order and order.x and order.z and {order.x,order.z} or g.auditGoal
+   local distance=goal and math.sqrt((origin[1]-goal[1])^2+(origin[3]-goal[2])^2) or -1
+   LOG(string.format('[RaZlom navigation v2] id=%s order=%s previous=%s x=%.2f z=%.2f distance=%.2f speed=%.3f turn=%.3f',
+       tostring(unit:GetEntityId()),signature,tostring(g.auditOrder),origin[1],origin[3],distance,length(velocity),angular))
+   g.auditOrder=signature;g.auditGoal=order and goal or nil
+  end
+ end
  g.cooldown=math.max(0,g.cooldown-dt)
  local active=false
  for _,leg in ipairs(g.legs) do
@@ -136,7 +164,7 @@ function Update(unit,dt)
    leg.elapsed=leg.elapsed+dt
    local t=clamp(leg.elapsed/leg.duration,0,1);local s=smooth(t)
    leg.foot=add(mul(leg.start,1-s),mul(leg.finish,s))
-   leg.foot[2]=leg.foot[2]+.55*math.sin(math.pi*t)^2
+   leg.foot[2]=leg.foot[2]+(leg.stepLift or .55)*math.sin(math.pi*t)^2
    leg.orientation=qblend(leg.startQ,leg.finishQ,s)
    if t>=1 then leg.foot=leg.finish;leg.orientation=leg.finishQ;leg.swing=false;leg.landed=true else active=true end
   end
@@ -147,14 +175,16 @@ function Update(unit,dt)
    local ideal=ground(add(origin,rotate(q,leg.ideal)),leg.data.ankle[2])
    local e=sub(ideal,leg.foot);e[2]=0;worst=math.max(worst,length(e))
   end
-  if worst>.16 then
+  if worst>(turningInPlace and .10 or .30) then
    local rank=0
    for _,leg in ipairs(g.legs) do
     if leg.data.group==g.nextGroup then
      rank=rank+1
-     leg.swing=true;leg.elapsed=0;leg.duration=.2+rank*.1
+     leg.swing=true;leg.elapsed=0
+     leg.duration=turningInPlace and (.18+rank*.07) or (.35+rank*.08)
+     leg.stepLift=turningInPlace and .28 or .55
      leg.start={leg.foot[1],leg.foot[2],leg.foot[3]};leg.startQ=leg.orientation;leg.finishQ=anticipated
-     leg.finish=ground(add(add(origin,rotate(anticipated,leg.ideal)),mul(velocity,leg.duration)),leg.data.ankle[2])
+     leg.finish=ground(add(add(origin,rotate(anticipated,leg.ideal)),mul(velocity,leg.duration+(turningInPlace and 0 or .25))),leg.data.ankle[2])
     end
    end
    g.nextGroup=3-g.nextGroup

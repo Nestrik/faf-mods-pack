@@ -59,7 +59,7 @@ UnitBlueprint {
                 },
             },
         },
-        UniformScale = 0.05,
+        UniformScale = 0.0625,
     },
     Economy = {
         BuildCostEnergy = 31625,
@@ -75,7 +75,7 @@ UnitBlueprint {
         Icon = 'land',
         SelectionPriority = 5,
         ToggleCaps = { RULEUTC_ProductionToggle = true },
-        UnitName = '<LOC gga1304_name>T3 Mass Fabricator',
+        UnitName = 'Nyalia',
         UpgradesFrom = 'gga1204',
         UpgradesFromBase = 'gga1104',
     },
