@@ -1,6 +1,6 @@
 name = "Project Roc Unicorns"
-uid = "04dd0e14-4dec-4b4c-87f8-e83b552bdd4e-10"
-version = 10
+uid = "04dd0e14-4dec-4b4c-87f8-e83b552bdd4e-11"
+version = 11
 description = "A collection of gameplay and balance changes, with Seraphim, Cybran, Aeon and UEF units."
 author = "ROC Unicorns"
 selectable = true
