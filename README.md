@@ -22,6 +22,7 @@ mods/
 
 ## Моды в проекте
 
+- [Project Roc Base Mecanics](mods/project-roc-base-mecanics/README.md) — инженеры расходуют только энергию при усилении щита.
 - [Seraphim T1 Missile Launcher](mods/seraphim-t1-missile-launcher/README.md) — мобильная ракетная установка Seraphim T1.
 - [Seraphim T1 Mobile Shield](mods/seraphim-t1-mobile-shield/README.md) — экспериментальный мобильный юнит с направленным персональным щитом.
 - [Seraphim ACU Test Generator](mods/seraphim-acu-test-generator/README.md) — тестовое улучшение командира Серафимов с большой генерацией ресурсов и билд-павера.

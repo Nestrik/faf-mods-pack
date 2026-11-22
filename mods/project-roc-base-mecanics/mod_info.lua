@@ -1,0 +1,9 @@
+name = "Project Roc Base Mecanics"
+uid = "ff725d81-9944-4c37-9c35-fbe5000e4056-2"
+version = 2
+description = "Shield assistance consumes energy only. Hull repairs retain their usual cost."
+author = "nestrik"
+selectable = true
+enabled = true
+exclusive = false
+ui_only = false
