@@ -13,10 +13,10 @@ ProjectileBlueprint {
         EntityCategory = { 'UEF', 'PROJECTILE', 'INDIRECTFIRE', 'TACTICAL', 'MISSILE' },
     },
     Physics = {
-        Acceleration = 5, InitialSpeed = 10, MaxSpeed = 20, MaxSpeedRange = 0,
+        Acceleration = 10, InitialSpeed = 10, MaxSpeed = 40, MaxSpeedRange = 0,
         MaxZigZag = 0, ZigZagFrequency = 1,
         DestroyOnWater = true, LeadTarget = false,
-        TrackTarget = true, TrackTargetGround = true,
+        TrackTarget = true, TrackTargetGround = false,
         TurnRate = 0, UseGravity = false, VelocityAlign = true,
     },
 }
